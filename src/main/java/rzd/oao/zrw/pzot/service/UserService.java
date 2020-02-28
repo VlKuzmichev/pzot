@@ -6,7 +6,6 @@ import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
 
-@Service
 public interface UserService {
     User create(User user) throws NotFoundException;
 

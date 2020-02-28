@@ -46,7 +46,6 @@ public abstract class AbstractBaseEntity {
         }
         AbstractBaseEntity that = (AbstractBaseEntity) o;
         return id != null && id.equals(that.id);
-//        return false;
     }
 
     @Override

@@ -12,8 +12,11 @@ import java.util.List;
 public class UserRepositoryImpl implements UserRepository {
     private static final Sort SORT_NAME_EMAIL = new Sort(Sort.Direction.ASC, "name", "email");
 
-    @Autowired
-    private CrudUserRepository crudUserRepository;
+    private final CrudUserRepository crudUserRepository;
+
+    public UserRepositoryImpl(CrudUserRepository crudUserRepository) {
+        this.crudUserRepository = crudUserRepository;
+    }
 
     @Override
     public User save(User user) {
@@ -40,11 +43,6 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getAll() {
         return crudUserRepository.findAll(SORT_NAME_EMAIL);
     }
-
-//    @Override
-//    public List<User> getAllByUserGroup(int userGroupId) {
-//        return null;
-//    }
 
     @Override
     public User getWithUserGroups(int id) {

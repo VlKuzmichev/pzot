@@ -6,13 +6,14 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import rzd.oao.zrw.pzot.model.User;
-import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.service.UserService;
+import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static rzd.oao.zrw.pzot.UserTestData.*;
 
 @SpringJUnitConfig(locations = {
@@ -24,17 +25,21 @@ class UserServiceImplTest {
     @Autowired
     protected UserService service;
 
+    // Test creating new user
     @Test
-    void save() {
+    void create() {
+        User created = service.create(NEW_USER);
+        assertThat(created).isEqualTo(NEW_USER);
     }
 
-//    @Test
-//    void testUpdate() throws Exception {
-//        User updated = new User(USER);
-//        updated.setFullName("Updated User Userovich");
-//        repository.update(updated, USER_ID);
-//        assertMatch(service.get(USER_ID), updated);
-//    }
+    // Test updating user data
+    @Test
+    void update() throws Exception {
+        User updated = new User(USER);
+        updated.setFullName("Updated User Userovich");
+        service.update(updated);
+        assertThat(service.get(USER_ID).getFullName()).isNotEqualTo(USER.getFullName());
+    }
 
     // Test deleting user from database by Id
     @Test
@@ -47,11 +52,25 @@ class UserServiceImplTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    void testDeleteNotFound() throws Exception {
+        assertThrows(NotFoundException.class, () ->
+                service.delete(5));
+    }
+
     // Test Get user from database by Id
     @Test
     void get() {
         User user = service.get(USER_ID);
         assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups");
+    }
+
+    // Test Get user from database by none exist Id
+    @Test
+    void testGetNotFound() throws Exception {
+        assertThrows(NotFoundException.class, () -> {
+            User user = service.get(1);
+        });
     }
 
     // Test Get admin from database by Email
@@ -60,6 +79,15 @@ class UserServiceImplTest {
         User admin = service.getByEmail("admin@yandex.ru");
         assertThat(admin).isEqualToIgnoringGivenFields(ADMIN, "userGroups");
     }
+
+    // Test Get user from database by none exist Email
+    @Test
+    void testGetNotFoundWithEmail() throws Exception {
+        assertThrows(NotFoundException.class, () -> {
+            User user = service.getByEmail("asdf@asdf.com");
+        });
+    }
+
 
     // Test Get all users from database
     @Test
@@ -88,4 +116,12 @@ class UserServiceImplTest {
         User exam = service.getByName("Exam");
         assertThat(exam).isEqualToIgnoringGivenFields(EXAMINER, "userGroups");
     }
+
+    @Test
+    void testGetNotFoundByName() throws Exception {
+        assertThrows(NotFoundException.class, () -> {
+            User user = service.getByName("BadUser");
+        });
+    }
+
 }
