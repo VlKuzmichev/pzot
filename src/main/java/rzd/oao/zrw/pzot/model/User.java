@@ -1,7 +1,6 @@
 package rzd.oao.zrw.pzot.model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -10,8 +9,8 @@ import java.util.Set;
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "users_unique_name_idx")})
 public class User extends AbstractBaseEntity {
-    @Column(name = "name", nullable = false)
-    private String name;
+//    @Column(name = "name", nullable = false)
+//    private String name;
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "email", nullable = false)
@@ -20,7 +19,6 @@ public class User extends AbstractBaseEntity {
     @Column(name = "full_name")
     private String fullName;
 
-    //    @ManyToMany(fetch = FetchType.LAZY)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_group_users", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "group_id")})
@@ -31,6 +29,9 @@ public class User extends AbstractBaseEntity {
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+   // @ManyToMany(fetch = FetchType.LAZY)
+    private List<Test> tests;
 
     public User() {
     }
@@ -44,20 +45,28 @@ public class User extends AbstractBaseEntity {
     }
 
     public User(Integer id, String name, String password, String email, String fullName, Set<Role> roles) {
-        super(id);
-        this.name = name;
+        super(id, name);
         this.password = password;
         this.email = email;
         this.fullName = fullName;
         this.roles = roles;
     }
 
-    public String getName() {
-        return name;
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+
+
+    public List<Test> getTests() {
+        return tests;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
     }
 
     public String getPassword() {

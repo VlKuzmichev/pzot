@@ -12,11 +12,15 @@ public abstract class AbstractBaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     protected Integer id;
 
+    @Column(name = "name", nullable = false)
+    protected String name;
+
     protected AbstractBaseEntity() {
     }
 
-    protected AbstractBaseEntity(Integer id) {
+    protected AbstractBaseEntity(Integer id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public void setId(Integer id) {
@@ -27,13 +31,21 @@ public abstract class AbstractBaseEntity {
         return id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public boolean isNew() {
         return this.id == null;
     }
 
     @Override
     public String toString() {
-        return String.format("Entity %s (%s)", getClass().getName(), id);
+        return String.format("Entity %s (%s, '%s')", getClass().getName(), id, name);
     }
 
     @Override

@@ -9,8 +9,8 @@ import java.util.Set;
 @Table(name = "user_groups", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "user_group_unique_name_idx")})
 public class UserGroup extends AbstractBaseEntity {
-    @Column(name = "name", nullable = false)
-    private String name;
+//    @Column(name = "name", nullable = false)
+//    private String name;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "userGroups")
     private List<User> users;
@@ -19,7 +19,7 @@ public class UserGroup extends AbstractBaseEntity {
     }
 
     public UserGroup(Integer id, String name, List<User> users) {
-        super(id);
+        super(id, name);
         this.name = name;
         this.users = users;
     }

@@ -8,8 +8,6 @@ import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
 
-import static rzd.oao.zrw.pzot.util.NotFoundException.NOT_FOUND_EXCEPTION;
-
 @Service
 public class UserServiceImpl implements UserService {
 

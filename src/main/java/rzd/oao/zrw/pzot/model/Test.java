@@ -1,28 +1,69 @@
 package rzd.oao.zrw.pzot.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Test extends AbstractBaseEntity{
-    private String name;
+    private Date startDate;
+    private Date endDate;
+    private Status status;
+    private Integer attempt;
+    private Integer maxAttempts;
     private List<Question> questions;
-    private List<UserGroup> userGroups;
+    private List<User> users;
 
     public Test() {
     }
 
-    public Test(Integer id, String name, List<Question> questions, List<UserGroup> userGroups) {
-        super(id);
-        this.name = name;
+    public Test(Integer id, String name, Date startDate, Date endDate, Status status, Integer attempt, Integer maxAttempts, List<Question> questions, List<User> users) {
+        super(id, name);
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+        this.attempt = attempt;
+        this.maxAttempts = maxAttempts;
         this.questions = questions;
-        this.userGroups = userGroups;
+        this.users = users;
     }
 
-    public String getName() {
-        return name;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Integer getAttempt() {
+        return attempt;
+    }
+
+    public void setAttempt(Integer attempt) {
+        this.attempt = attempt;
+    }
+
+    public Integer getMaxAttempts() {
+        return maxAttempts;
+    }
+
+    public void setMaxAttempts(Integer maxAttempts) {
+        this.maxAttempts = maxAttempts;
     }
 
     public List<Question> getQuestions() {
@@ -33,11 +74,11 @@ public class Test extends AbstractBaseEntity{
         this.questions = questions;
     }
 
-    public List<UserGroup> getUserGroups() {
-        return userGroups;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserGroups(List<UserGroup> userGroups) {
-        this.userGroups = userGroups;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
