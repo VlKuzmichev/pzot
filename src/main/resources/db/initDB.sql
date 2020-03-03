@@ -88,14 +88,18 @@ CREATE TABLE tests_questions (
     test_id int references tests(id),
     question_id int references questions(id),
     CONSTRAINT tests_questions_idx UNIQUE (test_id, question_id),
-    primary key (test_id, question_id)
+    primary key (test_id, question_id),
+    FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tests_users (
     test_id int references tests(id),
     user_id int references users(id),
     CONSTRAINT tests_users_idx UNIQUE (test_id, user_id),
-    primary key (test_id, user_id)
+    primary key (test_id, user_id),
+    FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE test_statuses
