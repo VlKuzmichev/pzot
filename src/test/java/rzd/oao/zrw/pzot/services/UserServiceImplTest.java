@@ -52,6 +52,7 @@ class UserServiceImplTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    // Test if not found deleting user by Id
     @Test
     void testDeleteNotFound() throws Exception {
         assertThrows(NotFoundException.class, () ->
@@ -62,7 +63,7 @@ class UserServiceImplTest {
     @Test
     void get() {
         User user = service.get(USER_ID);
-        assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups");
+        assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups", "tests");
     }
 
     // Test Get user from database by none exist Id
@@ -77,7 +78,7 @@ class UserServiceImplTest {
     @Test
     void getByEmail() {
         User admin = service.getByEmail("admin@yandex.ru");
-        assertThat(admin).isEqualToIgnoringGivenFields(ADMIN, "userGroups");
+        assertThat(admin).isEqualToIgnoringGivenFields(ADMIN, "userGroups", "tests");
     }
 
     // Test Get user from database by none exist Email
@@ -100,10 +101,11 @@ class UserServiceImplTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    // Test Get user with user group
     @Test
     void getWithUserGroups() {
         User user = service.getWithUserGroups(USER_ID);
-        assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups");
+        assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups", "tests");
         User expected = USER;
         expected.setUserGroups(getUserGroups());
         // Compare first element of userGroups field
@@ -114,9 +116,10 @@ class UserServiceImplTest {
     @Test
     void getByName() {
         User exam = service.getByName("Exam");
-        assertThat(exam).isEqualToIgnoringGivenFields(EXAMINER, "userGroups");
+        assertThat(exam).isEqualToIgnoringGivenFields(EXAMINER, "userGroups", "tests");
     }
 
+    // Test Get not found user by name
     @Test
     void testGetNotFoundByName() throws Exception {
         assertThrows(NotFoundException.class, () -> {
