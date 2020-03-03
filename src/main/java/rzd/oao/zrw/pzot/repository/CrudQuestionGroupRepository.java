@@ -6,13 +6,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+import rzd.oao.zrw.pzot.model.QuestionGroup;
 import rzd.oao.zrw.pzot.model.User;
 
 import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface CrudUserRepository extends JpaRepository<User, Integer> {
+public interface CrudQuestionGroupRepository extends JpaRepository<QuestionGroup, Integer> {
     @Transactional
     @Modifying
     @Query("DELETE FROM User u WHERE u.id=:id")
@@ -20,18 +21,16 @@ public interface CrudUserRepository extends JpaRepository<User, Integer> {
 
     @Override
     @Transactional
-    User save(User user);
+    QuestionGroup save(QuestionGroup questionGroup);
 
     @Override
-    Optional<User> findById(Integer id);
+    Optional<QuestionGroup> findById(Integer id);
 
     @Override
-    List<User> findAll(Sort sort);
+    List<QuestionGroup> findAll(Sort sort);
 
-    @Query("SELECT u FROM User u JOIN FETCH u.userGroups WHERE u.id =:id")
-    User getWithUserGroups(@Param("id") int id);
+    @Query("SELECT q FROM QuestionGroup q JOIN FETCH q.questions WHERE q.id =:id")
+    QuestionGroup getWithQuestions(@Param("id") int id);
 
-    User getByEmail(String email);
-
-    User getByName(String name);
+    QuestionGroup getByName(String name);
 }

@@ -1,7 +1,5 @@
 package rzd.oao.zrw.pzot.repository;
 
-import org.springframework.aop.scope.ScopedProxyUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import rzd.oao.zrw.pzot.model.User;
@@ -20,7 +18,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
-        System.out.println(user);
         return crudUserRepository.save(user);
     }
 
