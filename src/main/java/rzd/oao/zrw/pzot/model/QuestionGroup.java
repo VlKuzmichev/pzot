@@ -1,8 +1,14 @@
 package rzd.oao.zrw.pzot.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "question_groups", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
+        name = "question_group_unique_name_idx")})
 public class QuestionGroup extends AbstractBaseEntity {
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "questionGroup")
     private List<Question> questions;
 
     public QuestionGroup() {

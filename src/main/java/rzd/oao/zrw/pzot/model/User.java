@@ -9,8 +9,6 @@ import java.util.Set;
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "users_unique_name_idx")})
 public class User extends AbstractBaseEntity {
-//    @Column(name = "name", nullable = false)
-//    private String name;
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "email", nullable = false)
@@ -30,7 +28,9 @@ public class User extends AbstractBaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-   // @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "test_id")})
     private List<Test> tests;
 
     public User() {
