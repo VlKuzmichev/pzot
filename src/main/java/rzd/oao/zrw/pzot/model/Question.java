@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "questions", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "question_unique_name_idx")})
-public class Question extends AbstractBaseEntity{
+public class Question extends AbstractBaseEntity {
     @Column(name = "answered", nullable = false)
     private Boolean answered;
 

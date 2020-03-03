@@ -52,15 +52,6 @@ public class User extends AbstractBaseEntity {
         this.roles = roles;
     }
 
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-
-
     public List<Test> getTests() {
         return tests;
     }

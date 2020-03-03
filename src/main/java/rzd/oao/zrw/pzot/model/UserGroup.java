@@ -1,16 +1,12 @@
 package rzd.oao.zrw.pzot.model;
 
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "user_groups", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "user_group_unique_name_idx")})
 public class UserGroup extends AbstractBaseEntity {
-//    @Column(name = "name", nullable = false)
-//    private String name;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "userGroups")
     private List<User> users;
