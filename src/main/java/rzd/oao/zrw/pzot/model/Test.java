@@ -15,15 +15,13 @@ public class Test extends AbstractBaseEntity{
     public Test() {
     }
 
-    public Test(Integer id, String name, Date startDate, Date endDate, Status status, Integer attempt, Integer maxAttempts, List<Question> questions, List<User> users) {
+    public Test(Integer id, String name, Date startDate, Date endDate, Status status, Integer attempt, Integer maxAttempts) {
         super(id, name);
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
         this.attempt = attempt;
         this.maxAttempts = maxAttempts;
-        this.questions = questions;
-        this.users = users;
     }
 
     public Date getStartDate() {
@@ -80,5 +78,20 @@ public class Test extends AbstractBaseEntity{
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status=" + status +
+                ", attempt=" + attempt +
+                ", maxAttempts=" + maxAttempts +
+                ", questions=" + questions +
+                ", users=" + users +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

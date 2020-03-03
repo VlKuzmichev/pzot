@@ -1,26 +1,27 @@
 package rzd.oao.zrw.pzot.model;
 
 public class Answer extends AbstractBaseEntity {
-    private String text;
+
+    private Boolean checked;
     private Boolean truth;
     private Question question;
 
     public Answer() {
     }
 
-    public Answer(Integer id, String text, Boolean truth, Question question) {
-        super(id);
-        this.text = text;
+    public Answer(Integer id, String name, Boolean checked, Boolean truth, Question question) {
+        super(id, name);
+        this.checked = checked;
         this.truth = truth;
         this.question = question;
     }
 
-    public String getText() {
-        return text;
+    public Boolean getChecked() {
+        return checked;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 
     public Boolean getTruth() {
@@ -43,7 +44,8 @@ public class Answer extends AbstractBaseEntity {
     public String toString() {
         return "Answer{" +
                 "id=" + id +
-                ", text='" + text + '\'' +
+                ", name='" + name + '\'' +
+                ", checked=" + checked +
                 ", truth=" + truth +
                 ", question=" + question +
                 '}';

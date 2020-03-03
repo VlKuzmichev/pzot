@@ -3,36 +3,25 @@ package rzd.oao.zrw.pzot.model;
 import java.util.List;
 
 public class Question extends AbstractBaseEntity{
-    private String text;
-    private int rightAnswers;
+    private Boolean answered;
     private QuestionGroup questionGroup;
     private List<Answer> answers;
+    private List<Test> tests;
 
     public Question() {
     }
 
-    public Question(Integer id, String text, int rightAnswers, QuestionGroup questionGroup, List<Answer> answers) {
-        super(id);
-        this.text = text;
-        this.rightAnswers = rightAnswers;
-        this.questionGroup = questionGroup;
-        this.answers = answers;
+    public Question(Integer id, String name, Boolean answered) {
+        super(id, name);
+        this.answered = answered;
     }
 
-    public String getText() {
-        return text;
+    public Boolean getAnswered() {
+        return answered;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public int getRightAnswers() {
-        return rightAnswers;
-    }
-
-    public void setRightAnswers(int rightAnswers) {
-        this.rightAnswers = rightAnswers;
+    public void setAnswered(Boolean answered) {
+        this.answered = answered;
     }
 
     public QuestionGroup getQuestionGroup() {
@@ -51,15 +40,23 @@ public class Question extends AbstractBaseEntity{
         this.answers = answers;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Question{" +
-//                "id=" + id +
-//                ", text='" + text + '\'' +
-//                ", rightAnswers=" + rightAnswers +
-//                ", questionGroup=" + questionGroup +
-//                ", answers=" + answers +
-//                '}';
-//    }
+    public List<Test> getTests() {
+        return tests;
+    }
 
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "answered=" + answered +
+                ", questionGroup=" + questionGroup +
+                ", answers=" + answers +
+                ", tests=" + tests +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -3,15 +3,13 @@ package rzd.oao.zrw.pzot.model;
 import java.util.List;
 
 public class QuestionGroup extends AbstractBaseEntity {
-    private String name;
     private List<Question> questions;
 
     public QuestionGroup() {
     }
 
     public QuestionGroup(Integer id, String name, List<Question> questions) {
-        super(id);
-        this.name = name;
+        super(id, name);
         this.questions = questions;
     }
 
@@ -31,12 +29,12 @@ public class QuestionGroup extends AbstractBaseEntity {
         this.questions = questions;
     }
 
-//    @Override
-//    public String toString() {
-//        return "QuestionGroup{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", questions=" + questions +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "QuestionGroup{" +
+                "questions=" + questions +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
