@@ -6,30 +6,32 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+import rzd.oao.zrw.pzot.model.Answer;
 import rzd.oao.zrw.pzot.model.QuestionGroup;
 
 import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface CrudQuestionGroupRepository extends JpaRepository<QuestionGroup, Integer> {
+public interface CrudAnswerRepository extends JpaRepository<Answer, Integer> {
+
     @Transactional
     @Modifying
-    @Query("DELETE FROM QuestionGroup q WHERE q.id=:id")
+    @Query("DELETE FROM Answer a WHERE a.id=:id")
     int delete(@Param("id") int id);
 
     @Override
     @Transactional
-    QuestionGroup save(QuestionGroup questionGroup);
+    Answer save(Answer answer);
 
     @Override
-    Optional<QuestionGroup> findById(Integer id);
+    Optional<Answer> findById(Integer id);
 
     @Override
-    List<QuestionGroup> findAll(Sort sort);
+    List<Answer> findAll();
 
-    @Query("SELECT q FROM QuestionGroup q JOIN FETCH q.questions WHERE q.id =:id")
-    QuestionGroup getWithQuestions(@Param("id") int id);
+    @Query("SELECT a FROM Answer a JOIN FETCH a.question WHERE a.id =:id")
+    Answer getWithQuestion(@Param("id") int id);
 
-    QuestionGroup getByName(String name);
+    Answer getByName(String name);
 }
