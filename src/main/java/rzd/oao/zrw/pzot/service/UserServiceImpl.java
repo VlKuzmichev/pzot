@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private final UserRepository repository;
 
     public UserServiceImpl(UserRepository repository) {

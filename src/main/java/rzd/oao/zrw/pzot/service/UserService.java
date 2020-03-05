@@ -6,7 +6,7 @@ import rzd.oao.zrw.pzot.util.NotFoundException;
 import java.util.List;
 
 public interface UserService {
-    User create(User user) throws NotFoundException;
+    User create(User user);
 
     void delete(int id) throws NotFoundException;
 

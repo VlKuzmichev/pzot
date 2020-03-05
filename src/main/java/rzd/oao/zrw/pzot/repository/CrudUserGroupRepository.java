@@ -6,31 +6,34 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import rzd.oao.zrw.pzot.model.Answer;
-import rzd.oao.zrw.pzot.model.QuestionGroup;
+import rzd.oao.zrw.pzot.model.User;
+import rzd.oao.zrw.pzot.model.UserGroup;
 
 import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface CrudAnswerRepository extends JpaRepository<Answer, Integer> {
+public interface CrudUserGroupRepository extends JpaRepository<UserGroup, Integer> {
     @Transactional
     @Modifying
-    @Query("DELETE FROM Answer a WHERE a.id=:id")
+    @Query("DELETE FROM UserGroup ug WHERE ug.id=:id")
     int delete(@Param("id") int id);
 
     @Override
     @Transactional
-    Answer save(Answer answer);
+    UserGroup save(UserGroup userGroup);
 
     @Override
-    Optional<Answer> findById(Integer id);
+    Optional<UserGroup> findById(Integer id);
 
     @Override
-    List<Answer> findAll();
+    List<UserGroup> findAll(Sort sort);
 
-    @Query("SELECT a FROM Answer a JOIN FETCH a.question WHERE a.id =:id")
-    Answer getWithQuestion(@Param("id") int id);
+    @Query("SELECT ug FROM UserGroup ug JOIN FETCH ug.users WHERE ug.id =:id")
+    UserGroup getWithUsers(@Param("id") int id);
 
-    Answer getByName(String name);
+    UserGroup getByEmail(String email);
+
+    UserGroup getByName(String name);
+
 }
