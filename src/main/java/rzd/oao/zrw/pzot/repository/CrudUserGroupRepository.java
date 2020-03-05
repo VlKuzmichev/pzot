@@ -32,8 +32,6 @@ public interface CrudUserGroupRepository extends JpaRepository<UserGroup, Intege
     @Query("SELECT ug FROM UserGroup ug JOIN FETCH ug.users WHERE ug.id =:id")
     UserGroup getWithUsers(@Param("id") int id);
 
-    UserGroup getByEmail(String email);
-
     UserGroup getByName(String name);
 
 }
