@@ -1,4 +1,4 @@
-package rzd.oao.zrw.pzot.services;
+package rzd.oao.zrw.pzot.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import rzd.oao.zrw.pzot.model.User;
-import rzd.oao.zrw.pzot.service.UserService;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.ArrayList;
@@ -20,21 +19,21 @@ import static rzd.oao.zrw.pzot.UserTestData.*;
         "classpath:spring/spring-app.xml"
 })
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-class UserServiceImplTest {
+class UserServiceTest {
 
     @Autowired
     protected UserService service;
 
     // Test creating new user
     @Test
-    void create() {
+    void create(){
         User created = service.create(NEW_USER);
         assertThat(created).isEqualTo(NEW_USER);
     }
 
     // Test updating user data
     @Test
-    void update() throws Exception {
+    void update() {
         User updated = new User(USER);
         updated.setFullName("Updated User Userovich");
         service.update(updated);
@@ -54,7 +53,7 @@ class UserServiceImplTest {
 
     // Test if not found deleting user by Id
     @Test
-    void testDeleteNotFound() throws Exception {
+    void testDeleteNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.delete(5));
     }
@@ -68,7 +67,7 @@ class UserServiceImplTest {
 
     // Test Get user from database by none exist Id
     @Test
-    void testGetNotFound() throws Exception {
+    void testGetNotFound() {
         assertThrows(NotFoundException.class, () -> {
             User user = service.get(1);
         });
@@ -83,7 +82,7 @@ class UserServiceImplTest {
 
     // Test Get user from database by none exist Email
     @Test
-    void testGetNotFoundWithEmail() throws Exception {
+    void testGetNotFoundWithEmail() {
         assertThrows(NotFoundException.class, () -> {
             User user = service.getByEmail("asdf@asdf.com");
         });
@@ -121,7 +120,7 @@ class UserServiceImplTest {
 
     // Test Get not found user by name
     @Test
-    void testGetNotFoundByName() throws Exception {
+    void testGetNotFoundByName() {
         assertThrows(NotFoundException.class, () -> {
             User user = service.getByName("BadUser");
         });

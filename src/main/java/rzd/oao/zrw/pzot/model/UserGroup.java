@@ -14,18 +14,13 @@ public class UserGroup extends AbstractBaseEntity {
     public UserGroup() {
     }
 
-    public UserGroup(Integer id, String name, List<User> users) {
+    // for update
+    public UserGroup(UserGroup ug) {
+        this(ug.getId(), ug.getName());
+    }
+
+    public UserGroup(Integer id, String name) {
         super(id, name);
-        this.name = name;
-        this.users = users;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<User> getUsers() {

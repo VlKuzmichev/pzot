@@ -7,6 +7,8 @@ import rzd.oao.zrw.pzot.model.UserGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import static rzd.oao.zrw.pzot.UserGroupTestData.USER_GROUP;
+
 public class UserTestData {
     public static final Integer USER_ID = 100004;
     public static final Integer EXAMINER_ID = 100005;
@@ -25,7 +27,8 @@ public class UserTestData {
 
     public static List<UserGroup> getUserGroups(){
         List<UserGroup> groupList = new ArrayList<>();
-        groupList.add(new UserGroup(100000, "St mechaniks", null));
+//        groupList.add(new UserGroup(100000, "All"));
+        groupList.add(USER_GROUP);
         return groupList;
     }
 }

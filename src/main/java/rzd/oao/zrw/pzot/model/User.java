@@ -35,7 +35,7 @@ public class User extends AbstractBaseEntity {
 
     public User() {
     }
-
+    // for update
     public User(User u) {
         this(u.getId(), u.getName(), u.getPassword(), u.getEmail(), u.getFullName(), u.getRoles());
     }
