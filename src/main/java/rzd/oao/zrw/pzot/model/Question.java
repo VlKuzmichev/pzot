@@ -33,6 +33,10 @@ public class Question extends AbstractBaseEntity {
         this.questionGroup = questionGroup;
     }
 
+    public Question(Question q) {
+        this(q.getId(), q.getName(), q.getAnswered(), q.getQuestionGroup());
+    }
+
     public Boolean getAnswered() {
         return answered;
     }

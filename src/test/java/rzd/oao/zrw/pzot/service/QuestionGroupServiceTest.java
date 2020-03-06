@@ -26,9 +26,6 @@ class QuestionGroupServiceTest {
     @Autowired
     protected QuestionGroupService questionGroupService;
 
-    @Autowired
-    protected QuestionService questionService;
-
     // Test creating question group
     @Test
     void create() {

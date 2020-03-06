@@ -14,10 +14,10 @@ public class QuestionTestData {
 
     public static final Question QUESTION = new Question(QUESTION_ID, "При какой численности работников в организации должна обязательно создаваться служба охраны труда?",
             false, QUESTION_GROUP);
-    public static final Question QUESTION2 = new Question(QUESTION_ID, "Какие меры по оказанию первой помощи пострадавшему необходимо предпринять при обморожении?",
+    public static final Question QUESTION2 = new Question(QUESTION_ID+1, "Какие меры по оказанию первой помощи пострадавшему необходимо предпринять при обморожении?",
             false, QUESTION_GROUP);
 
-    public static final Question NEW_QUESTION = new Question(QUESTION_ID, "NEW QUESTION?",
+    public static final Question NEW_QUESTION = new Question(QUESTION_ID+11, "NEW QUESTION?",
             false, QUESTION_GROUP);
 
     public static List<Question> getQuestions(){

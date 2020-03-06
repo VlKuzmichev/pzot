@@ -52,14 +52,14 @@ public class Answer extends AbstractBaseEntity {
         this.question = question;
     }
 
-    @Override
-    public String toString() {
-        return "Answer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", checked=" + checked +
-                ", truth=" + truth +
-                ", question=" + question +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Answer{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", checked=" + checked +
+//                ", truth=" + truth +
+//                ", question=" + question +
+//                '}';
+//    }
 }
