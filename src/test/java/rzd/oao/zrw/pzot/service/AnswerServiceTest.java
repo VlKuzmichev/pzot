@@ -1,10 +1,19 @@
 package rzd.oao.zrw.pzot.service;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+@SpringJUnitConfig(locations = {
+        "classpath:spring/spring-app.xml"
+})
+@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 class AnswerServiceTest {
+
+    @Autowired
+    protected AnswerService service;
 
     @Test
     void create() {

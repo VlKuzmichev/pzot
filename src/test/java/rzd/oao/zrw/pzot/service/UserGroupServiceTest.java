@@ -24,6 +24,7 @@ class UserGroupServiceTest {
     @Autowired
     protected UserGroupService service;
 
+    // Test creating new user group
     @Test
     void create() {
         UserGroup created = service.create(NEW_USER_GROUP);
@@ -49,6 +50,7 @@ class UserGroupServiceTest {
                 service.delete(12));
     }
 
+    // Test updating user group data
     @Test
     void update() {
         UserGroup updated = new UserGroup(USER_GROUP);

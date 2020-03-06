@@ -36,9 +36,9 @@ INSERT INTO question_groups (name)
 VALUES ('VOPROSY PO OT'),                  -- 100007
        ('VOPROSY PO ELEKTROBEZOPASNOSTY'); -- 100008
 
-INSERT INTO questions (name, answered, right_answers, question_group_id) VALUES
-  ('При какой численности работников в организации должна обязательно создаваться служба охраны труда?', false, 1, 100007), -- 100009
-  ('Какие меры по оказанию первой помощи пострадавшему необходимо предпринять при обморожении?', false, 1, 100007); -- 100010
+INSERT INTO questions (name, answered, question_group_id) VALUES
+  ('При какой численности работников в организации должна обязательно создаваться служба охраны труда?', false, 100007), -- 100009
+  ('Какие меры по оказанию первой помощи пострадавшему необходимо предпринять при обморожении?', false, 100007); -- 100010
 
 INSERT INTO answers (name, checked, truth, question_id) VALUES
 ('Более 50 человек', false, true, 100009), -- 100011

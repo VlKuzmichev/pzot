@@ -18,7 +18,7 @@ public class Question extends AbstractBaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private QuestionGroup questionGroup;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
     private List<Answer> answers;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
@@ -27,9 +27,10 @@ public class Question extends AbstractBaseEntity {
     public Question() {
     }
 
-    public Question(Integer id, String name, Boolean answered) {
+    public Question(Integer id, String name, Boolean answered, QuestionGroup questionGroup) {
         super(id, name);
         this.answered = answered;
+        this.questionGroup = questionGroup;
     }
 
     public Boolean getAnswered() {

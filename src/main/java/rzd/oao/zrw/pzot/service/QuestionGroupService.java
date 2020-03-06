@@ -8,7 +8,7 @@ import java.util.List;
 public interface QuestionGroupService {
     QuestionGroup create(QuestionGroup questionGroup);
 
-    void delete(int id) throws NotFoundException;
+    void delete(int id) throws NotFoundException;//, NotAllowedToDeleteException;
 
     void update(QuestionGroup questionGroup);
 

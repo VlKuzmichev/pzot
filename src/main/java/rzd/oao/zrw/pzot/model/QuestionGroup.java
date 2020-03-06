@@ -14,17 +14,13 @@ public class QuestionGroup extends AbstractBaseEntity {
     public QuestionGroup() {
     }
 
-    public QuestionGroup(Integer id, String name, List<Question> questions) {
+    // for update
+    public QuestionGroup(QuestionGroup qg) {
+        this(qg.getId(), qg.getName());
+    }
+
+    public QuestionGroup(Integer id, String name) {
         super(id, name);
-        this.questions = questions;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<Question> getQuestions() {
@@ -35,12 +31,12 @@ public class QuestionGroup extends AbstractBaseEntity {
         this.questions = questions;
     }
 
-    @Override
-    public String toString() {
-        return "QuestionGroup{" +
-                "questions=" + questions +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "QuestionGroup{" +
+//                "questions=" + questions +
+//                ", id=" + id +
+//                ", name='" + name + '\'' +
+//                '}';
+//    }
 }

@@ -21,10 +21,11 @@ public class Answer extends AbstractBaseEntity {
     public Answer() {
     }
 
-    public Answer(Integer id, String name, Boolean checked, Boolean truth) {
+    public Answer(Integer id, String name, Boolean checked, Boolean truth, Question question) {
         super(id, name);
         this.checked = checked;
         this.truth = truth;
+        this.question = question;
     }
 
     public Boolean getChecked() {
