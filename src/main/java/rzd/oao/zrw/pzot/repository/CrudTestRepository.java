@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Test;
 
 import java.util.List;

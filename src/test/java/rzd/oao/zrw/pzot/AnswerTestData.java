@@ -1,7 +1,9 @@
 package rzd.oao.zrw.pzot;
 
 import rzd.oao.zrw.pzot.model.Answer;
-import rzd.oao.zrw.pzot.model.UserGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static rzd.oao.zrw.pzot.QuestionTestData.QUESTION;
 import static rzd.oao.zrw.pzot.QuestionTestData.QUESTION2;
@@ -26,4 +28,12 @@ public class AnswerTestData {
     public static final Answer ANSWER8 = new Answer(ANSWER_ID + 7, "Пострадавшего поместить в ванну с горячей " +
             "водой или уложить возле электронагревателя", false, false, QUESTION2);
 
+    public static List<Answer> getAnswers() {
+        List<Answer> list = new ArrayList<>();
+        list.add(ANSWER);
+        list.add(ANSWER2);
+        list.add(ANSWER3);
+        list.add(ANSWER4);
+        return list;
+    }
 }

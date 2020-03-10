@@ -1,7 +1,6 @@
 package rzd.oao.zrw.pzot.service;
 
 import rzd.oao.zrw.pzot.model.Answer;
-import rzd.oao.zrw.pzot.model.QuestionGroup;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;

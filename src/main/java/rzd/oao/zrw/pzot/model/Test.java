@@ -2,13 +2,14 @@ package rzd.oao.zrw.pzot.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "tests", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "test_unique_name_idx")})
-public class Test extends AbstractBaseEntity{
+public class Test extends AbstractBaseEntity {
     @Column(name = "start_date")
     private Date startDate;
     @Column(name = "end_date")
@@ -39,6 +40,14 @@ public class Test extends AbstractBaseEntity{
         this.status = status;
         this.attempt = attempt;
         this.maxAttempts = maxAttempts;
+    }
+
+    public Test(Integer id, String name, Date startDate, Date endDate, Status status, Integer attempt, Integer maxAttempts) {
+        this(id, name, startDate, endDate, EnumSet.of(status), attempt, maxAttempts);
+    }
+
+    public Test(Test t) {
+        this(t.getId(), t.getName(), t.getStartDate(), t.getEndDate(), t.getStatus(), t.getAttempt(), t.getMaxAttempts());
     }
 
     public Date getStartDate() {
@@ -105,8 +114,6 @@ public class Test extends AbstractBaseEntity{
                 ", status=" + status +
                 ", attempt=" + attempt +
                 ", maxAttempts=" + maxAttempts +
-                ", questions=" + questions +
-                ", users=" + users +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 '}';

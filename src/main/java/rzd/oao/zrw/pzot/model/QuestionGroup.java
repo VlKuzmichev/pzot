@@ -31,12 +31,11 @@ public class QuestionGroup extends AbstractBaseEntity {
         this.questions = questions;
     }
 
-//    @Override
-//    public String toString() {
-//        return "QuestionGroup{" +
-//                "questions=" + questions +
-//                ", id=" + id +
-//                ", name='" + name + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "QuestionGroup{" +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

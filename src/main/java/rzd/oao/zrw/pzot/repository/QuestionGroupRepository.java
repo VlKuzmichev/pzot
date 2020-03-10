@@ -1,7 +1,6 @@
 package rzd.oao.zrw.pzot.repository;
 
 import rzd.oao.zrw.pzot.model.QuestionGroup;
-import rzd.oao.zrw.pzot.model.User;
 
 import java.util.List;
 

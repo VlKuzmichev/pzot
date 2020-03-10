@@ -88,31 +88,28 @@ class QuestionGroupServiceTest {
     @Test
     void getAll() {
         List<QuestionGroup> actual = questionGroupService.getAll();
-        List<QuestionGroup> expected = new ArrayList<>();
-        expected.add(QUESTION_GROUP2);
-        expected.add(QUESTION_GROUP);
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(getQuestionsGroup());
     }
 
     // Test Get question group with questions
     @Test
     void getWithQuestions() {
-        QuestionGroup questionGroup = questionGroupService.getWithQuestions(QUESTION_GROUP_ID);
-        assertThat(questionGroup).isEqualToIgnoringGivenFields(QUESTION_GROUP, "questions");
+        QuestionGroup actual = questionGroupService.getWithQuestions(QUESTION_GROUP_ID);
+        assertThat(actual).isEqualToIgnoringGivenFields(QUESTION_GROUP, "questions");
         QuestionGroup expected = QUESTION_GROUP;
         expected.setQuestions(getQuestions());
         // Compare first element of questions field
-        assertThat(questionGroup.getQuestions().get(0)).isEqualTo(expected.getQuestions().get(0));
+        assertThat(actual.getQuestions().get(0)).isEqualTo(expected.getQuestions().get(0));
     }
 
-    // Test Get group of users from database by name
+    // Test Get group of questions from database by name
     @Test
     void getByName() {
         QuestionGroup questionGroup = questionGroupService.getByName("VOPROSY PO ELEKTROBEZOPASNOSTY");
         assertThat(questionGroup).isEqualToIgnoringGivenFields(QUESTION_GROUP2, "questions");
     }
 
-    // Test Get not found user by name
+    // Test Get not found group of users by name
     @Test
     void testGetNotFoundByName() {
         assertThrows(NotFoundException.class, () -> {

@@ -1,7 +1,6 @@
 package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
-import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.model.UserGroup;
 import rzd.oao.zrw.pzot.repository.UserGroupRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;

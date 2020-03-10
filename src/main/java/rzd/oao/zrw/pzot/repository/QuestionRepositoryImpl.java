@@ -35,11 +35,6 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     }
 
     @Override
-    public Question getWithQuestionGroup(int id) {
-        return questionRepository.getWithQuestionGroup(id);
-    }
-
-    @Override
     public Question getWithAnswers(int id) {
         return questionRepository.getWithAnswers(id);
     }

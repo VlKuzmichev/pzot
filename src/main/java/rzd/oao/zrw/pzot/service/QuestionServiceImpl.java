@@ -2,19 +2,19 @@ package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
 import rzd.oao.zrw.pzot.model.Question;
-import rzd.oao.zrw.pzot.model.QuestionGroup;
 import rzd.oao.zrw.pzot.repository.QuestionRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
 
 @Service
-public class QuestionServiceImpl implements QuestionService{
+public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
 
     public QuestionServiceImpl(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
+
     @Override
     public Question create(Question question) throws NotFoundException {
         return questionRepository.get(question.getId()) == null ?
@@ -44,11 +44,6 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public Question getWithQuestionGroup(int id) throws NotFoundException {
-        return questionRepository.getWithQuestionGroup(id);
-    }
-
-    @Override
     public Question getWithAnswers(int id) throws NotFoundException {
         return questionRepository.getWithAnswers(id);
     }
@@ -59,7 +54,9 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public Question getByName(String name) {
+    public Question getByName(String name) throws NotFoundException {
+        Question question = questionRepository.getByName(name);
+        if (question == null) throw new NotFoundException("Name=" + name);
         return questionRepository.getByName(name);
     }
 }

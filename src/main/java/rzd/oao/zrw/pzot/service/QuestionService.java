@@ -16,12 +16,10 @@ public interface QuestionService {
 
     List<Question> getAll();
 
-    Question getWithQuestionGroup(int id) throws NotFoundException;
-
     Question getWithAnswers(int id) throws NotFoundException;
 
     Question getWithTests(int id) throws NotFoundException;
 
-    Question getByName(String name);
+    Question getByName(String name) throws NotFoundException;
 
 }

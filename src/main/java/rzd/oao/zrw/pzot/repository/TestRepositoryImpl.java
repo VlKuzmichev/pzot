@@ -6,7 +6,7 @@ import rzd.oao.zrw.pzot.model.Test;
 import java.util.List;
 
 @Repository
-public class TestRepositoryImpl implements TestRepository{
+public class TestRepositoryImpl implements TestRepository {
     private final CrudTestRepository testRepository;
 
     public TestRepositoryImpl(CrudTestRepository testRepository) {

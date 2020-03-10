@@ -16,9 +16,6 @@ public interface QuestionRepository {
     List<Question> getAll();
 
     // null if not found
-    Question getWithQuestionGroup(int id);
-
-    // null if not found
     Question getWithAnswers(int id);
 
     // null if not found

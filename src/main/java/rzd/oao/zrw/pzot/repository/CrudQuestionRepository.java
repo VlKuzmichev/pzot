@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import rzd.oao.zrw.pzot.model.Answer;
 import rzd.oao.zrw.pzot.model.Question;
 
 import java.util.List;
@@ -27,9 +26,6 @@ public interface CrudQuestionRepository extends JpaRepository<Question, Integer>
 
     @Override
     List<Question> findAll();
-
-    @Query("SELECT q FROM Question q JOIN FETCH q.questionGroup WHERE q.id =:id")
-    Question getWithQuestionGroup(@Param("id") int id);
 
     @Query("SELECT q FROM Question q JOIN FETCH q.tests WHERE q.id =:id")
     Question getWithTests(@Param("id") int id);

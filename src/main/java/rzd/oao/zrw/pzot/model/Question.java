@@ -74,8 +74,6 @@ public class Question extends AbstractBaseEntity {
         return "Question{" +
                 "answered=" + answered +
                 ", questionGroup=" + questionGroup +
-                ", answers=" + answers +
-                ", tests=" + tests +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 '}';
