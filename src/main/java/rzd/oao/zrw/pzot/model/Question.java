@@ -72,10 +72,10 @@ public class Question extends AbstractBaseEntity {
     @Override
     public String toString() {
         return "Question{" +
-                "answered=" + answered +
-                ", questionGroup=" + questionGroup +
-                ", id=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
+                ", answered=" + answered +
+                ", questionGroup=" + questionGroup +
                 '}';
     }
 }

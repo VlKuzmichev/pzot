@@ -37,12 +37,12 @@ public class UserServiceImpl implements UserService {
         return repository.get(id);
     }
 
-    @Override
-    public User getByEmail(String email) throws NotFoundException {
-        User user = repository.getByEmail(email);
-        if (user == null) throw new NotFoundException("Email=" + email);
-        return repository.getByEmail(email);
-    }
+//    @Override
+//    public User getByEmail(String email) throws NotFoundException {
+//        User user = repository.getByEmail(email);
+//        if (user == null) throw new NotFoundException("Email=" + email);
+//        return repository.getByEmail(email);
+//    }
 
     @Override
     public List<User> getAll() {

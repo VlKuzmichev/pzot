@@ -28,6 +28,10 @@ public class Answer extends AbstractBaseEntity {
         this.question = question;
     }
 
+    public Answer(Answer a) {
+        this(a.getId(), a.getName(), a.getChecked(), a.getTruth(), a.getQuestion());
+    }
+
     public Boolean getChecked() {
         return checked;
     }
@@ -59,6 +63,7 @@ public class Answer extends AbstractBaseEntity {
                 ", name='" + name + '\'' +
                 ", checked=" + checked +
                 ", truth=" + truth +
+                ", question=" + question +
                 '}';
     }
 }

@@ -100,7 +100,7 @@ class UserGroupServiceTest {
     // Test Get group of users from database by name
     @Test
     void getByName() {
-        UserGroup userGroup = service.getByName("St mechaniks");
+        UserGroup userGroup = service.getByName(USER_GROUP2.getName());
         assertThat(userGroup).isEqualToIgnoringGivenFields(USER_GROUP2, "users");
     }
 

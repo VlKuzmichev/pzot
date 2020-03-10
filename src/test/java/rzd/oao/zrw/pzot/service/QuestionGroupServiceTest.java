@@ -105,7 +105,7 @@ class QuestionGroupServiceTest {
     // Test Get group of questions from database by name
     @Test
     void getByName() {
-        QuestionGroup questionGroup = questionGroupService.getByName("VOPROSY PO ELEKTROBEZOPASNOSTY");
+        QuestionGroup questionGroup = questionGroupService.getByName(QUESTION_GROUP2.getName());
         assertThat(questionGroup).isEqualToIgnoringGivenFields(QUESTION_GROUP2, "questions");
     }
 

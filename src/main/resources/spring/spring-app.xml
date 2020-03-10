@@ -22,7 +22,6 @@
     <!--    <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/upor"/> -->
         <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
 
-
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:packagesToScan="rzd.oao.zrw.**.model">
@@ -50,10 +49,11 @@
         </property>
 
     </bean>
-
+    <!-- Scan components annotations -->
     <context:component-scan base-package="rzd.oao.zrw.**.repository"/>
     <context:component-scan base-package="rzd.oao.zrw.**.service"/>
 <!--    <context:component-scan base-package="rzd.oao.zrw.**.web"/> -->
+
     <jpa:repositories base-package="rzd.oao.zrw.**.repository"/>
 
     <tx:annotation-driven/>

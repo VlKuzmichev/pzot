@@ -74,16 +74,12 @@ class QuestionServiceTest {
         });
     }
 
-    // Test Get all questions groups from database
+    // Test Get all questions from database
     @Test
     void getAll() {
         List<Question> actual = questionService.getAll();
         assertThat(actual).isEqualTo(getQuestions());
     }
-
-//    @Test
-//    void getWithQuestionGroup() {
-//    }
 
     // Test Get question with answers
     @Test
@@ -110,8 +106,7 @@ class QuestionServiceTest {
     // Test Get question from database by name
     @Test
     void getByName() {
-        Question question = questionService.getByName("Какие меры по оказанию первой помощи пострадавшему необходимо " +
-                "предпринять при обморожении?");
+        Question question = questionService.getByName(QUESTION2.getName());
         assertThat(question).isEqualToIgnoringGivenFields(QUESTION2, "answers", "tests");
     }
 
