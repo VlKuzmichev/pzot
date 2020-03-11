@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "tests", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "test_unique_name_idx")})
-public class Test extends AbstractBaseEntity {
+public class Quiz extends AbstractBaseEntity {
     @Column(name = "start_date")
     private Date startDate;
     @Column(name = "end_date")
@@ -30,10 +30,10 @@ public class Test extends AbstractBaseEntity {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tests")
     private List<User> users;
 
-    public Test() {
+    public Quiz() {
     }
 
-    public Test(Integer id, String name, Date startDate, Date endDate, Set<Status> status, Integer attempt, Integer maxAttempts) {
+    public Quiz(Integer id, String name, Date startDate, Date endDate, Set<Status> status, Integer attempt, Integer maxAttempts) {
         super(id, name);
         this.startDate = startDate;
         this.endDate = endDate;
@@ -42,12 +42,12 @@ public class Test extends AbstractBaseEntity {
         this.maxAttempts = maxAttempts;
     }
 
-    public Test(Integer id, String name, Date startDate, Date endDate, Status status, Integer attempt, Integer maxAttempts) {
+    public Quiz(Integer id, String name, Date startDate, Date endDate, Status status, Integer attempt, Integer maxAttempts) {
         this(id, name, startDate, endDate, EnumSet.of(status), attempt, maxAttempts);
     }
 
-    public Test(Test t) {
-        this(t.getId(), t.getName(), t.getStartDate(), t.getEndDate(), t.getStatus(), t.getAttempt(), t.getMaxAttempts());
+    public Quiz(Quiz q) {
+        this(q.getId(), q.getName(), q.getStartDate(), q.getEndDate(), q.getStatus(), q.getAttempt(), q.getMaxAttempts());
     }
 
     public Date getStartDate() {
@@ -108,7 +108,7 @@ public class Test extends AbstractBaseEntity {
 
     @Override
     public String toString() {
-        return "Test{" +
+        return "Quiz{" +
                 "startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", status=" + status +

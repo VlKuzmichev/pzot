@@ -1,7 +1,7 @@
 package rzd.oao.zrw.pzot.repository;
 
 import org.springframework.stereotype.Repository;
-import rzd.oao.zrw.pzot.model.Test;
+import rzd.oao.zrw.pzot.model.Quiz;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class TestRepositoryImpl implements TestRepository {
     }
 
     @Override
-    public Test save(Test test) {
+    public Quiz save(Quiz test) {
         return testRepository.save(test);
     }
 
@@ -24,27 +24,27 @@ public class TestRepositoryImpl implements TestRepository {
     }
 
     @Override
-    public Test get(int id) {
+    public Quiz get(int id) {
         return testRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Test> getAll() {
+    public List<Quiz> getAll() {
         return testRepository.findAll();
     }
 
     @Override
-    public Test getWithQuestions(int id) {
+    public Quiz getWithQuestions(int id) {
         return testRepository.getWithQuestions(id);
     }
 
     @Override
-    public Test getWithUsers(int id) {
+    public Quiz getWithUsers(int id) {
         return testRepository.getWithUsers(id);
     }
 
     @Override
-    public Test getByName(String name) {
+    public Quiz getByName(String name) {
         return testRepository.getByName(name);
     }
 }

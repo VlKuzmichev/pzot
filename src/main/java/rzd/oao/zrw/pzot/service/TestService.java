@@ -1,25 +1,25 @@
 package rzd.oao.zrw.pzot.service;
 
-import rzd.oao.zrw.pzot.model.Test;
+import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
 
 public interface TestService {
-    Test create(Test test);
+    Quiz create(Quiz test);
 
     void delete(int id) throws NotFoundException;
 
-    void update(Test test);
+    void update(Quiz test);
 
-    Test get(int id) throws NotFoundException;
+    Quiz get(int id) throws NotFoundException;
 
-    List<Test> getAll();
+    List<Quiz> getAll();
 
-    Test getWithQuestions(int id) throws NotFoundException;
+    Quiz getWithQuestions(int id) throws NotFoundException;
 
-    Test getWithUsers(int id) throws NotFoundException;
+    Quiz getWithUsers(int id) throws NotFoundException;
 
-    Test getByName(String name);
+    Quiz getByName(String name);
 
 }

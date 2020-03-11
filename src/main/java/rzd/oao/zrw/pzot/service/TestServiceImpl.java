@@ -1,7 +1,7 @@
 package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
-import rzd.oao.zrw.pzot.model.Test;
+import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.repository.TestRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
@@ -16,7 +16,7 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public Test create(Test test) throws NotFoundException {
+    public Quiz create(Quiz test) throws NotFoundException {
         return testRepository.get(test.getId()) == null ?
                 testRepository.save(test) : null;
     }
@@ -27,34 +27,34 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public void update(Test test) {
+    public void update(Quiz test) {
         testRepository.save(test);
     }
 
     @Override
-    public Test get(int id) throws NotFoundException {
-        Test test = testRepository.get(id);
+    public Quiz get(int id) throws NotFoundException {
+        Quiz test = testRepository.get(id);
         if (test == null) throw new NotFoundException("id=" + id);
         return testRepository.get(id);
     }
 
     @Override
-    public List<Test> getAll() {
+    public List<Quiz> getAll() {
         return testRepository.getAll();
     }
 
     @Override
-    public Test getWithQuestions(int id) throws NotFoundException {
+    public Quiz getWithQuestions(int id) throws NotFoundException {
         return testRepository.getWithQuestions(id);
     }
 
     @Override
-    public Test getWithUsers(int id) throws NotFoundException {
+    public Quiz getWithUsers(int id) throws NotFoundException {
         return testRepository.getWithUsers(id);
     }
 
     @Override
-    public Test getByName(String name) {
+    public Quiz getByName(String name) {
         return testRepository.getByName(name);
     }
 }

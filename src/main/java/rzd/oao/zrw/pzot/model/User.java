@@ -31,7 +31,7 @@ public class User extends AbstractBaseEntity {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "test_id")})
-    private List<Test> tests;
+    private List<Quiz> tests;
 
     public User() {
     }
@@ -53,11 +53,11 @@ public class User extends AbstractBaseEntity {
         this.roles = roles;
     }
 
-    public List<Test> getTests() {
+    public List<Quiz> getTests() {
         return tests;
     }
 
-    public void setTests(List<Test> tests) {
+    public void setTests(List<Quiz> tests) {
         this.tests = tests;
     }
 
