@@ -9,24 +9,13 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<h3 class="text-center">Новый пользователь</h3>
-<form method="post" action="users">
-    <input type="hidden" name="id" value="${user.id}">
+<h3 class="text-center">Новая группа</h3>
+<form method="post" action="usersGroups">
+    <input type="hidden" name="id" value="${userGroup.id}">
     <div class="form-group">
-        <label for="name" class="col-form-label">Логин</label>
-        <input type="text" class="form-control" id="name" value="${user.name}" name="name"
-               placeholder="User name">
-    </div>
-    <div class="form-group">
-        <label for="fullName" class="col-form-label">ФИО</label>
-        <input type="text" class="form-control" id="fullName" value="${user.fullName}" name="fullName"
-               placeholder="Full name">
-    </div>
-
-    <div class="form-group">
-        <label for="email" class="col-form-label">E-mail</label>
-        <input type="text" class="form-control" id="email" value="${user.email}" name="email"
-               placeholder="Email">
+        <label for="name" class="col-form-label">Название группы</label>
+        <input type="text" class="form-control" id="name" value="${userGroup.name}" name="name"
+               placeholder="UserGroup name">
     </div>
 
     <div class="form-group">

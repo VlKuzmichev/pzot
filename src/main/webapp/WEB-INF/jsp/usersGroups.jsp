@@ -10,36 +10,36 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<div class="jumbotron pt-4">
-    <div class="container">
-        <h3 class="text-center">Группы пользователей</h3>
-        <a type="button" class="btn btn-outline-secondary" href="usersGroups/create">
-            <span class="fa fa-plus"></span>
-            Добавить
-        </a>
-        <table class="table table-striped" id="datatable">
-            <thead>
+<div class="container">
+    <h3 class="text-center">Группы пользователей</h3>
+    <a type="button" class="btn btn-outline-secondary" href="usersGroups/create">
+        <span class="fa fa-plus"></span>
+        Добавить
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Название группы</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${usersGroupsList}" var="usersGroup">
             <tr>
-                <th>Название группы</th>
-                <th></th>
-                <th></th>
+                <td>${usersGroup.name}</td>
+                <td><a href="usersGroups/update?id=${usersGroup.id}"><span class='fa fa-pencil'
+                                                                           style="color:black"></span></a></td>
+                <td><a href="usersGroups/delete?id=${usersGroup.id}"><span class='fa fa-remove'
+                                                                           style="color:red"></span></a></td>
             </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${usersGroopsList}" var="usersGroup">
-                <tr>
-                    <td>${user.name}</td>
-                    <td><a href="usersGroups/update?id=${user.id}">РЕДАКТИРОВАТЬ</a></td>
-                    <td><a href="usersGroups/delete?id=${user.id}">УДАЛИТЬ</a></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <a type="button" class="btn btn-outline-secondary" href="usersGroups/create">
-            <span class="fa fa-plus"></span>
-            Добавить
-        </a>
-    </div>
+        </c:forEach>
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-outline-secondary" href="usersGroups/create">
+        <span class="fa fa-plus"></span>
+        Добавить
+    </a>
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>

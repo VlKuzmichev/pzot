@@ -10,42 +10,40 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<div class="jumbotron pt-4">
-    <div class="container">
-        <h3 class="text-center">Пользователи</h3>
-        <a type="button" class="btn btn-outline-secondary" href="users/create">
-            <span class="fa fa-plus"></span>
-            Добавить
-        </a>
-        <table class="table table-striped" id="datatable">
-            <thead>
+<div class="container">
+    <h3 class="text-center">Пользователи</h3>
+    <a type="button" class="btn btn-outline-secondary" href="users/create">
+        <span class="fa fa-plus"></span>
+        Добавить
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Логин</th>
+            <th>Email</th>
+            <th>Роли</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${userList}" var="user">
             <tr>
-                <th>ФИО</th>
-                <th>Логин</th>
-                <th>Email</th>
-                <th>Роли</th>
-                <th></th>
-                <th></th>
+                <td>${user.fullName}</td>
+                <td>${user.name}</td>
+                <td><a href="mailto: ${user.email}">${user.email}</a></td>
+                <td>${user.roles}</td>
+                <td><a href="users/update?id=${user.id}"><span class='fa fa-pencil' style="color:black"></span></a></td>
+                <td><a href="users/delete?id=${user.id}"><span class='fa fa-remove' style="color:red"></span></a></td>
             </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${userList}" var="user">
-                <tr>
-                    <td>${user.fullName}</td>
-                    <td>${user.name}</td>
-                    <td><a href="mailto: ${user.email}">${user.email}</a></td>
-                    <td>${user.roles}</td>
-                    <td><a href="users/update?id=${user.id}">РЕДАКТИРОВАТЬ</a></td>
-                    <td><a href="users/delete?id=${user.id}">УДАЛИТЬ</a></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <a type="button" class="btn btn-outline-secondary" href="users/create">
-            <span class="fa fa-plus"></span>
-            Добавить
-        </a>
-    </div>
+        </c:forEach>
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-outline-secondary" href="users/create">
+        <span class="fa fa-plus"></span>
+        Добавить
+    </a>
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>

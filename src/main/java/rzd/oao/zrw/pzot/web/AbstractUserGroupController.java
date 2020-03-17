@@ -2,33 +2,34 @@ package rzd.oao.zrw.pzot.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import rzd.oao.zrw.pzot.model.User;
-import rzd.oao.zrw.pzot.service.UserService;
+import rzd.oao.zrw.pzot.model.UserGroup;
+import rzd.oao.zrw.pzot.service.UserGroupService;
 
 import java.util.List;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.assureIdConsistent;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNew;
 
-public abstract class AbstractUserController {
+public class AbstractUserGroupController {
 //    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private UserService service;
+    private UserGroupService service;
 
-    public List<User> getAll() {
+    public List<UserGroup> getAll() {
 //        log.info("getAll");
         return service.getAll();
     }
 
-    public User get(int id) {
+    public UserGroup get(int id) {
 //        log.info("get {}", id);
         return service.get(id);
     }
 
-    public User create(User user) {
+    public UserGroup create(UserGroup userGroup) {
 //        log.info("create {}", user);
-        checkNew(user);
-        return service.create(user);
+        checkNew(userGroup);
+        return service.create(userGroup);
     }
 
     public void delete(int id) {
@@ -36,10 +37,9 @@ public abstract class AbstractUserController {
         service.delete(id);
     }
 
-    public void update(User user, int id) {
+    public void update(UserGroup userGroup, int id) {
 //        log.info("update {} with id={}", user, id);
-        assureIdConsistent(user, id);
-        service.update(user);
+        assureIdConsistent(userGroup, id);
+        service.update(userGroup);
     }
-
 }

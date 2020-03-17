@@ -6,45 +6,42 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import rzd.oao.zrw.pzot.model.Role;
-import rzd.oao.zrw.pzot.model.User;
+import rzd.oao.zrw.pzot.model.UserGroup;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 @Controller
-@RequestMapping(value = "/users")
-public class UserController extends AbstractUserController {
-
+@RequestMapping(value = "/usersGroups")
+public class UserGroupController extends AbstractUserGroupController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createUser(Model model) {
-        model.addAttribute("user", new User());
-        return "editUser";
+        model.addAttribute("userGroup", new UserGroup());
+        return "editUsersGroup";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public String updateUser(HttpServletRequest request, Model model) {
-        model.addAttribute("user", super.get(getId(request)));
-        return "editUser";
+        model.addAttribute("userGroup", super.get(getId(request)));
+        return "editUsersGroup";
     }
 
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {
-        User user = new User(null, request.getParameter("name"), "12345678",
-                request.getParameter("email").toLowerCase(), request.getParameter("fullName"), Role.ROLE_USER);
+        UserGroup userGroup = new UserGroup(null, request.getParameter("name"));
 
         if (request.getParameter("id").isEmpty()) {
-            super.create(user);
+            super.create(userGroup);
         } else {
-            super.update(user, getId(request));
+            super.update(userGroup, getId(request));
         }
-        return "redirect:/users";
+        return "redirect:/usersGroups";
     }
 
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
         super.delete(getId(request));
-        return "redirect:/users";
+        return "redirect:/usersGroups";
     }
 
     private int getId(HttpServletRequest request) {

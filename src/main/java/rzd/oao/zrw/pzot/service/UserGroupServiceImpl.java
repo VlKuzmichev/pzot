@@ -1,6 +1,7 @@
 package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.UserGroup;
 import rzd.oao.zrw.pzot.repository.UserGroupRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
@@ -17,8 +18,10 @@ public class UserGroupServiceImpl implements UserGroupService {
 
     @Override
     public UserGroup create(UserGroup userGroup) {
-        return userGroupRepository.get(userGroup.getId()) == null ?
-                userGroupRepository.save(userGroup) : null;
+//        return userGroupRepository.get(userGroup.getId()) == null ?
+//                userGroupRepository.save(userGroup) : null;
+          Assert.notNull(userGroup, "userGroup must not be null");
+          return  userGroupRepository.save(userGroup);
     }
 
     @Override
