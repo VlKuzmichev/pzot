@@ -3,6 +3,6 @@
 <%--https://getbootstrap.com/docs/4.0/examples/sticky-footer/--%>
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">asdfasdfasdf  asdfa asddfasdf</span>
+        <div align="center">Могочинский региональный центр связи, &copy; 2020 г.</div>
     </div>
 </footer>

@@ -12,36 +12,30 @@
 
 <div class="jumbotron pt-4">
     <div class="container">
-        <h3 class="text-center">Пользователи</h3>
-        <a type="button" class="btn btn-outline-secondary" href="users/create">
+        <h3 class="text-center">Группы пользователей</h3>
+        <a type="button" class="btn btn-outline-secondary" href="usersGroups/create">
             <span class="fa fa-plus"></span>
             Добавить
         </a>
         <table class="table table-striped" id="datatable">
             <thead>
             <tr>
-                <th>ФИО</th>
-                <th>Логин</th>
-                <th>Email</th>
-                <th>Роли</th>
+                <th>Название группы</th>
                 <th></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${userList}" var="user">
+            <c:forEach items="${usersGroopsList}" var="usersGroup">
                 <tr>
-                    <td>${user.fullName}</td>
                     <td>${user.name}</td>
-                    <td><a href="mailto: ${user.email}">${user.email}</a></td>
-                    <td>${user.roles}</td>
-                    <td><a href="users/update?id=${user.id}">РЕДАКТИРОВАТЬ</a></td>
-                    <td><a href="users/delete?id=${user.id}">УДАЛИТЬ</a></td>
+                    <td><a href="usersGroups/update?id=${user.id}">РЕДАКТИРОВАТЬ</a></td>
+                    <td><a href="usersGroups/delete?id=${user.id}">УДАЛИТЬ</a></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-        <a type="button" class="btn btn-outline-secondary" href="users/create">
+        <a type="button" class="btn btn-outline-secondary" href="usersGroups/create">
             <span class="fa fa-plus"></span>
             Добавить
         </a>

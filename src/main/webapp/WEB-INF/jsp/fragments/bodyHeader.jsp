@@ -4,24 +4,24 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light py-0">
     <div class="container">
-        <a href="" class="navbar-brand"> ris </a>
+        <a href="" class="navbar-brand"> АС ДТЗ "Автоматизированная система дистанционного тестирования знаний"</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+<!--            <span class="navbar-toggler-icon">Icon</span>  -->
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                         <form:form class="form-inline my-2" action="logout" method="post">
-                            <a class="btn btn-outline-secondary" href="profile">
+                            <a class="btn btn-secondary" href="profile">
                                     <%-- <sec:authentication property="principal.userTo.name"/>--%>
-                                sdfwegergert/></a>
+                                Профиль пользователя</a>
                             <div class="mx-1">
-                                asdfasd
+
                             </div>
 
-                            <button class="btn btn-danger" type="submit">
+                            <button class="btn btn-danger" type="submit" hint="Выход">
                                 <span class="fa fa-sign-out"></span>
                             </button>
                         </form:form>
@@ -32,11 +32,14 @@
 </nav>
 <div class="container-top" id="menu">
     <ul class="navbar-nav ml-lg-5">
-        <li class="nav-item">
-            <a class="btn btn-secondary mr-1" href="/"> asdf/></a>
-            <a class="btn btn-secondary mr-1" href="/">dfasdf</a>
-            <a class="btn btn-secondary mr-1" href="/">sadfasdf</a>
-                <a class="btn btn-danger mr-1" href="users">sdfas</a>
+                <li class="nav-item">
+<!--            <a class="btn btn-secondary mr-1" href="/">Мои тесты</a> -->
+            <a class="btn btn-outline-secondary" href="/">Мои тесты</a>
+            <a class="btn btn-outline-secondary" href="/">Тесты</a>
+            <a class="btn btn-outline-secondary" href="/">Группы вопросов</a>
+            <a class="btn btn-outline-secondary" href="questions">Вопросы</a>
+            <a class="btn btn-outline-secondary" href="/">Группы пользователей</a>
+            <a class="btn btn-outline-secondary" href="users">Пользователи</a>
         </li>
     </ul>
 </div>

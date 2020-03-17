@@ -27,8 +27,9 @@ class UserServiceTest {
     // Test creating new user
     @Test
     void create() {
-        User created = service.create(NEW_USER);
-        assertThat(created).isEqualTo(NEW_USER);
+        User user = getCreated();
+        User created = service.create(user);
+        assertThat(created).isEqualTo(user);
     }
 
     // Test updating user data

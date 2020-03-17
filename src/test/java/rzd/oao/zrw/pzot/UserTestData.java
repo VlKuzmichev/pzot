@@ -21,9 +21,14 @@ public class UserTestData {
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "password3", "admin@yandex.ru",
             "Adminov Admin Adminovich", Role.ROLE_ADMIN);
 
-    public static final User NEW_USER = new User(USER_ID+16, "NewUser", "password4", "newuser@yandex.ru",
-            "Created User Userovich", Role.ROLE_USER);
+//    public static final User NEW_USER = new User(USER_ID+16, "NewUser", "password4", "newuser@yandex.ru",
+//            "Created User Userovich", Role.ROLE_USER);
 
+    public static User getCreated() {
+        User user = new User(null, "NewUser", "password4", "newuser@yandex.ru",
+                "Created User Userovich", Role.ROLE_USER);
+        return user;
+    }
 
     public static List<UserGroup> getUserGroups(){
         List<UserGroup> groupList = new ArrayList<>();
