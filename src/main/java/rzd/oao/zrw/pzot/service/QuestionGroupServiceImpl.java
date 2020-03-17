@@ -1,11 +1,14 @@
 package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.QuestionGroup;
 import rzd.oao.zrw.pzot.repository.QuestionGroupRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
+
+import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class QuestionGroupServiceImpl implements QuestionGroupService {
@@ -17,8 +20,10 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 
     @Override
     public QuestionGroup create(QuestionGroup questionGroup) throws NotFoundException {
-        return questionGroupRepository.get(questionGroup.getId()) == null ?
-                questionGroupRepository.save(questionGroup) : null;
+        Assert.notNull(questionGroup, "user must not be null");
+//        return questionGroupRepository.get(questionGroup.getId()) == null ?
+//                questionGroupRepository.save(questionGroup) : null;
+        return questionGroupRepository.save(questionGroup);
     }
 
     @Override
@@ -33,9 +38,10 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 
     @Override
     public QuestionGroup get(int id) throws NotFoundException {
-        QuestionGroup questionGroup = questionGroupRepository.get(id);
-        if (questionGroup == null) throw new NotFoundException("id=" + id);
-        return questionGroupRepository.get(id);
+//        QuestionGroup questionGroup = questionGroupRepository.get(id);
+//        if (questionGroup == null) throw new NotFoundException("id=" + id);
+//        return questionGroupRepository.get(id);
+        return checkNotFoundWithId(questionGroupRepository.get(id), id);
     }
 
     @Override
