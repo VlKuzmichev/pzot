@@ -9,7 +9,7 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<h3 class="text-center">Новый пользователь</h3>
+<h3 class="text-center">${user.isNew()? "Новый пользователь" : "Редактирование пользователя"}</h3>
 <form method="post" action="users">
     <input type="hidden" name="id" value="${user.id}">
     <div class="form-group">

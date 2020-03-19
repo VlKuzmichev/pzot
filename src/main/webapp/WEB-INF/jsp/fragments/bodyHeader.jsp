@@ -14,15 +14,13 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                         <form:form class="form-inline my-2" action="logout" method="post">
-                            <a class="btn btn-secondary" href="profile">
-                                    <%-- <sec:authentication property="principal.userTo.name"/>--%>
-                                Профиль пользователя</a>
+                            <button class="btn btn-dark" href="profile">
+                                <span class="fa fa">Профиль</span>
+                                </button>
                             <div class="mx-1">
-
                             </div>
-
                             <button class="btn btn-danger" type="submit" hint="Выход">
-                                <span class="fa fa-sign-out"></span>
+                                <span class="fa fa-sign-out"> Выход</span>
                             </button>
                         </form:form>
                 </li>

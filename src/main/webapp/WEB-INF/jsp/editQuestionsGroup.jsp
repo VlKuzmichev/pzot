@@ -9,7 +9,7 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<h3 class="text-center">Новая группа</h3>
+<h3 class="text-center">${questionGroup.isNew()? "Новая группа" : "Редактирование группы"}</h3>
 <form method="post" action="questionsGroups">
     <input type="hidden" name="id" value="${questionGroup.id}">
     <div class="form-group">

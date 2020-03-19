@@ -9,13 +9,25 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<h3 class="text-center">${userGroup.isNew()? "Новая группа" : "Изменение группы"}</h3>
-<form method="post" action="usersGroups">
-    <input type="hidden" name="id" value="${userGroup.id}">
+<h3 class="text-center">${answer.isNew()? "Новый ответ" : "Редактирование ответа"}</h3>
+<form method="post" action="answers">
+    <input type="hidden" name="id" value="${answer.id}">
+    <input type="hidden" name="q" value="${answer.question.id}">
     <div class="form-group">
-        <label for="name" class="col-form-label">Название группы</label>
-        <input type="text" class="form-control" id="name" value="${userGroup.name}" name="name"
-               placeholder="UserGroup name">
+        <label for="name" class="col-form-label">Ответ</label>
+        <table class="table table-striped">
+            <tr>
+                <td colspan="2"><input type="text" class="form-control" id="name" value="${answer.name}" name="name"
+                                       placeholder="Answer"></td>
+            </tr>
+            <tr>
+                <td>Верный/неверный</td>
+                <td><input type="checkbox" class="form-control" id="truth" name="truth"
+                           ${answer.truth ? "checked" : ""}></td>
+            </tr>
+        </table>
+
+
     </div>
 
     <div class="form-group">

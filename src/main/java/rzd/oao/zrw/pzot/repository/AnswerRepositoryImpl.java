@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.repository;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import rzd.oao.zrw.pzot.model.Answer;
 
@@ -7,7 +8,6 @@ import java.util.List;
 
 @Repository
 public class AnswerRepositoryImpl implements AnswerRepository {
-
     private final CrudAnswerRepository answerRepository;
 
     public AnswerRepositoryImpl(CrudAnswerRepository answerRepository) {
@@ -32,6 +32,11 @@ public class AnswerRepositoryImpl implements AnswerRepository {
     @Override
     public List<Answer> getAll() {
         return answerRepository.findAll();
+    }
+
+    @Override
+    public List<Answer> getAllByQuestion(int id) {
+        return answerRepository.getAllByQuestion(id);
     }
 
     @Override

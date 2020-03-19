@@ -83,6 +83,13 @@ class AnswerServiceTest {
         assertThat(actual).isEqualTo(getAnswers());
     }
 
+    // Test Get all answers from database
+    @Test
+    void getAllByQuestion() {
+        List<Answer> actual = answerService.getAllByQuestion(100009);
+        assertThat(actual).isEqualTo(getAnswersByQuestion());
+    }
+
     // Test Get question from database by name
     @Test
     void getByName() {

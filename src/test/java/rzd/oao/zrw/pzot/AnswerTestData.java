@@ -38,4 +38,11 @@ public class AnswerTestData {
                 .collect(Collectors.toList());
         return list;
     }
+
+    public static List<Answer> getAnswersByQuestion() {
+        // Using Stream API to collect answers to list
+        List<Answer> list = Stream.of(ANSWER, ANSWER2, ANSWER3, ANSWER4)
+                .collect(Collectors.toList());
+        return list;
+    }
 }

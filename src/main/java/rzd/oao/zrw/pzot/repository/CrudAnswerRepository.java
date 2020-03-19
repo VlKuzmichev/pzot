@@ -27,6 +27,9 @@ public interface CrudAnswerRepository extends JpaRepository<Answer, Integer> {
     @Override
     List<Answer> findAll();
 
+    @Query("SELECT a FROM Answer a WHERE a.question.id =:id ORDER BY a.name")
+    List<Answer> getAllByQuestion(@Param("id") int id);
+
     @Query("SELECT a FROM Answer a JOIN FETCH a.question WHERE a.id =:id")
     Answer getWithQuestion(@Param("id") int id);
 

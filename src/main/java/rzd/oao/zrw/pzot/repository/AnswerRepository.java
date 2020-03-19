@@ -16,6 +16,9 @@ public interface AnswerRepository {
     List<Answer> getAll();
 
     // null if not found
+    List<Answer> getAllByQuestion(int id);
+
+    // null if not found
     Answer getWithQuestion(int id);
 
     // null if not found

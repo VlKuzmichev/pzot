@@ -1,11 +1,14 @@
 package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.repository.QuestionRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
+
+import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -17,8 +20,10 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question create(Question question) throws NotFoundException {
-        return questionRepository.get(question.getId()) == null ?
-                questionRepository.save(question) : null;
+//        return questionRepository.get(question.getId()) == null ?
+//                questionRepository.save(question) : null;
+        Assert.notNull(question, "answer must not be null");
+        return questionRepository.save(question);
     }
 
     @Override
@@ -33,9 +38,11 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question get(int id) throws NotFoundException {
-        Question question = questionRepository.get(id);
-        if (question == null) throw new NotFoundException("id=" + id);
-        return questionRepository.get(id);
+//        Question question = questionRepository.get(id);
+//        if (question == null) throw new NotFoundException("id=" + id);
+//        return questionRepository.get(id);
+        Assert.notNull(questionRepository, "question must not be null");
+        return checkNotFoundWithId(questionRepository.get(id), id);
     }
 
     @Override
