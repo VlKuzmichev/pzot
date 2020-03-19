@@ -1,10 +1,8 @@
 package rzd.oao.zrw.pzot.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import rzd.oao.zrw.pzot.model.Answer;
 import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.QuestionGroup;
-import rzd.oao.zrw.pzot.service.AnswerService;
 import rzd.oao.zrw.pzot.service.QuestionGroupService;
 import rzd.oao.zrw.pzot.service.QuestionService;
 
@@ -22,13 +20,14 @@ public class AbstractQuestionController {
     @Autowired
     private QuestionGroupService questionGroupService;
 
-    public QuestionGroup getQuestion(int id){
+    public QuestionGroup getQuestion(int id) {
         return questionGroupService.get(id);
     }
 
     public List<QuestionGroup> getAllQuestionsGroups() {
         return questionGroupService.getAll();
     }
+
     public Question getQuestionById(int id) {
 //        log.info("getAll");
         return service.get(id);

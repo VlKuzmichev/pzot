@@ -1,7 +1,6 @@
 package rzd.oao.zrw.pzot.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,16 +15,11 @@ import java.util.Objects;
 @RequestMapping(value = "/questions")
 public class QuestionController extends AbstractQuestionController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String createUser(Model model) {
-        model.addAttribute("question", new Question());
+    public String createUser(ModelMap map) {
+        map.addAttribute("groups", super.getAllQuestionsGroups());
+        map.addAttribute("question", new Question());
         return "editQuestion";
     }
-
-//    @RequestMapping(value = "/update", method = RequestMethod.GET)
-//    public String updateUser(HttpServletRequest request, Model model) {
-//        model.addAttribute("question", super.get(getId(request)));
-//        return "editQuestion";
-//    }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public String updateUser(HttpServletRequest request, ModelMap map) {
@@ -36,8 +30,10 @@ public class QuestionController extends AbstractQuestionController {
 
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {
+        String str = request.getParameter("num");
+        int questionGroupId = Integer.parseInt(request.getParameter("num"));
         Question question = new Question(null, request.getParameter("name"), false,
-                super.getQuestion(100007));
+                super.getQuestion(questionGroupId));
 
         if (request.getParameter("id").isEmpty()) {
             super.create(question);

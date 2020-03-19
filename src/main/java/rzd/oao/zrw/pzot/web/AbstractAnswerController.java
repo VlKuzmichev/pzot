@@ -3,10 +3,8 @@ package rzd.oao.zrw.pzot.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import rzd.oao.zrw.pzot.model.Answer;
 import rzd.oao.zrw.pzot.model.Question;
-import rzd.oao.zrw.pzot.model.UserGroup;
 import rzd.oao.zrw.pzot.service.AnswerService;
 import rzd.oao.zrw.pzot.service.QuestionService;
-import rzd.oao.zrw.pzot.service.UserGroupService;
 
 import java.util.List;
 

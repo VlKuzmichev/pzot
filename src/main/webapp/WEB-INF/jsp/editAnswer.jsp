@@ -23,11 +23,9 @@
             <tr>
                 <td>Верный/неверный</td>
                 <td><input type="checkbox" class="form-control" id="truth" name="truth"
-                           ${answer.truth ? "checked" : ""}></td>
+                ${answer.truth ? "checked" : ""}></td>
             </tr>
         </table>
-
-
     </div>
 
     <div class="form-group">
@@ -40,7 +38,6 @@
             Сохранить
         </button>
     </div>
-
 </form>
 <jsp:include page="fragments/footer.jsp"/>
 </body>

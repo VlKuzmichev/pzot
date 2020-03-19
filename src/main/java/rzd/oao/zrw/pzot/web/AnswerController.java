@@ -1,11 +1,9 @@
 package rzd.oao.zrw.pzot.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import rzd.oao.zrw.pzot.model.Answer;
-import rzd.oao.zrw.pzot.model.UserGroup;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
@@ -16,8 +14,7 @@ public class AnswerController extends AbstractAnswerController {
     @RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
     public String createAnswer(@PathVariable int id, Model model) {
         Answer newanswer = new Answer();
-        int  qid = id;
-//        int questionId =  Integer.parseInt(request.getParameter("q"));
+        int qid = id;
         newanswer.setName("");
         newanswer.setQuestion(super.getQuestionById(id));
         newanswer.setChecked(false);
@@ -34,7 +31,7 @@ public class AnswerController extends AbstractAnswerController {
 
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {
-        String questionId =  request.getParameter("q");
+        String questionId = request.getParameter("q");
         String truth = request.getParameter("truth");
         Answer answer = new Answer(null, request.getParameter("name"),
                 false, truth == null ? false : true, super.getQuestionById(Integer.parseInt(request.getParameter("q"))));
@@ -44,8 +41,9 @@ public class AnswerController extends AbstractAnswerController {
         } else {
             super.update(answer, getId(request));
         }
-        return "redirect:/answers/"+ questionId;
+        return "redirect:/answers/" + questionId;
     }
+
     @GetMapping(value = "/{id}")
     public String answerList(@PathVariable int id, Model model) {
         model.addAttribute("answerList", super.getAllByQuestion(id));
@@ -54,9 +52,9 @@ public class AnswerController extends AbstractAnswerController {
 
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
-        String questionId =  request.getParameter("q");
+        String questionId = request.getParameter("q");
         super.delete(getId(request));
-        return "redirect:/answers/"+ questionId;
+        return "redirect:/answers/" + questionId;
     }
 
     private int getId(HttpServletRequest request) {

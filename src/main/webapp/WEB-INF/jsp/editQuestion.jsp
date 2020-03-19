@@ -23,15 +23,11 @@
                 <td>Группа вопросов</td>
                 <td><select class="form-control" name="num">
                     <c:forEach items="${groups}" var="group">
-                        <option value="${group.id}" selected="${group.id == question.questionGroup.id ? "selected" : ""}">${group.name} </option>
+                        <option value="${group.id}"${group.id == question.questionGroup.id ? " selected" : ""}>${group.name}</option>
                     </c:forEach>
                 </select></td>
-                <%--                <td><input type="checkbox" class="form-control" id="truth" name="truth"--%>
-                <%--                           ${answer.truth ? "checked" : ""}></td>--%>
             </tr>
         </table>
-
-
     </div>
 
     <div class="form-group">
@@ -44,8 +40,8 @@
             Сохранить
         </button>
     </div>
-
 </form>
+
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
