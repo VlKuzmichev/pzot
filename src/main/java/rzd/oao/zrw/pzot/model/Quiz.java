@@ -19,10 +19,6 @@ public class Quiz extends AbstractBaseEntity {
     @Column(name = "status")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Status> status;
-    @Column(name = "attempt")
-    private Integer attempt;
-    @Column(name = "max_attempts")
-    private Integer maxAttempts;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tests_questions", joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id")})
@@ -33,21 +29,19 @@ public class Quiz extends AbstractBaseEntity {
     public Quiz() {
     }
 
-    public Quiz(Integer id, String name, Date startDate, Date endDate, Set<Status> status, Integer attempt, Integer maxAttempts) {
+    public Quiz(Integer id, String name, Date startDate, Date endDate, Set<Status> status) {
         super(id, name);
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
-        this.attempt = attempt;
-        this.maxAttempts = maxAttempts;
     }
 
-    public Quiz(Integer id, String name, Date startDate, Date endDate, Status status, Integer attempt, Integer maxAttempts) {
-        this(id, name, startDate, endDate, EnumSet.of(status), attempt, maxAttempts);
+    public Quiz(Integer id, String name, Date startDate, Date endDate, Status status) {
+        this(id, name, startDate, endDate, EnumSet.of(status));
     }
 
     public Quiz(Quiz q) {
-        this(q.getId(), q.getName(), q.getStartDate(), q.getEndDate(), q.getStatus(), q.getAttempt(), q.getMaxAttempts());
+        this(q.getId(), q.getName(), q.getStartDate(), q.getEndDate(), q.getStatus());
     }
 
     public Date getStartDate() {
@@ -74,22 +68,6 @@ public class Quiz extends AbstractBaseEntity {
         this.status = status;
     }
 
-    public Integer getAttempt() {
-        return attempt;
-    }
-
-    public void setAttempt(Integer attempt) {
-        this.attempt = attempt;
-    }
-
-    public Integer getMaxAttempts() {
-        return maxAttempts;
-    }
-
-    public void setMaxAttempts(Integer maxAttempts) {
-        this.maxAttempts = maxAttempts;
-    }
-
     public List<Question> getQuestions() {
         return questions;
     }
@@ -112,8 +90,6 @@ public class Quiz extends AbstractBaseEntity {
                 "startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", status=" + status +
-                ", attempt=" + attempt +
-                ", maxAttempts=" + maxAttempts +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 '}';

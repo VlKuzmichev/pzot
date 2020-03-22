@@ -10,9 +10,9 @@ public class TestsTestData {
 
     public static final Integer TEST_ID = 100019;
 
-    public static final Quiz TEST = new Quiz(TEST_ID, "TEST1", null, null, Status.INACTIVE, 0, 1);
+    public static final Quiz TEST = new Quiz(TEST_ID, "TEST1", null, null, Status.INACTIVE);
 
-    public static final Quiz NEW_TEST = new Quiz(TEST_ID + 1, "NEW_TEST", null, null, Status.INACTIVE, 0, 1);
+    public static final Quiz NEW_TEST = new Quiz(null, "NEW_TEST", null, null, Status.INACTIVE);
 
 
 

@@ -53,8 +53,8 @@ INSERT INTO answers (name, checked, truth, question_id) VALUES
  'влажную на сухую, дать обезболивающее и любое теплое питье', false, false, 100010), -- 100017
 ('Пострадавшего поместить в ванну с горячей водой или уложить возле электронагревателя', false, false, 100010); -- 100018
 
-INSERT INTO tests (name, start_date, end_date, attempt, max_attempts)
-VALUES ('TEST1', NULL, NULL, 0, 1); -- 100019
+INSERT INTO tests (name, start_date, end_date)
+VALUES ('TEST1', NULL, NULL); -- 100019
 
 INSERT INTO test_statuses (status, test_id)
 VALUES ('INACTIVE', 100019); -- 100020

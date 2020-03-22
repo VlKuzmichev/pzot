@@ -77,9 +77,7 @@ CREATE TABLE tests
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name             VARCHAR                 NOT NULL,
     start_date       TIMESTAMP               NULL,
-    end_date         TIMESTAMP               NULL,
-    attempt          INTEGER  DEFAULT 0      NOT NULL,
-    max_attempts     INTEGER  DEFAULT 1      NOT NULL
+    end_date         TIMESTAMP               NULL
 );
 CREATE UNIQUE INDEX test_unique_name_idx ON tests (name);
 
@@ -107,4 +105,19 @@ CREATE TABLE test_statuses
     test_id          INTEGER                 NOT NULL,
     CONSTRAINT test_statuses_idx UNIQUE (status, test_id),
     FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE
+);
+
+CREATE TABLE results
+(
+    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    answer_date      TIMESTAMP               NOT NULL,
+    user_id          INTEGER                 NOT NULL,
+    test_id          INTEGER                 NOT NULL,
+    question_id      INTEGER                 NOT NULL,
+    answer_id        INTEGER                 NOT NULL,
+    CONSTRAINT test_statuses_idx UNIQUE (answer_date, user_id, test_id, question_id),
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES tests (id) ON DELETE CASCADE,
+    FOREIGN KEY (answer_id) REFERENCES tests (id) ON DELETE CASCADE
 );
