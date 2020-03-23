@@ -9,8 +9,6 @@ import javax.persistence.*;
 @Table(name = "answers")
 public class Answer extends AbstractBaseEntity {
 
-    @Column(name = "checked", nullable = false)
-    private Boolean checked;
     @Column(name = "truth", nullable = false)
     private Boolean truth;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -21,23 +19,14 @@ public class Answer extends AbstractBaseEntity {
     public Answer() {
     }
 
-    public Answer(Integer id, String name, Boolean checked, Boolean truth, Question question) {
+    public Answer(Integer id, String name, Boolean truth, Question question) {
         super(id, name);
-        this.checked = checked;
         this.truth = truth;
         this.question = question;
     }
 
     public Answer(Answer a) {
-        this(a.getId(), a.getName(), a.getChecked(), a.getTruth(), a.getQuestion());
-    }
-
-    public Boolean getChecked() {
-        return checked;
-    }
-
-    public void setChecked(Boolean checked) {
-        this.checked = checked;
+        this(a.getId(), a.getName(), a.getTruth(), a.getQuestion());
     }
 
     public Boolean getTruth() {
@@ -61,7 +50,6 @@ public class Answer extends AbstractBaseEntity {
         return "Answer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", checked=" + checked +
                 ", truth=" + truth +
                 ", question=" + question +
                 '}';

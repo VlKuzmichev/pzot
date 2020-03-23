@@ -66,7 +66,6 @@ CREATE TABLE answers
 (
     id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name              VARCHAR                 NOT NULL,
-    checked           BOOL DEFAULT FALSE      NOT NULL,
     truth             BOOL DEFAULT FALSE      NOT NULL,
     question_id       INTEGER                 NOT NULL,
     FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE
@@ -115,7 +114,7 @@ CREATE TABLE results
     test_id          INTEGER                 NOT NULL,
     question_id      INTEGER                 NOT NULL,
     answer_id        INTEGER                 NOT NULL,
-    CONSTRAINT test_statuses_idx UNIQUE (answer_date, user_id, test_id, question_id),
+    CONSTRAINT results_idx UNIQUE (answer_date, user_id, test_id, question_id),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
     FOREIGN KEY (question_id) REFERENCES tests (id) ON DELETE CASCADE,

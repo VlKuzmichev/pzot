@@ -17,7 +17,6 @@ public class AnswerController extends AbstractAnswerController {
         int qid = id;
         newanswer.setName("");
         newanswer.setQuestion(super.getQuestionById(id));
-        newanswer.setChecked(false);
         newanswer.setTruth(false);
         model.addAttribute("answer", newanswer);
         return "editAnswer";
@@ -34,7 +33,7 @@ public class AnswerController extends AbstractAnswerController {
         String questionId = request.getParameter("q");
         String truth = request.getParameter("truth");
         Answer answer = new Answer(null, request.getParameter("name"),
-                false, truth == null ? false : true, super.getQuestionById(Integer.parseInt(request.getParameter("q"))));
+                truth == null ? false : true, super.getQuestionById(Integer.parseInt(request.getParameter("q"))));
 
         if (request.getParameter("id").isEmpty()) {
             super.create(answer);
