@@ -18,10 +18,8 @@ public class UserGroupServiceImpl implements UserGroupService {
 
     @Override
     public UserGroup create(UserGroup userGroup) {
-//        return userGroupRepository.get(userGroup.getId()) == null ?
-//                userGroupRepository.save(userGroup) : null;
-          Assert.notNull(userGroup, "userGroup must not be null");
-          return  userGroupRepository.save(userGroup);
+        Assert.notNull(userGroup, "userGroup must not be null");
+        return userGroupRepository.save(userGroup);
     }
 
     @Override

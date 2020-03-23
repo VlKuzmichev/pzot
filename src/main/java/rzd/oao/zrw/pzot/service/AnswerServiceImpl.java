@@ -20,8 +20,6 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Answer create(Answer answer) throws NotFoundException {
-//        return answerRepository.get(answer.getId()) == null ?
-//                answerRepository.save(answer) : null;
         Assert.notNull(answer, "user must not be null");
         return answerRepository.save(answer);
     }
@@ -38,10 +36,6 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Answer get(int id) throws NotFoundException {
-//        Answer answer = answerRepository.get(id);
-//        if (answer == null) throw new NotFoundException("id=" + id);
-//        return answerRepository.get(id);
-        Assert.notNull(answerRepository, "answer must not be null");
         return checkNotFoundWithId(answerRepository.get(id), id);
     }
 

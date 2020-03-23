@@ -1,11 +1,14 @@
 package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.repository.TestRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
+
+import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class TestServiceImpl implements TestService {
@@ -17,8 +20,8 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Quiz create(Quiz test) throws NotFoundException {
-        return testRepository.get(test.getId()) == null ?
-                testRepository.save(test) : null;
+        Assert.notNull(test, "user must not be null");
+        return testRepository.save(test);
     }
 
     @Override
@@ -33,9 +36,7 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Quiz get(int id) throws NotFoundException {
-        Quiz test = testRepository.get(id);
-        if (test == null) throw new NotFoundException("id=" + id);
-        return testRepository.get(id);
+        return checkNotFoundWithId(testRepository.get(id), id);
     }
 
     @Override

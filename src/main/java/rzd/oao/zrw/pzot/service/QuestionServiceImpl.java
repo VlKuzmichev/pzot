@@ -20,8 +20,6 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question create(Question question) throws NotFoundException {
-//        return questionRepository.get(question.getId()) == null ?
-//                questionRepository.save(question) : null;
         Assert.notNull(question, "answer must not be null");
         return questionRepository.save(question);
     }
@@ -38,10 +36,6 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question get(int id) throws NotFoundException {
-//        Question question = questionRepository.get(id);
-//        if (question == null) throw new NotFoundException("id=" + id);
-//        return questionRepository.get(id);
-        Assert.notNull(questionRepository, "question must not be null");
         return checkNotFoundWithId(questionRepository.get(id), id);
     }
 

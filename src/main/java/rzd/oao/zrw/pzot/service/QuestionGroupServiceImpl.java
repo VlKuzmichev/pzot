@@ -21,8 +21,6 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
     @Override
     public QuestionGroup create(QuestionGroup questionGroup) throws NotFoundException {
         Assert.notNull(questionGroup, "user must not be null");
-//        return questionGroupRepository.get(questionGroup.getId()) == null ?
-//                questionGroupRepository.save(questionGroup) : null;
         return questionGroupRepository.save(questionGroup);
     }
 
@@ -38,9 +36,6 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 
     @Override
     public QuestionGroup get(int id) throws NotFoundException {
-//        QuestionGroup questionGroup = questionGroupRepository.get(id);
-//        if (questionGroup == null) throw new NotFoundException("id=" + id);
-//        return questionGroupRepository.get(id);
         return checkNotFoundWithId(questionGroupRepository.get(id), id);
     }
 

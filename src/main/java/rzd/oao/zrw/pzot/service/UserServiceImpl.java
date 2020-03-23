@@ -21,7 +21,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
-//        return repository.get(user.getId()) == null ? repository.save(user) : null;
         return repository.save(user);
     }
 
@@ -37,18 +36,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(int id) throws NotFoundException {
-//        User user = repository.get(id);
-//        if (id == null) throw new NotFoundException("id=" + id);
-//        return repository.get(id);
         return checkNotFoundWithId(repository.get(id), id);
     }
-
-//    @Override
-//    public User getByEmail(String email) throws NotFoundException {
-//        User user = repository.getByEmail(email);
-//        if (user == null) throw new NotFoundException("Email=" + email);
-//        return repository.getByEmail(email);
-//    }
 
     @Override
     public List<User> getAll() {
