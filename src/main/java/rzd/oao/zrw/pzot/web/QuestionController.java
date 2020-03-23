@@ -32,7 +32,7 @@ public class QuestionController extends AbstractQuestionController {
     public String updateOrCreate(HttpServletRequest request) {
         String str = request.getParameter("num");
         int questionGroupId = Integer.parseInt(request.getParameter("num"));
-        Question question = new Question(null, request.getParameter("name"), false,
+        Question question = new Question(null, request.getParameter("name"),
                 super.getQuestion(questionGroupId));
 
         if (request.getParameter("id").isEmpty()) {

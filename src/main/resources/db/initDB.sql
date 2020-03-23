@@ -56,7 +56,6 @@ CREATE TABLE questions
 (
     id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name              VARCHAR                 NOT NULL,
-    answered          BOOL DEFAULT FALSE      NOT NULL,
     question_group_id INTEGER                 NOT NULL,
     FOREIGN KEY (question_group_id) REFERENCES question_groups (id) ON DELETE CASCADE
 );
