@@ -1,6 +1,7 @@
 package rzd.oao.zrw.pzot.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
@@ -11,9 +12,9 @@ import java.util.Set;
         name = "test_unique_name_idx")})
 public class Quiz extends AbstractBaseEntity {
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDateTime startDate;
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDateTime endDate;
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "test_statuses", joinColumns = @JoinColumn(name = "test_id"))
     @Column(name = "status")
@@ -29,14 +30,14 @@ public class Quiz extends AbstractBaseEntity {
     public Quiz() {
     }
 
-    public Quiz(Integer id, String name, Date startDate, Date endDate, Set<Status> status) {
+    public Quiz(Integer id, String name, LocalDateTime startDate, LocalDateTime endDate, Set<Status> status) {
         super(id, name);
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
     }
 
-    public Quiz(Integer id, String name, Date startDate, Date endDate, Status status) {
+    public Quiz(Integer id, String name, LocalDateTime startDate, LocalDateTime endDate, Status status) {
         this(id, name, startDate, endDate, EnumSet.of(status));
     }
 
@@ -44,19 +45,19 @@ public class Quiz extends AbstractBaseEntity {
         this(q.getId(), q.getName(), q.getStartDate(), q.getEndDate(), q.getStatus());
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

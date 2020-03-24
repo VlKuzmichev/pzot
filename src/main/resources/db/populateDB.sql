@@ -54,7 +54,7 @@ INSERT INTO answers (name, truth, question_id) VALUES
 ('Пострадавшего поместить в ванну с горячей водой или уложить возле электронагревателя', false, 100010); -- 100018
 
 INSERT INTO tests (name, start_date, end_date)
-VALUES ('TEST1', NULL, NULL); -- 100019
+VALUES ('TEST1', '2020-04-10 10:00:00', '2020-04-11 10:00:00'); -- 100019
 
 INSERT INTO test_statuses (status, test_id)
 VALUES ('INACTIVE', 100019); -- 100020

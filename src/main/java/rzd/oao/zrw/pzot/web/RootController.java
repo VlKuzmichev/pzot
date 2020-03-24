@@ -24,7 +24,7 @@ public class RootController {
     private QuestionService questionService;
 
     @Autowired
-    private AnswerService answerService;
+    private TestService testService;
 
     @GetMapping("/")
     public String root() {
@@ -37,11 +37,11 @@ public class RootController {
         return "users";
     }
 
-//    @RequestMapping(value = "/answers", method = RequestMethod.GET)
-//    public String answerList(Model model) {
-//        model.addAttribute("answerList", answerService.getAll());
-//        return "answers";
-//    }
+    @RequestMapping(value = "/tests", method = RequestMethod.GET)
+    public String answerList(Model model) {
+        model.addAttribute("testList", testService.getAll());
+        return "tests";
+    }
 
     @RequestMapping(value = "/usersGroups", method = RequestMethod.GET)
     public String userGroupList(Model model) {

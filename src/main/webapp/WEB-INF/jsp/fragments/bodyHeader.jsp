@@ -33,7 +33,7 @@
                 <li class="nav-item">
 <!--            <a class="btn btn-secondary mr-1" href="/">Мои тесты</a> -->
             <a class="btn btn-outline-secondary" href="/">Мои тесты</a>
-            <a class="btn btn-outline-secondary" href="/">Тесты</a>
+            <a class="btn btn-outline-secondary" href="tests">Тесты</a>
             <a class="btn btn-outline-secondary" href="questionsGroups">Группы вопросов</a>
             <a class="btn btn-outline-secondary" href="questions">Вопросы</a>
             <a class="btn btn-outline-secondary" href="usersGroups">Группы пользователей</a>
