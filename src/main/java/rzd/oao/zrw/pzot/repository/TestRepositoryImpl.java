@@ -47,4 +47,9 @@ public class TestRepositoryImpl implements TestRepository {
     public Quiz getByName(String name) {
         return testRepository.getByName(name);
     }
+
+//    @Override
+//    public boolean deleteUserFromTest(int id) {
+//        return testRepository.deleteUserFromTest(id) != 0;;
+//    }
 }

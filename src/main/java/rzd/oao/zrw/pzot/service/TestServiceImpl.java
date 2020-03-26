@@ -1,8 +1,10 @@
 package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.Quiz;
+import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.TestRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
@@ -57,5 +59,13 @@ public class TestServiceImpl implements TestService {
     @Override
     public Quiz getByName(String name) {
         return testRepository.getByName(name);
+    }
+
+    @Transactional
+    @Override
+    public void removeUser(int testId, User user) {
+        Quiz test = getWithUsers(testId);
+        test.removeUser(user);
+        testRepository.save(test);
     }
 }

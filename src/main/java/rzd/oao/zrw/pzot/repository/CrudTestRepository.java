@@ -34,5 +34,4 @@ public interface CrudTestRepository extends JpaRepository<Quiz, Integer> {
     Quiz getWithUsers(@Param("id") int id);
 
     Quiz getByName(String name);
-
 }

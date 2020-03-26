@@ -3,6 +3,7 @@ package rzd.oao.zrw.pzot.model;
 import javax.persistence.*;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -28,6 +29,7 @@ public class User extends AbstractBaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+ //   @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "test_id")})
@@ -59,6 +61,16 @@ public class User extends AbstractBaseEntity {
 
     public void setTests(List<Quiz> tests) {
         this.tests = tests;
+    }
+
+    public void addTest(Quiz test) {
+        this.tests.add(test);
+        test.getUsers().add(this);
+    }
+
+    public void removeTest(Quiz test) {
+        this.tests.remove(test);
+        test.getUsers().remove(this);
     }
 
     public String getPassword() {
@@ -99,6 +111,15 @@ public class User extends AbstractBaseEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User that = (User) o;
+        return Objects.equals(this.getId(), that.getId());
     }
 
     @Override

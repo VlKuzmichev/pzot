@@ -2,7 +2,9 @@ package rzd.oao.zrw.pzot.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import rzd.oao.zrw.pzot.model.Quiz;
+import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.service.TestService;
+import rzd.oao.zrw.pzot.service.UserService;
 
 import java.util.List;
 
@@ -14,6 +16,9 @@ public class AbstractTestController {
 
     @Autowired
     private TestService service;
+
+    @Autowired
+    private UserService userService;
 
     public List<Quiz> getAll() {
 //        log.info("getAll");
@@ -42,4 +47,21 @@ public class AbstractTestController {
         service.update(test);
     }
 
+    public Quiz getWithUsers(int testId) {
+//        log.info("update {} with id={}", user, id);
+        return service.getWithUsers(testId);
+    }
+
+    public List<User> getUsers() {
+//        log.info("getAll");
+        return userService.getAll();
+    }
+    public User getUser(int id) {
+//        log.info("getAll");
+        return userService.get(id);
+    }
+
+    public void removeUser(int testId, User user) {
+        service.removeUser(testId, user);
+    }
 }

@@ -23,7 +23,8 @@
             <th>Результаты</th>
             <th>Начало</th>
             <th>Завершение</th>
-            <th align="center">Зап/Остан</th>
+            <th>Студенты</th>
+            <th>Статус</th>
             <th></th>
             <th></th>
         </tr>
@@ -35,7 +36,9 @@
                 <td><a href="tests/results?id=${test.id}">Просмотр</a></td>
                 <td>${test.startDate.toLocalDate()}</td>
                 <td>${test.endDate.toLocalDate()}</td>
-                <td align="center"><a href="tests/status?id=${test.id}">
+                <td><a href="tests/users?id=${test.id}"><span class='fa fa-address-book'
+                                                               style="color:black"></span></a></td>
+                <td><a href="tests/status?id=${test.id}">
                     <span class='fa fa-toggle-${test.status == "[INACTIVE]" ? "off" : "on"}'
                           style="color:${test.status == "[INACTIVE]" ? "black" : "green"}"></span></a></td>
                 <td><a href="tests/update?id=${test.id}"><span class='fa fa-pencil'

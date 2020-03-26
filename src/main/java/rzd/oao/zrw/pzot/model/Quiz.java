@@ -2,7 +2,6 @@ package rzd.oao.zrw.pzot.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +19,7 @@ public class Quiz extends AbstractBaseEntity {
     @Column(name = "status")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Status> status;
+  //  @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tests_questions", joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id")})
@@ -83,6 +83,16 @@ public class Quiz extends AbstractBaseEntity {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public void addUser(User user) {
+        this.users.add(user);
+        user.getTests().add(this);
+    }
+
+    public void removeUser(User user) {
+        this.users.remove(user);
+        user.getTests().remove(this);
     }
 
     @Override

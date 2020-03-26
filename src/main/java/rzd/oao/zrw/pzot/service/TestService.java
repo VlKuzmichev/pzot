@@ -1,6 +1,7 @@
 package rzd.oao.zrw.pzot.service;
 
 import rzd.oao.zrw.pzot.model.Quiz;
+import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
@@ -21,5 +22,7 @@ public interface TestService {
     Quiz getWithUsers(int id) throws NotFoundException;
 
     Quiz getByName(String name);
+
+    void removeUser(int testId, User user);
 
 }

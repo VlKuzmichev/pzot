@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import rzd.oao.zrw.pzot.UserTestData;
 import rzd.oao.zrw.pzot.model.Quiz;
+import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import static rzd.oao.zrw.pzot.UserGroupTestData.getUsers;
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml"
 })
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+//@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 class TestServiceTest {
 
     @Autowired
@@ -107,4 +109,22 @@ class TestServiceTest {
         Quiz test = testService.getByName(TEST.getName());
         assertThat(test).isEqualTo(TEST);
     }
+
+    // Test Get test from database by name
+    @Test
+    void addUser() {
+//        Quiz updated = testService.getWithUsers(TEST_ID);//new Quiz(TEST);
+//        updated.setName("Updated TEST1");
+//        List<User> list = updated.getUsers();
+//        list.add(UserTestData.USER);
+//        updated.setUsers(list);
+    }
+    @Test
+    void removeUser() {
+        Quiz updated = testService.getWithUsers(TEST_ID);
+        updated.removeUser(updated.getUsers().get(0));
+        testService.update(updated);
+    }
+
+
 }

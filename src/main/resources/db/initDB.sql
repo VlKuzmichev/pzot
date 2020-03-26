@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS results;
 DROP TABLE IF EXISTS tests_questions;
 DROP TABLE IF EXISTS tests_users;
 DROP TABLE IF EXISTS test_statuses;
@@ -93,8 +94,8 @@ CREATE TABLE tests_users (
     user_id int references users(id),
     CONSTRAINT tests_users_idx UNIQUE (test_id, user_id),
     primary key (test_id, user_id),
-    FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+    FOREIGN KEY (test_id) REFERENCES tests (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE test_statuses
