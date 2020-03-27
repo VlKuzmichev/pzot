@@ -25,7 +25,7 @@ public class Quiz extends AbstractBaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "question_id")})
     private List<Question> questions;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tests")
-    private List<User> users;
+    private Set<User> users;
 
     public Quiz() {
     }
@@ -77,13 +77,21 @@ public class Quiz extends AbstractBaseEntity {
         this.questions = questions;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
+
+    //    public List<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
 
     public void addUser(User user) {
         this.users.add(user);

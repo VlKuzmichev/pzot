@@ -61,7 +61,7 @@ public class TestServiceImpl implements TestService {
         return testRepository.getByName(name);
     }
 
-    @Transactional
+ //   @Transactional
     @Override
     public void removeUser(int testId, User user) {
         Quiz test = getWithUsers(testId);

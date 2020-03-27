@@ -92,7 +92,7 @@ class UserGroupServiceTest {
         UserGroup userGroup = service.getWithUsers(USER_GROUP_ID);
         assertThat(userGroup).isEqualToIgnoringGivenFields(USER_GROUP, "users");
         UserGroup expected = USER_GROUP;
-        expected.setUsers(getUsers());
+   //     expected.setUsers(getUsers());
         // Compare first element of users field
         assertThat(userGroup.getUsers().get(0)).isEqualTo(expected.getUsers().get(0));
     }

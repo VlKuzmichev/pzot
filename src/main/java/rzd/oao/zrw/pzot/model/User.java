@@ -30,10 +30,10 @@ public class User extends AbstractBaseEntity {
     private Set<Role> roles;
 
  //   @ManyToMany(fetch = FetchType.EAGER)
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "test_id")})
-    private List<Quiz> tests;
+    private Set<Quiz> tests;
 
     public User() {
     }
@@ -55,13 +55,20 @@ public class User extends AbstractBaseEntity {
         this.roles = roles;
     }
 
-    public List<Quiz> getTests() {
+    public Set<Quiz> getTests() {
         return tests;
     }
 
-    public void setTests(List<Quiz> tests) {
+    public void setTests(Set<Quiz> tests) {
         this.tests = tests;
     }
+//    public List<Quiz> getTests() {
+//        return tests;
+//    }
+//
+//    public void setTests(List<Quiz> tests) {
+//        this.tests = tests;
+//    }
 
     public void addTest(Quiz test) {
         this.tests.add(test);

@@ -4,7 +4,9 @@ import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.model.UserGroup;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static rzd.oao.zrw.pzot.UserTestData.*;
 
@@ -17,8 +19,8 @@ public class UserGroupTestData {
     public static final UserGroup USER_GROUP4 = new UserGroup(USER_GROUP_ID + 3, "Specialists");
     public static final UserGroup NEW_USER_GROUP = new UserGroup(100020, "New group");
 
-    public static List<User> getUsers(){
-        List<User> list = new ArrayList<>();
+    public static Set<User> getUsers(){
+        Set<User> list = new HashSet<>();
         list.add(USER);
 //        list.add(EXAMINER);
 //        list.add(ADMIN);

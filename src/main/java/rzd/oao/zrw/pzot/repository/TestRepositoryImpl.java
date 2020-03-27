@@ -1,13 +1,18 @@
 package rzd.oao.zrw.pzot.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import rzd.oao.zrw.pzot.model.Quiz;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 @Repository
 public class TestRepositoryImpl implements TestRepository {
     private final CrudTestRepository testRepository;
+
+//    @Autowired
+//    private EntityManagerFactory em;
 
     public TestRepositoryImpl(CrudTestRepository testRepository) {
         this.testRepository = testRepository;
@@ -15,6 +20,7 @@ public class TestRepositoryImpl implements TestRepository {
 
     @Override
     public Quiz save(Quiz test) {
+     //   em.createEntityManager().merge(test);
         return testRepository.save(test);
     }
 
