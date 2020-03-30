@@ -1,9 +1,11 @@
 package rzd.oao.zrw.pzot.service;
 
 import rzd.oao.zrw.pzot.model.Question;
+import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
+import java.util.Set;
 
 public interface QuestionService {
     Question create(Question question);
@@ -15,6 +17,8 @@ public interface QuestionService {
     Question get(int id) throws NotFoundException;
 
     List<Question> getAll();
+
+    Set<Question> getWithoutTestQuestions(int testId);
 
     Question getWithAnswers(int id) throws NotFoundException;
 

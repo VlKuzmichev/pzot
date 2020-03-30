@@ -3,7 +3,9 @@ package rzd.oao.zrw.pzot;
 import rzd.oao.zrw.pzot.model.Question;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static rzd.oao.zrw.pzot.QuestionGroupTestData.QUESTION_GROUP;
 
@@ -17,8 +19,8 @@ public class QuestionTestData {
 
     public static final Question NEW_QUESTION = new Question(null, "NEW QUESTION?", QUESTION_GROUP);
 
-    public static List<Question> getQuestions() {
-        List<Question> list = new ArrayList<>();
+    public static Set<Question> getQuestions() {
+        Set<Question> list = new HashSet<>();
         list.add(QUESTION);
         list.add(QUESTION2);
         return list;

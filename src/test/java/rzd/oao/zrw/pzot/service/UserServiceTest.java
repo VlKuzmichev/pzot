@@ -74,22 +74,6 @@ class UserServiceTest {
         });
     }
 
-    // Test Get admin from database by Email
-//    @Test
-//    void getByEmail() {
-//        User admin = service.getByEmail(ADMIN.getEmail());
-//        assertThat(admin).isEqualToIgnoringGivenFields(ADMIN, "userGroups", "tests");
-//    }
-
-    // Test Get user from database by none exist Email
-//    @Test
-//    void testGetNotFoundWithEmail() {
-//        assertThrows(NotFoundException.class, () -> {
-//            User user = service.getByEmail("asdf@asdf.com");
-//        });
-//    }
-
-
     // Test Get all users from database
     @Test
     void getAll() {

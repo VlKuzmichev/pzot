@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "questions", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
@@ -19,7 +20,7 @@ public class Question extends AbstractBaseEntity {
     private List<Answer> answers;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
-    private List<Quiz> tests;
+    private Set<Quiz> tests;
 
     public Question() {
     }
@@ -49,11 +50,11 @@ public class Question extends AbstractBaseEntity {
         this.answers = answers;
     }
 
-    public List<Quiz> getTests() {
+    public Set<Quiz> getTests() {
         return tests;
     }
 
-    public void setTests(List<Quiz> tests) {
+    public void setTests(Set<Quiz> tests) {
         this.tests = tests;
     }
 

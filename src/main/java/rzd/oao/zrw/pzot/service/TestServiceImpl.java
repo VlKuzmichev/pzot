@@ -3,6 +3,7 @@ package rzd.oao.zrw.pzot.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.TestRepository;
@@ -77,4 +78,13 @@ public class TestServiceImpl implements TestService {
         testRepository.save(test);
     }
 
+    @Override
+    public void addQuestion(int testId, Question question) {
+
+    }
+
+    @Override
+    public void removeQuestion(int testId, Question question) {
+
+    }
 }

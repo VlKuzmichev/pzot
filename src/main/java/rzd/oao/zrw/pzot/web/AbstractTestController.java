@@ -1,8 +1,10 @@
 package rzd.oao.zrw.pzot.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.User;
+import rzd.oao.zrw.pzot.service.QuestionService;
 import rzd.oao.zrw.pzot.service.TestService;
 import rzd.oao.zrw.pzot.service.UserService;
 
@@ -20,6 +22,9 @@ public class AbstractTestController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private QuestionService questionService;
 
     public List<Quiz> getAll() {
 //        log.info("getAll");
@@ -53,9 +58,19 @@ public class AbstractTestController {
         return service.getWithUsers(testId);
     }
 
+    public Quiz getWithQuestions(int testId) {
+//        log.info("update {} with id={}", user, id);
+        return service.getWithQuestions(testId);
+    }
+
     public Set<User> getUsers(int testId) {
 //        log.info("getAll");
         return userService.getWithoutTestUsers(testId);
+    }
+
+    public Set<Question> getQuestions(int testId) {
+//        log.info("getAll");
+        return questionService.getWithoutTestQuestions(testId);
     }
 
     public User getUser(int id) {
@@ -63,11 +78,28 @@ public class AbstractTestController {
         return userService.get(id);
     }
 
+    public Question getQuestion(int id) {
+//        log.info("getAll");
+        return questionService.get(id);
+    }
+
+    public void addQuestion(int testId, Question question) {
+//        log.info("getAll");
+        service.addQuestion(testId, question);
+    }
+
+    public void removeQuestion(int testId, Question question) {
+//        log.info("getAll");
+        service.removeQuestion(testId, question);
+    }
+
     public void addUser(int testId, User user) {
+//        log.info("getAll");
         service.addUser(testId, user);
     }
 
     public void removeUser(int testId, User user) {
+//        log.info("getAll");
         service.removeUser(testId, user);
     }
 }

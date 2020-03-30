@@ -4,7 +4,9 @@ import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.Status;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TestsTestData {
 
@@ -16,8 +18,8 @@ public class TestsTestData {
 
 
 
-    public static List<Quiz> getTests() {
-        List<Quiz> list = new ArrayList<>();
+    public static Set<Quiz> getTests() {
+        Set<Quiz> list = new HashSet<>();
         list.add(TEST);
         return list;
     }

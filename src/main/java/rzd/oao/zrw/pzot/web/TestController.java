@@ -74,6 +74,28 @@ public class TestController extends AbstractTestController {
         return "testsUsers";
     }
 
+    @GetMapping("/questions")
+    public String questions(HttpServletRequest request, Model model) {
+        model.addAttribute("test", super.getWithQuestions(getId(request)));
+        return "testsQuestions";
+    }
+
+    @GetMapping("/questions/add")
+    public String addQuestions(HttpServletRequest request, ModelMap map) {
+        if (request.getParameter("question") != null)
+            super.addQuestion(getId(request), super.getQuestion(getQuestion(request)));
+        map.addAttribute("test", super.get(getId(request)));
+        map.addAttribute("questions", super.getQuestions(getId(request)));
+        return "addQuestions";
+    }
+
+    @GetMapping("/questions/delete")
+    public String deleteQuestionFromTest(HttpServletRequest request, Model model) {
+        super.removeQuestion(getId(request), super.getQuestion(getQuestion(request)));
+        model.addAttribute("test", super.getWithQuestions(getId(request)));
+        return "testsQuestions";
+    }
+
     @GetMapping("/users/add")
     public String addUsers(HttpServletRequest request, ModelMap map) {
         if (request.getParameter("user") != null)
@@ -98,6 +120,11 @@ public class TestController extends AbstractTestController {
 
     private int getUser(HttpServletRequest request) {
         String paramId = Objects.requireNonNull(request.getParameter("user"));
+        return Integer.parseInt(paramId);
+    }
+
+    private int getQuestion(HttpServletRequest request) {
+        String paramId = Objects.requireNonNull(request.getParameter("question"));
         return Integer.parseInt(paramId);
     }
 

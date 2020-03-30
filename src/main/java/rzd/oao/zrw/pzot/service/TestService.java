@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.service;
 
+import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.util.NotFoundException;
@@ -26,5 +27,9 @@ public interface TestService {
     void addUser(int testId, User user);
 
     void removeUser(int testId, User user);
+
+    void addQuestion(int testId, Question question);
+
+    void removeQuestion(int testId, Question question);
 
 }
