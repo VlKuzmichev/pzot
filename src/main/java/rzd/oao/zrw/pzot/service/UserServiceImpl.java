@@ -1,21 +1,27 @@
 package rzd.oao.zrw.pzot.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository repository;
+    private final TestService testService;
 
-    public UserServiceImpl(UserRepository repository) {
+    public UserServiceImpl(UserRepository repository, TestService testService) {
         this.repository = repository;
+        this.testService = testService;
     }
 
     @Override
@@ -42,6 +48,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public Set<User> getWithoutTestUsers(int testId) {
+        List<User> users = repository.getAll();
+        users.removeAll(testService.getWithUsers(testId).getUsers());
+        return new HashSet<>(users);
     }
 
     @Override

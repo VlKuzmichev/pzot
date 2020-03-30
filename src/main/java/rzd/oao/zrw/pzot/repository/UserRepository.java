@@ -3,6 +3,7 @@ package rzd.oao.zrw.pzot.repository;
 import rzd.oao.zrw.pzot.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserRepository {
     User save(User user);

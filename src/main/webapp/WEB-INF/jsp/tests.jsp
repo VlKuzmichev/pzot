@@ -23,6 +23,7 @@
             <th>Результаты</th>
             <th>Начало</th>
             <th>Завершение</th>
+            <th>Вопросы</th>
             <th>Студенты</th>
             <th>Статус</th>
             <th></th>
@@ -36,6 +37,8 @@
                 <td><a href="tests/results?id=${test.id}">Просмотр</a></td>
                 <td>${test.startDate.toLocalDate()}</td>
                 <td>${test.endDate.toLocalDate()}</td>
+                <td><a href="tests/questions?id=${test.id}"><span class='fa fa-question-circle'
+                                                              style="color:black"></span></a></td>
                 <td><a href="tests/users?id=${test.id}"><span class='fa fa-address-book'
                                                                style="color:black"></span></a></td>
                 <td><a href="tests/status?id=${test.id}">

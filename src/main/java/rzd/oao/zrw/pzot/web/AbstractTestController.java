@@ -7,6 +7,7 @@ import rzd.oao.zrw.pzot.service.TestService;
 import rzd.oao.zrw.pzot.service.UserService;
 
 import java.util.List;
+import java.util.Set;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.assureIdConsistent;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNew;
@@ -52,10 +53,11 @@ public class AbstractTestController {
         return service.getWithUsers(testId);
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers(int testId) {
 //        log.info("getAll");
-        return userService.getAll();
+        return userService.getWithoutTestUsers(testId);
     }
+
     public User getUser(int id) {
 //        log.info("getAll");
         return userService.get(id);

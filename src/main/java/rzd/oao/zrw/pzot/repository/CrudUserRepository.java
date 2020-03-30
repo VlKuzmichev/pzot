@@ -10,6 +10,7 @@ import rzd.oao.zrw.pzot.model.User;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Transactional(readOnly = true)
 public interface CrudUserRepository extends JpaRepository<User, Integer> {
