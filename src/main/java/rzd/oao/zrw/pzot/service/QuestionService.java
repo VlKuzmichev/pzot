@@ -18,7 +18,7 @@ public interface QuestionService {
 
     List<Question> getAll();
 
-    Set<Question> getWithoutTestQuestions(int testId);
+    List<Question> getWithoutTestQuestions(int testId);
 
     Question getWithAnswers(int id) throws NotFoundException;
 

@@ -80,11 +80,15 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void addQuestion(int testId, Question question) {
-
+        Quiz test = getWithQuestions(testId);
+        test.addQuestion(question);
+        testRepository.save(test);
     }
 
     @Override
     public void removeQuestion(int testId, Question question) {
-
+        Quiz test = getWithQuestions(testId);
+        test.removeQuestion(question);
+        testRepository.save(test);
     }
 }

@@ -32,11 +32,6 @@ public class UserRepositoryImpl implements UserRepository {
         return crudUserRepository.findById(id).orElse(null);
     }
 
-//    @Override
-//    public User getByEmail(String email) {
-//        return crudUserRepository.getByEmail(email);
-//    }
-
     @Override
     public List<User> getAll() {
         return crudUserRepository.findAll(SORT_NAME_EMAIL);

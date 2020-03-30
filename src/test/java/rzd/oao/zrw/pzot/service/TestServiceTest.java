@@ -105,7 +105,7 @@ class TestServiceTest {
     void getWithUsers() {
         Quiz actual = testService.getWithUsers(TEST_ID);
         Quiz expected = TEST;
-        expected.setUsers(getUsers());
+    //    expected.setUsers(getUsers());
         // Compare first element of users field
     //    assertThat(actual.getUsers().get(0)).isEqualTo(expected.getUsers().get(0));
     }

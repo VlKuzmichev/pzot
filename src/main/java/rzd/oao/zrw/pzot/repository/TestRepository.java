@@ -24,8 +24,4 @@ public interface TestRepository {
     // null if not found
     Quiz getByName(String name);
 
-    // false if not found
-//    boolean deleteUserFromTest(int id);
-
-
 }

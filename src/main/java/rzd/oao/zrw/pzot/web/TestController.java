@@ -85,7 +85,7 @@ public class TestController extends AbstractTestController {
         if (request.getParameter("question") != null)
             super.addQuestion(getId(request), super.getQuestion(getQuestion(request)));
         map.addAttribute("test", super.get(getId(request)));
-        map.addAttribute("questions", super.getQuestions(getId(request)));
+        map.addAttribute("testQuestions", super.getQuestions(getId(request)));
         return "addQuestions";
     }
 

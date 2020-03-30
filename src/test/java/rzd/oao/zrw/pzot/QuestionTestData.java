@@ -19,8 +19,8 @@ public class QuestionTestData {
 
     public static final Question NEW_QUESTION = new Question(null, "NEW QUESTION?", QUESTION_GROUP);
 
-    public static Set<Question> getQuestions() {
-        Set<Question> list = new HashSet<>();
+    public static List<Question> getQuestions() {
+        List<Question> list = new ArrayList<>();
         list.add(QUESTION);
         list.add(QUESTION2);
         return list;

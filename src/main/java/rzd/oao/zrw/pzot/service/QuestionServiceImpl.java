@@ -1,7 +1,5 @@
 package rzd.oao.zrw.pzot.service;
 
-import org.aspectj.lang.annotation.SuppressAjWarnings;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -9,9 +7,7 @@ import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.repository.QuestionRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 
@@ -53,10 +49,10 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Transactional
     @Override
-    public Set<Question> getWithoutTestQuestions(int testId) {
+    public List<Question> getWithoutTestQuestions(int testId) {
         List<Question> questions = repository.getAll();
         questions.removeAll(testService.getWithQuestions(testId).getQuestions());
-        return new HashSet<>(questions);
+        return questions;
     }
 
     @Override

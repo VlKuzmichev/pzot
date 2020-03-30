@@ -11,16 +11,12 @@ import java.util.List;
 public class TestRepositoryImpl implements TestRepository {
     private final CrudTestRepository testRepository;
 
-//    @Autowired
-//    private EntityManagerFactory em;
-
     public TestRepositoryImpl(CrudTestRepository testRepository) {
         this.testRepository = testRepository;
     }
 
     @Override
     public Quiz save(Quiz test) {
-     //   em.createEntityManager().merge(test);
         return testRepository.save(test);
     }
 
@@ -54,8 +50,4 @@ public class TestRepositoryImpl implements TestRepository {
         return testRepository.getByName(name);
     }
 
-//    @Override
-//    public boolean deleteUserFromTest(int id) {
-//        return testRepository.deleteUserFromTest(id) != 0;;
-//    }
 }

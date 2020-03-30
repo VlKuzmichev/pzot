@@ -23,11 +23,11 @@ public class Quiz extends AbstractBaseEntity {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tests_questions", joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id")})
-    private Set<Question> questions;
+    private List<Question> questions;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
-    private Set<User> users;
+    private List<User> users;
     public Quiz() {
     }
 
@@ -70,19 +70,19 @@ public class Quiz extends AbstractBaseEntity {
         this.status = status;
     }
 
-    public Set<Question> getQuestions() {
+    public List<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(Set<Question> questions) {
+    public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 

@@ -63,12 +63,12 @@ public class AbstractTestController {
         return service.getWithQuestions(testId);
     }
 
-    public Set<User> getUsers(int testId) {
+    public List<User> getUsers(int testId) {
 //        log.info("getAll");
         return userService.getWithoutTestUsers(testId);
     }
 
-    public Set<Question> getQuestions(int testId) {
+    public List<Question> getQuestions(int testId) {
 //        log.info("getAll");
         return questionService.getWithoutTestQuestions(testId);
     }

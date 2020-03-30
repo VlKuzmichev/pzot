@@ -26,8 +26,8 @@
         <tbody>
         <c:forEach items="${testQuestions}" var="question">
             <tr>
-                <td>${student.fullName}</td>
-                <td><a href="tests/questions/add?id=${test.id}&question=${student.id}"><span class='fa fa-plus' style="color:green"></span></a></td>
+                <td>${question.name}</td>
+                <td><a href="tests/questions/add?id=${test.id}&question=${question.id}"><span class='fa fa-plus' style="color:green"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>

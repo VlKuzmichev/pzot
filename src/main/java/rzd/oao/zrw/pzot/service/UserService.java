@@ -17,7 +17,7 @@ public interface UserService {
 
     List<User> getAll();
 
-    Set<User> getWithoutTestUsers(int testId);
+    List<User> getWithoutTestUsers(int testId);
 
     User getWithUserGroups(int id) throws NotFoundException;
 
