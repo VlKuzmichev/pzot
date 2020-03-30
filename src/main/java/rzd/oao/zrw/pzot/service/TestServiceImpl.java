@@ -61,11 +61,20 @@ public class TestServiceImpl implements TestService {
         return testRepository.getByName(name);
     }
 
- //   @Transactional
+    @Transactional
+    @Override
+    public void addUser(int testId, User user) {
+        Quiz test = getWithUsers(testId);
+        test.addUser(user);
+        testRepository.save(test);
+    }
+
+    @Transactional
     @Override
     public void removeUser(int testId, User user) {
         Quiz test = getWithUsers(testId);
         test.removeUser(user);
         testRepository.save(test);
     }
+
 }

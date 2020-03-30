@@ -23,6 +23,8 @@ public interface TestService {
 
     Quiz getByName(String name);
 
+    void addUser(int testId, User user);
+
     void removeUser(int testId, User user);
 
 }

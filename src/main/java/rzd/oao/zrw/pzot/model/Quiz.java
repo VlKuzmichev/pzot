@@ -24,9 +24,10 @@ public class Quiz extends AbstractBaseEntity {
     @JoinTable(name = "tests_questions", joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id")})
     private List<Question> questions;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tests")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "test_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private Set<User> users;
-
     public Quiz() {
     }
 
@@ -95,12 +96,12 @@ public class Quiz extends AbstractBaseEntity {
 
     public void addUser(User user) {
         this.users.add(user);
-        user.getTests().add(this);
+  //      user.getTests().add(this);
     }
 
     public void removeUser(User user) {
         this.users.remove(user);
-        user.getTests().remove(this);
+      //  user.getTests().remove(this);
     }
 
     @Override

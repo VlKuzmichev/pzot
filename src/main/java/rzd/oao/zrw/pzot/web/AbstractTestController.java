@@ -61,6 +61,10 @@ public class AbstractTestController {
         return userService.get(id);
     }
 
+    public void addUser(int testId, User user) {
+        service.addUser(testId, user);
+    }
+
     public void removeUser(int testId, User user) {
         service.removeUser(testId, user);
     }

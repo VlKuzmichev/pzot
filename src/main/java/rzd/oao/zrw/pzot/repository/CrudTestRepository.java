@@ -10,15 +10,15 @@ import rzd.oao.zrw.pzot.model.Quiz;
 import java.util.List;
 import java.util.Optional;
 
-//@Transactional(readOnly = true)
+@Transactional(readOnly = true)
 public interface CrudTestRepository extends JpaRepository<Quiz, Integer> {
- //   @Transactional
+    @Transactional
     @Modifying
     @Query("DELETE FROM Quiz t WHERE t.id=:id")
     int delete(@Param("id") int id);
 
     @Override
-   // @Transactional
+    @Transactional
     Quiz save(Quiz test);
 
     @Override

@@ -30,9 +30,9 @@ public class User extends AbstractBaseEntity {
     private Set<Role> roles;
 
  //   @ManyToMany(fetch = FetchType.EAGER)
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "test_id")})
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+//    @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "user_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "test_id")})
     private Set<Quiz> tests;
 
     public User() {

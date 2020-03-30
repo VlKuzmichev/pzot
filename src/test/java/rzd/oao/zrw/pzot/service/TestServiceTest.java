@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static rzd.oao.zrw.pzot.QuestionTestData.getQuestions;
 import static rzd.oao.zrw.pzot.TestsTestData.*;
 import static rzd.oao.zrw.pzot.UserGroupTestData.getUsers;
+import static rzd.oao.zrw.pzot.UserTestData.USER;
 import static rzd.oao.zrw.pzot.UserTestData.USER_ID;
 
 @SpringJUnitConfig(locations = {
@@ -129,11 +130,12 @@ class TestServiceTest {
     void removeUser() {
         Quiz updated = testService.getWithUsers(TEST_ID);
         User updUser = userService.get(USER_ID);
-        Set<User> list = new HashSet<>();
+        //Set<User> list = new HashSet<>();
+        updated.removeUser(USER);
         Set<Quiz> uList = new HashSet<>();
-        updated.setUsers(list);
+        //updated.setUsers(updated);
         updUser.setTests(uList);
-        //updated.removeUser(updated.getUsers().get(0));
+       // updated.removeUser(updated.getUsers().get(0));
         //userService.update(updUser);
         testService.update(updated);
     }
