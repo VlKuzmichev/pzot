@@ -12,7 +12,7 @@ public class QuestionGroupTestData {
 
     public static final QuestionGroup QUESTION_GROUP2 = new QuestionGroup(QUESTION_GROUP_ID + 1, "VOPROSY PO ELEKTROBEZOPASNOSTY");
 
-    public static final QuestionGroup NEW_QUESTION_GROUP = new QuestionGroup(QUESTION_GROUP_ID + 13, "NEW GROUP");
+    public static final QuestionGroup NEW_QUESTION_GROUP = new QuestionGroup(null, "NEW GROUP");
 
     public static List<QuestionGroup> getQuestionsGroup() {
         List<QuestionGroup> list = new ArrayList<>();

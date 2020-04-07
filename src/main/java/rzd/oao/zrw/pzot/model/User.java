@@ -29,10 +29,7 @@ public class User extends AbstractBaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
- //   @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-//    @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "user_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "test_id")})
     private Set<Quiz> tests;
 
     public User() {

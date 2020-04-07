@@ -20,7 +20,7 @@ public class Question extends AbstractBaseEntity {
     private List<Answer> answers;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
-    private Set<Quiz> tests;
+    private List<Quiz> tests;
 
     public Question() {
     }
@@ -50,11 +50,11 @@ public class Question extends AbstractBaseEntity {
         this.answers = answers;
     }
 
-    public Set<Quiz> getTests() {
+    public List<Quiz> getTests() {
         return tests;
     }
 
-    public void setTests(Set<Quiz> tests) {
+    public void setTests(List<Quiz> tests) {
         this.tests = tests;
     }
 

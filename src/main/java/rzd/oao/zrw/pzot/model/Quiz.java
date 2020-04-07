@@ -19,7 +19,6 @@ public class Quiz extends AbstractBaseEntity {
     @Column(name = "status")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Status> status;
-  //  @ManyToMany(fetch = FetchType.EAGER)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tests_questions", joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id")})

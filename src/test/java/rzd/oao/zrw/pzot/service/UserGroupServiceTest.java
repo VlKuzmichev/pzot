@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import rzd.oao.zrw.pzot.UserGroupTestData;
+import rzd.oao.zrw.pzot.UserTestData;
 import rzd.oao.zrw.pzot.model.UserGroup;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
@@ -92,9 +94,9 @@ class UserGroupServiceTest {
         UserGroup userGroup = service.getWithUsers(USER_GROUP_ID);
         assertThat(userGroup).isEqualToIgnoringGivenFields(USER_GROUP, "users");
         UserGroup expected = USER_GROUP;
-   //     expected.setUsers(getUsers());
-        // Compare first element of users field
-        assertThat(userGroup.getUsers().get(0)).isEqualTo(expected.getUsers().get(0));
+        expected.setUsers(getUsers());
+        // Compare elements of users field
+        assertThat(userGroup.getUsers().toArray()).isEqualTo(expected.getUsers().toArray());
     }
 
     // Test Get group of users from database by name

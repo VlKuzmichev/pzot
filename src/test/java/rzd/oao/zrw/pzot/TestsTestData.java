@@ -18,8 +18,8 @@ public class TestsTestData {
 
 
 
-    public static Set<Quiz> getTests() {
-        Set<Quiz> list = new HashSet<>();
+    public static List<Quiz> getTests() {
+        List<Quiz> list = new ArrayList<>();
         list.add(TEST);
         return list;
     }
