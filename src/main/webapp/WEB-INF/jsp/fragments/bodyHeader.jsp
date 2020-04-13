@@ -7,22 +7,22 @@
         <a href="" class="navbar-brand"> АС ДТЗ "Автоматизированная система дистанционного тестирования знаний"</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-<!--            <span class="navbar-toggler-icon">Icon</span>  -->
+            <!--            <span class="navbar-toggler-icon">Icon</span>  -->
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                        <form:form class="form-inline my-2" action="logout" method="post">
-                            <button class="btn btn-dark" href="profile">
-                                <span class="fa fa">Профиль</span>
-                                </button>
-                            <div class="mx-1">
-                            </div>
-                            <button class="btn btn-danger" type="submit" hint="Выход">
-                                <span class="fa fa-sign-out"> Выход</span>
-                            </button>
-                        </form:form>
+                    <form:form class="form-inline my-2" action="logout" method="post">
+                        <button class="btn btn-dark" href="profile">
+                            <span class="fa fa">Профиль</span>
+                        </button>
+                        <div class="mx-1">
+                        </div>
+                        <button class="btn btn-danger" type="submit" hint="Выход">
+                            <span class="fa fa-sign-out"> Выход</span>
+                        </button>
+                    </form:form>
                 </li>
             </ul>
         </div>
@@ -30,8 +30,7 @@
 </nav>
 <div class="container-top" id="menu">
     <ul class="navbar-nav ml-lg-5">
-                <li class="nav-item">
-<!--            <a class="btn btn-secondary mr-1" href="/">Мои тесты</a> -->
+        <li class="nav-item">
             <a class="btn btn-outline-secondary" href="/">Мои тесты</a>
             <a class="btn btn-outline-secondary" href="tests">Тесты</a>
             <a class="btn btn-outline-secondary" href="questionsGroups">Группы вопросов</a>
