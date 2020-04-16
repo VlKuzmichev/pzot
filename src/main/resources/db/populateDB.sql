@@ -54,18 +54,21 @@ INSERT INTO answers (name, truth, question_id) VALUES
 ('Пострадавшего поместить в ванну с горячей водой или уложить возле электронагревателя', false, 100010); -- 100018
 
 INSERT INTO tests (name, start_date, end_date)
-VALUES ('TEST1', '2020-04-10 10:00:00', '2020-04-11 10:00:00'); -- 100019
+VALUES ('TEST1', '2020-04-10 10:00:00', '2020-04-11 10:00:00'), -- 100019
+       ('TEST2', '2020-04-11 10:00:00', '2020-04-12 10:00:00'); -- 100019
+
 
 INSERT INTO test_statuses (status, test_id)
-VALUES ('INACTIVE', 100019); -- 100020
+VALUES ('INACTIVE', 100019), -- 100020
+       ('INACTIVE', 100020); -- 100020
 
 INSERT INTO tests_questions (test_id, question_id)
 VALUES (100019, 100009),
-       (100019, 100010);
+       (100020, 100010);
 
 INSERT INTO tests_users (test_id, user_id)
 VALUES (100019, 100004),
        (100019, 100005),
-       (100019, 100006);
+       (100020, 100006);
 
 

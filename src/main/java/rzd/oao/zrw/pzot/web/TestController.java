@@ -27,7 +27,7 @@ public class TestController extends AbstractTestController {
 
     // Request for update test by id
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public String updateStatus(HttpServletRequest request, Model model) {
+    public String updateTest(HttpServletRequest request, Model model) {
         model.addAttribute("test", super.get(getId(request)));
         return "editTest";
     }
@@ -57,7 +57,11 @@ public class TestController extends AbstractTestController {
         if (request.getParameter("id").isEmpty()) {
             super.create(test);
         } else {
-            super.update(test, getId(request));
+            Quiz updated = super.get(getId(request));
+            updated.setName(test.getName());
+            updated.setStartDate(test.getStartDate());
+            updated.setEndDate(test.getEndDate());
+            super.update(updated, getId(request));
         }
         return "redirect:/tests";
     }
