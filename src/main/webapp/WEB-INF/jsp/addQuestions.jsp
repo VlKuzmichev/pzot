@@ -19,7 +19,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ФИО</th>
+            <th>Текст вопроса</th>
             <th>Добавить</th>
         </tr>
         </thead>
@@ -27,7 +27,9 @@
         <c:forEach items="${testQuestions}" var="question">
             <tr>
                 <td>${question.name}</td>
-                <td><a href="tests/questions/add?id=${test.id}&question=${question.id}"><span class='fa fa-plus' style="color:green"></span></a></td>
+                <td><a href="tests/questions/add?id=${test.id}&question=${question.id}"><span class='fa fa-plus'
+                                                                                              style="color:green"></span></a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

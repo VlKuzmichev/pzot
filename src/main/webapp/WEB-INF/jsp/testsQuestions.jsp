@@ -12,7 +12,7 @@
 
 <div class="container">
     <h3 class="text-center">Вопросы к тесту</h3>
-    <a type="button" class="btn btn-outline-secondary" href="tests/questions/add?id=${test.id}">
+    <a type="button" class="btn btn-outline-secondary" href="tests/questions/add?id=${testId}">
         <span class="fa fa-plus"></span>
         Добавить
     </a>
@@ -28,15 +28,17 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${test.questions}" var="question">
+        <c:forEach items="${testWithQuestions.questions}" var="question">
             <tr>
                 <td>${question.name}</td>
-                <td><a href="tests/questions/delete?id=${test.id}&question=${question.id}"><span class='fa fa-remove' style="color:red"></span></a></td>
+                <td><a href="tests/questions/delete?id=${testId}&question=${question.id}"><span class='fa fa-remove'
+                                                                                                style="color:red"></span></a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <a type="button" class="btn btn-outline-secondary" href="tests/questions/add?id=${test.id}">
+    <a type="button" class="btn btn-outline-secondary" href="tests/questions/add?id=${testId}">
         <span class="fa fa-plus"></span>
         Добавить
     </a>
