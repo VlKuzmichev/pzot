@@ -9,6 +9,7 @@ import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.TestRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
@@ -81,7 +82,13 @@ public class TestServiceImpl implements TestService {
     @Override
     public void addQuestion(int testId, Question question) {
         Quiz test = getWithQuestions(testId);
-        test.addQuestion(question);
+        if (test == null) {
+            test = get(testId);
+            List<Question> newQuestions = new ArrayList<>();
+            newQuestions.add(question);
+            test.setQuestions(newQuestions);
+        } else
+            test.addQuestion(question);
         testRepository.save(test);
     }
 

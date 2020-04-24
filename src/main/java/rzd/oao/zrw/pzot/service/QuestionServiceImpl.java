@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.Question;
+import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.repository.QuestionRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
@@ -51,7 +52,9 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> getWithoutTestQuestions(int testId) {
         List<Question> questions = repository.getAll();
-        questions.removeAll(testService.getWithQuestions(testId).getQuestions());
+        Quiz testWithQuestions = testService.getWithQuestions(testId);
+        if (testWithQuestions != null)
+            questions.removeAll(testWithQuestions.getQuestions());
         return questions;
     }
 

@@ -79,24 +79,27 @@ public class TestController extends AbstractTestController {
     }
 
     @GetMapping("/questions")
-    public String questions(HttpServletRequest request, Model model) {
-        model.addAttribute("test", super.getWithQuestions(getId(request)));
+    public String questions(HttpServletRequest request, ModelMap map) {
+        map.addAttribute("testId", super.get(getId(request)).getId());
+        map.addAttribute("testWithQuestions", super.getWithQuestions(getId(request)));
         return "testsQuestions";
     }
 
     @GetMapping("/questions/add")
     public String addQuestions(HttpServletRequest request, ModelMap map) {
-        if (request.getParameter("question") != null)
+        if (request.getParameter("question") != null) {
             super.addQuestion(getId(request), super.getQuestion(getQuestion(request)));
+        }
+        map.addAttribute("testQuestions", super.getWithoutTestQuestions(getId(request)));
         map.addAttribute("test", super.get(getId(request)));
-        map.addAttribute("testQuestions", super.getQuestions(getId(request)));
         return "addQuestions";
     }
 
     @GetMapping("/questions/delete")
-    public String deleteQuestionFromTest(HttpServletRequest request, Model model) {
+    public String deleteQuestionFromTest(HttpServletRequest request, ModelMap map) {
         super.removeQuestion(getId(request), super.getQuestion(getQuestion(request)));
-        model.addAttribute("test", super.getWithQuestions(getId(request)));
+        map.addAttribute("testId", super.get(getId(request)).getId());
+        map.addAttribute("testWithQuestions", super.getWithQuestions(getId(request)));
         return "testsQuestions";
     }
 
