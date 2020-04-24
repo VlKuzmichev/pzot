@@ -18,9 +18,9 @@
         <input type="text" class="form-control" id="name" value="${test.name}" name="name"
                placeholder="Test name">
         <label for="startDate" class="col-form-label">Дата начала</label>
-        <input id="startDate" type="text" value="${test.startDate}" name="startDate">
+        <input id="startDate" type="datetime-local" value="${test.startDate}" name="startDate">
         <label for="endDate" class="col-form-label">Дата завершения</label>
-        <input type="text" value="${test.endDate}" id="endDate" name="endDate">
+        <input id="endDate"type="datetime-local" value="${test.endDate}"  name="endDate">
     </div>
 
     <div class="form-group">
@@ -37,10 +37,4 @@
 </form>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
-<!-- Инициализация Bootstrap DateTimePicker -->
-<script type="text/javascript">
-    $(function (datetime1) {
-    $('#startDate').datetimepicker();
-    });
-</script>
 </html>
