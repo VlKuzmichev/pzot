@@ -12,7 +12,7 @@
 
 <div class="container">
     <h3 class="text-center">Студенты</h3>
-    <a type="button" class="btn btn-outline-secondary" href="tests/users/add?id=${test.id}">
+    <a type="button" class="btn btn-outline-secondary" href="tests/users/add?id=${testId}">
         <span class="fa fa-plus"></span>
         Добавить
     </a>
@@ -28,15 +28,15 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${test.users}" var="testUser">
+        <c:forEach items="${testWithUsers.users}" var="testUser">
             <tr>
                 <td>${testUser.fullName}</td>
-                <td><a href="tests/users/delete?id=${test.id}&user=${testUser.id}"><span class='fa fa-remove' style="color:red"></span></a></td>
+                <td><a href="tests/users/delete?id=${testId}&user=${testUser.id}"><span class='fa fa-remove' style="color:red"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <a type="button" class="btn btn-outline-secondary" href="tests/users/add?id=${test.id}">
+    <a type="button" class="btn btn-outline-secondary" href="tests/users/add?id=${testId}">
         <span class="fa fa-plus"></span>
         Добавить
     </a>

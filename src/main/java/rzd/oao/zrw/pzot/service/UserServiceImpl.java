@@ -2,6 +2,7 @@ package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
@@ -49,7 +50,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getWithoutTestUsers(int testId) {
         List<User> users = repository.getAll();
-        users.removeAll(testService.getWithUsers(testId).getUsers());
+        Quiz testWithUsers = testService.getWithUsers(testId);
+        if (testWithUsers != null)
+            users.removeAll(testWithUsers.getUsers());
+       // users.removeAll(testService.getWithUsers(testId).getUsers());
         return users;
     }
 

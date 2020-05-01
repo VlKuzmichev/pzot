@@ -34,7 +34,7 @@
         <c:forEach items="${testList}" var="test">
             <tr>
                 <td>${test.name}</td>
-                <td><a href="tests/results?id=${test.id}">Просмотр</a></td>
+                <td><a href="tests/results?id=${test.id}">Результаты</a></td>
                 <td>${test.startDate.toLocalDate()}</td>
                 <td>${test.endDate.toLocalDate()}</td>
                 <td><a href="tests/questions?id=${test.id}"><span class='fa fa-question-circle'

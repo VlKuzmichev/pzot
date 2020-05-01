@@ -10,7 +10,7 @@ import java.util.List;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.assureIdConsistent;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNew;
 
-public class AbstractUserGroupController {
+public abstract class AbstractUserGroupController {
 //    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired

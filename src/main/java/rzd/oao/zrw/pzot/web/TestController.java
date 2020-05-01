@@ -73,8 +73,9 @@ public class TestController extends AbstractTestController {
     }
 
     @GetMapping("/users")
-    public String users(HttpServletRequest request, Model model) {
-        model.addAttribute("test", super.getWithUsers(getId(request)));
+    public String users(HttpServletRequest request, ModelMap map) {
+        map.addAttribute("testId", super.get(getId(request)).getId());
+        map.addAttribute("testWithUsers", super.getWithUsers(getId(request)));
         return "testsUsers";
     }
 
@@ -105,17 +106,19 @@ public class TestController extends AbstractTestController {
 
     @GetMapping("/users/add")
     public String addUsers(HttpServletRequest request, ModelMap map) {
-        if (request.getParameter("user") != null)
+        if (request.getParameter("user") != null) {
             super.addUser(getId(request), super.getUser(getUser(request)));
+        }
+        map.addAttribute("students", super.getWithoutTestUsers(getId(request)));
         map.addAttribute("test", super.get(getId(request)));
-        map.addAttribute("students", super.getUsers(getId(request)));
         return "addStudents";
     }
 
     @GetMapping("/users/delete")
-    public String deleteUserFromTest(HttpServletRequest request, Model model) {
+    public String deleteUserFromTest(HttpServletRequest request, ModelMap map) {
         super.removeUser(getId(request), super.getUser(getUser(request)));
-        model.addAttribute("test", super.getWithUsers(getId(request)));
+        map.addAttribute("testId", super.get(getId(request)).getId());
+        map.addAttribute("testWithUsers", super.getWithUsers(getId(request)));
         return "testsUsers";
     }
 

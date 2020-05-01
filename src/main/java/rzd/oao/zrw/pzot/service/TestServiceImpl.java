@@ -67,7 +67,13 @@ public class TestServiceImpl implements TestService {
     @Override
     public void addUser(int testId, User user) {
         Quiz test = getWithUsers(testId);
-        test.addUser(user);
+        if (test == null) {
+            test = get(testId);
+            List<User> newUsers = new ArrayList<>();
+            newUsers.add(user);
+            test.setUsers(newUsers);
+        } else
+            test.addUser(user);
         testRepository.save(test);
     }
 

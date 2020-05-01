@@ -11,7 +11,7 @@ import java.util.List;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.assureIdConsistent;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNew;
 
-public class AbstractQuestionController {
+public abstract class AbstractQuestionController {
 //    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired

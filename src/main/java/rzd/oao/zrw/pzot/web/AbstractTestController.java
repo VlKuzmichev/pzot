@@ -13,7 +13,7 @@ import java.util.List;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.assureIdConsistent;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNew;
 
-public class AbstractTestController {
+public abstract class AbstractTestController {
 //    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -62,7 +62,7 @@ public class AbstractTestController {
         return service.getWithQuestions(testId);
     }
 
-    public List<User> getUsers(int testId) {
+    public List<User> getWithoutTestUsers(int testId) {
 //        log.info("getAll");
         return userService.getWithoutTestUsers(testId);
     }
