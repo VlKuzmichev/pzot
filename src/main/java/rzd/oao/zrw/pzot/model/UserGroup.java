@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "user_groups", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "user_group_unique_name_idx")})
-public class UserGroup extends AbstractBaseEntity {
+public class UserGroup extends AbstractNamedEntity {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "userGroups")
     private List<User> users;

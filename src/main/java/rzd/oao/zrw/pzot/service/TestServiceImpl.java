@@ -85,6 +85,7 @@ public class TestServiceImpl implements TestService {
         testRepository.save(test);
     }
 
+    @Transactional
     @Override
     public void addQuestion(int testId, Question question) {
         Quiz test = getWithQuestions(testId);

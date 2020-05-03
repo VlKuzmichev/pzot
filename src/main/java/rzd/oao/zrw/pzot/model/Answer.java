@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "answers")
-public class Answer extends AbstractBaseEntity {
+public class Answer extends AbstractNamedEntity {
 
     @Column(name = "truth", nullable = false)
     private Boolean truth;

@@ -10,6 +10,9 @@ import java.util.Set;
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "users_unique_name_idx")})
 public class User extends AbstractBaseEntity {
+
+    @Column(name = "name", nullable = false)
+    protected String name;
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "email", nullable = false)
@@ -45,11 +48,20 @@ public class User extends AbstractBaseEntity {
     }
 
     public User(Integer id, String name, String password, String email, String fullName, Set<Role> roles) {
-        super(id, name);
+        super(id);
+        this.name = name;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
         this.roles = roles;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Quiz> getTests() {
@@ -59,13 +71,6 @@ public class User extends AbstractBaseEntity {
     public void setTests(Set<Quiz> tests) {
         this.tests = tests;
     }
-//    public List<Quiz> getTests() {
-//        return tests;
-//    }
-//
-//    public void setTests(List<Quiz> tests) {
-//        this.tests = tests;
-//    }
 
     public void addTest(Quiz test) {
         this.tests.add(test);

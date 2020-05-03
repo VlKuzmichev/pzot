@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "questions", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "question_unique_name_idx")})
-public class Question extends AbstractBaseEntity {
+public class Question extends AbstractNamedEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_group_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

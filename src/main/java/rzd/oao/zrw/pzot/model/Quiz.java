@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "tests", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "test_unique_name_idx")})
-public class Quiz extends AbstractBaseEntity {
+public class Quiz extends AbstractNamedEntity {
     @Column(name = "start_date")
     private LocalDateTime startDate;
     @Column(name = "end_date")
