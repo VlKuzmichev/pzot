@@ -33,7 +33,7 @@ public class User extends AbstractBaseEntity {
     private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    private Set<Quiz> tests;
+    private List<Quiz> tests;
 
     public User() {
     }
@@ -64,11 +64,11 @@ public class User extends AbstractBaseEntity {
         this.name = name;
     }
 
-    public Set<Quiz> getTests() {
+    public List<Quiz> getTests() {
         return tests;
     }
 
-    public void setTests(Set<Quiz> tests) {
+    public void setTests(List<Quiz> tests) {
         this.tests = tests;
     }
 

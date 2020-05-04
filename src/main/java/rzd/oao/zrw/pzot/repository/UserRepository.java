@@ -21,4 +21,7 @@ public interface UserRepository {
 
     // null if not found
     User getByName(String name);
+
+    // null if not found
+    User getWithTests(int id);
 }

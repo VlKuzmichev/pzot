@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import rzd.oao.zrw.pzot.model.User;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -45,5 +44,10 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User getByName(String name) {
         return crudUserRepository.getByName(name);
+    }
+
+    @Override
+    public User getWithTests(int id) {
+        return crudUserRepository.getUserWithTests(id);
     }
 }

@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
         if (user == null) throw new NotFoundException("Name=" + name);
         return repository.getByName(name);
     }
+
+    @Override
+    public User getWithTests(int id) throws NotFoundException {
+        return checkNotFoundWithId(repository.getWithTests(id), id);
+    }
 }

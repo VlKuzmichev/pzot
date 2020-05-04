@@ -38,7 +38,7 @@ public class RootController {
     }
 
     @RequestMapping(value = "/tests", method = RequestMethod.GET)
-    public String answerList(Model model) {
+    public String testList(Model model) {
         model.addAttribute("testList", testService.getAll());
         return "tests";
     }
@@ -59,6 +59,12 @@ public class RootController {
     public String questionList(Model model) {
         model.addAttribute("questionList", questionService.getAll());
         return "questions";
+    }
+
+    @RequestMapping(value = "/userTests", method = RequestMethod.GET)
+    public String userTestsList(Model model) {
+        model.addAttribute("userTestList", userService.getWithTests(100004));
+        return "userTests";
     }
 
 }

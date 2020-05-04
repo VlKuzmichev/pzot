@@ -4,7 +4,6 @@ import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.List;
-import java.util.Set;
 
 public interface UserService {
     User create(User user);
@@ -23,5 +22,6 @@ public interface UserService {
 
     User getByName(String name);
 
+    User getWithTests(int id) throws NotFoundException;
 
 }
