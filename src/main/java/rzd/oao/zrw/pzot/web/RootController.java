@@ -11,20 +11,23 @@ import rzd.oao.zrw.pzot.service.*;
 @Controller
 public class RootController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    private UserGroupService userGroupService;
+    private final UserGroupService userGroupService;
 
-    @Autowired
-    private QuestionGroupService questionGroupService;
+    private final QuestionGroupService questionGroupService;
 
-    @Autowired
-    private QuestionService questionService;
+    private final QuestionService questionService;
 
-    @Autowired
-    private TestService testService;
+    private final TestService testService;
+
+    public RootController(UserService userService, UserGroupService userGroupService, QuestionGroupService questionGroupService, QuestionService questionService, TestService testService) {
+        this.userService = userService;
+        this.userGroupService = userGroupService;
+        this.questionGroupService = questionGroupService;
+        this.questionService = questionService;
+        this.testService = testService;
+    }
 
     @GetMapping("/")
     public String root() {
