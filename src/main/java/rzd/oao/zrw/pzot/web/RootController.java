@@ -58,6 +58,7 @@ public class RootController {
         return "questionsGroups";
     }
 
+
     @RequestMapping(value = "/questions", method = RequestMethod.GET)
     public String questionList(Model model) {
         model.addAttribute("questionList", questionService.getAll());
