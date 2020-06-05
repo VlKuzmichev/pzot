@@ -1,9 +1,11 @@
 package rzd.oao.zrw.pzot.repository;
 
+import org.springframework.stereotype.Repository;
 import rzd.oao.zrw.pzot.model.Result;
 
 import java.util.List;
 
+@Repository
 public class ResultRepositoryImpl implements ResultRepository{
 
     private final CrudResultRepository resultRepository;

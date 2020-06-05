@@ -20,7 +20,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Answer create(Answer answer) throws NotFoundException {
-        Assert.notNull(answer, "user must not be null");
+        Assert.notNull(answer, "answer must not be null");
         return answerRepository.save(answer);
     }
 
