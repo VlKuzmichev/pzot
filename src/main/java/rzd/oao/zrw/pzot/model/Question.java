@@ -21,6 +21,9 @@ public class Question extends AbstractNamedEntity {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
     private List<Quiz> tests;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
+    private List<Result> results;
+
     public Question() {
     }
 

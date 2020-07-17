@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "answers")
@@ -15,6 +16,9 @@ public class Answer extends AbstractNamedEntity {
     @JoinColumn(name = "question_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Question question;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "answers")
+    private List<Result> results;
 
     public Answer() {
     }

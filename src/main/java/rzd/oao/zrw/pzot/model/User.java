@@ -35,6 +35,9 @@ public class User extends AbstractBaseEntity {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private List<Quiz> tests;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    private List<Result> results;
+
     public User() {
     }
 

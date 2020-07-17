@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS results_answers;
+DROP TABLE IF EXISTS results_questions;
+DROP TABLE IF EXISTS results_tests;
+DROP TABLE IF EXISTS results_users;
 DROP TABLE IF EXISTS results;
 DROP TABLE IF EXISTS tests_questions;
 DROP TABLE IF EXISTS tests_users;
@@ -109,14 +113,33 @@ CREATE TABLE test_statuses
 CREATE TABLE results
 (
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    answer_date      TIMESTAMP               NOT NULL,
-    user_id          INTEGER                 NOT NULL,
-    test_id          INTEGER                 NOT NULL,
-    question_id      INTEGER                 NOT NULL,
-    answer_id        INTEGER                 NOT NULL,
-    CONSTRAINT results_idx UNIQUE (answer_date, user_id, test_id, question_id),
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
-    FOREIGN KEY (question_id) REFERENCES tests (id) ON DELETE CASCADE,
-    FOREIGN KEY (answer_id) REFERENCES tests (id) ON DELETE CASCADE
+    answer_date      TIMESTAMP               NOT NULL
+);
+
+CREATE TABLE results_users (
+                             result_id int references results(id),
+                             user_id int references users(id),
+                             CONSTRAINT results_users_idx UNIQUE (result_id, user_id),
+                             primary key (result_id, user_id)
+);
+
+CREATE TABLE results_tests (
+                               result_id int references results(id),
+                               test_id int references tests(id),
+                               CONSTRAINT results_tests_idx UNIQUE (result_id, test_id),
+                               primary key (result_id, test_id)
+);
+
+CREATE TABLE results_questions (
+                               result_id int references results(id),
+                               question_id int references questions(id),
+                               CONSTRAINT results_questions_idx UNIQUE (result_id, question_id),
+                               primary key (result_id, question_id)
+);
+
+CREATE TABLE results_answers (
+                                   result_id int references results(id),
+                                   answer_id int references answers(id),
+                                   CONSTRAINT results_answers_idx UNIQUE (result_id, answer_id),
+                                   primary key (result_id, answer_id)
 );

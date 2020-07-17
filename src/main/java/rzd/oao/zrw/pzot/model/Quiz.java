@@ -27,6 +27,10 @@ public class Quiz extends AbstractNamedEntity {
     @JoinTable(name = "tests_users", joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private List<User> users;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tests")
+    private List<Result> results;
+
     public Quiz() {
     }
 
