@@ -29,8 +29,13 @@ public class ResultRepositoryImpl implements ResultRepository{
         return resultRepository.findAll();
     }
 
-    @Override
-    public List<Result> getAllByUser(int id) {
-        return resultRepository.getAllByUser(id);
-    }
+//    @Override
+//    public List<Result> getAllByUser(int id) {
+//        return resultRepository.getAllByUser(id);
+//    }
+//
+//    @Override
+//    public Result getByIdAndUser(int id, int userId) {
+//        return resultRepository.;
+//    }
 }

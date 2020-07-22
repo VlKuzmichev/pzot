@@ -1,3 +1,4 @@
+DELETE FROM results;
 DELETE FROM tests_users;
 DELETE FROM tests_questions;
 DELETE FROM test_statuses;
@@ -18,9 +19,9 @@ VALUES ('All'), -- 100000
        ('Specialists'); -- 100003
 
 INSERT INTO users (name, password, email, full_name) VALUES
-  ('User', 'password', 'user@yandex.ru', 'Ivanov Ivan Ivanovich'), -- 100004
-  ('Exam', 'password2', 'exam@yandex.ru', 'Petrov Peter Petrovich'), -- 100005
-  ('Admin', 'password3', 'admin@yandex.ru', 'Adminov Admin Adminovich'); -- 100006
+('User', 'password', 'user@yandex.ru', 'Ivanov Ivan Ivanovich'), -- 100004
+('Exam', 'password2', 'exam@yandex.ru', 'Petrov Peter Petrovich'), -- 100005
+('Admin', 'password3', 'admin@yandex.ru', 'Adminov Admin Adminovich'); -- 100006
 
 INSERT INTO user_group_users (group_id, user_id)
 VALUES (100000, 100004),
@@ -37,8 +38,8 @@ VALUES ('VOPROSY PO OT'),                  -- 100007
        ('VOPROSY PO ELEKTROBEZOPASNOSTY'); -- 100008
 
 INSERT INTO questions (name, question_group_id) VALUES
-  ('При какой численности работников в организации должна обязательно создаваться служба охраны труда?', 100007), -- 100009
-  ('Какие меры по оказанию первой помощи пострадавшему необходимо предпринять при обморожении?', 100007); -- 100010
+('При какой численности работников в организации должна обязательно создаваться служба охраны труда?', 100007), -- 100009
+('Какие меры по оказанию первой помощи пострадавшему необходимо предпринять при обморожении?', 100007); -- 100010
 
 INSERT INTO answers (name, truth, question_id) VALUES
 ('Более 50 человек', true, 100009), -- 100011
@@ -55,12 +56,11 @@ INSERT INTO answers (name, truth, question_id) VALUES
 
 INSERT INTO tests (name, start_date, end_date)
 VALUES ('TEST1', '2020-04-10 10:00:00', '2020-04-11 10:00:00'), -- 100019
-       ('TEST2', '2020-04-11 10:00:00', '2020-04-12 10:00:00'); -- 100019
-
+       ('TEST2', '2020-04-11 10:00:00', '2020-04-12 10:00:00'); -- 100020
 
 INSERT INTO test_statuses (status, test_id)
-VALUES ('INACTIVE', 100019), -- 100020
-       ('INACTIVE', 100020); -- 100020
+VALUES ('INACTIVE', 100019),
+       ('INACTIVE', 100020);
 
 INSERT INTO tests_questions (test_id, question_id)
 VALUES (100019, 100009),
@@ -71,4 +71,6 @@ VALUES (100019, 100004),
        (100019, 100005),
        (100020, 100006);
 
-
+INSERT INTO results (answer_date, user_id, test_id, question_id, answer_id)
+VALUES ('2020-04-10 10:00:00', 100004, 100019, 100009, 100012), -- 100021
+       ('2020-04-10 11:00:00', 100004, 100019, 100010, 100015); -- 100022

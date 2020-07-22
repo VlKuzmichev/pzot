@@ -3,6 +3,7 @@ package rzd.oao.zrw.pzot.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,12 +22,15 @@ public class RootController {
 
     private final TestService testService;
 
-    public RootController(UserService userService, UserGroupService userGroupService, QuestionGroupService questionGroupService, QuestionService questionService, TestService testService) {
+    private final ResultService resultService;
+
+    public RootController(UserService userService, UserGroupService userGroupService, QuestionGroupService questionGroupService, QuestionService questionService, TestService testService, ResultService resultService) {
         this.userService = userService;
         this.userGroupService = userGroupService;
         this.questionGroupService = questionGroupService;
         this.questionService = questionService;
         this.testService = testService;
+        this.resultService = resultService;
     }
 
     @GetMapping("/")
@@ -58,7 +62,6 @@ public class RootController {
         return "questionsGroups";
     }
 
-
     @RequestMapping(value = "/questions", method = RequestMethod.GET)
     public String questionList(Model model) {
         model.addAttribute("questionList", questionService.getAll());
@@ -67,7 +70,8 @@ public class RootController {
 
     @RequestMapping(value = "/userTests", method = RequestMethod.GET)
     public String userTestsList(Model model) {
-        model.addAttribute("userTestList", userService.getWithTests(100004));
+        model.addAttribute("userTestList", userService.getWithTests(100004).getTests());
+        //map.addAttribute("userResultList", resultService.getAllByUser(100004));
         return "userTests";
     }
 

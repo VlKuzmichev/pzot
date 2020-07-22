@@ -28,7 +28,7 @@ public class Quiz extends AbstractNamedEntity {
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private List<User> users;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tests")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "test")
     private List<Result> results;
 
     public Quiz() {
@@ -105,6 +105,13 @@ public class Quiz extends AbstractNamedEntity {
         this.users.remove(user);
     }
 
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
     @Override
     public String toString() {
         return "Quiz{" +

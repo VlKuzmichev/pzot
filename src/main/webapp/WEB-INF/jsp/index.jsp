@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div>
-    <p> asdfasd@@@@@ Fdsfasdfasdf</p>
+    <p> Главная страница</p>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>

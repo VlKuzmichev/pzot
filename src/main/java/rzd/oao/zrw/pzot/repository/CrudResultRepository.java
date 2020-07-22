@@ -24,7 +24,10 @@ public interface CrudResultRepository extends JpaRepository<Result, Integer> {
     @Override
     List<Result> findAll();
 
-    @Query("SELECT r FROM Result r JOIN FETCH r.users WHERE r.id =:id")
-    List<Result> getAllByUser(int id);
+//    @Query("SELECT r FROM Result r JOIN FETCH r.users WHERE r.id =:id")
+//    List<Result> getAllByUser(int id);
+//
+//    @Query("SELECT r FROM Result r JOIN FETCH r.users WHERE r.id =:id AND r.")
+//    Result getByIdAndUser(@Param("id") int id, @Param("userId") int userId);
 
 }

@@ -24,7 +24,7 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Quiz create(Quiz test) throws NotFoundException {
-        Assert.notNull(test, "user must not be null");
+        Assert.notNull(test, "test must not be null");
         return testRepository.save(test);
     }
 

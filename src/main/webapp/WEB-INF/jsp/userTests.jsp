@@ -12,6 +12,30 @@
 
 <div class="container">
     <h3 class="text-center">Мои тесты</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Наименование теста</th>
+            <th>Результат</th>
+            <th>Начало</th>
+            <th>Завершение</th>
+            <th>Статус</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${userTestList}" var="test">
+            <tr>
+                <td>${test.name}</td>
+                <td> 40% </td>
+                <td>${test.startDate.toLocalDate()}</td>
+                <td>${test.endDate.toLocalDate()}</td>
+                <td>${test.status}</td>
+                <td><a href="">Начать</a></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>

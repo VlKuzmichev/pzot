@@ -1,7 +1,3 @@
-DROP TABLE IF EXISTS results_answers;
-DROP TABLE IF EXISTS results_questions;
-DROP TABLE IF EXISTS results_tests;
-DROP TABLE IF EXISTS results_users;
 DROP TABLE IF EXISTS results;
 DROP TABLE IF EXISTS tests_questions;
 DROP TABLE IF EXISTS tests_users;
@@ -36,10 +32,10 @@ CREATE TABLE users
 CREATE UNIQUE INDEX users_unique_name_idx ON users (name);
 
 CREATE TABLE user_group_users (
-    group_id int references user_groups(id),
-    user_id int references users(id),
-    CONSTRAINT user_group_users_idx UNIQUE (group_id, user_id),
-    primary key (group_id, user_id)
+                                  group_id int references user_groups(id),
+                                  user_id int references users(id),
+                                  CONSTRAINT user_group_users_idx UNIQUE (group_id, user_id),
+                                  primary key (group_id, user_id)
 );
 
 CREATE TABLE user_roles
@@ -85,19 +81,19 @@ CREATE TABLE tests
 CREATE UNIQUE INDEX test_unique_name_idx ON tests (name);
 
 CREATE TABLE tests_questions (
-    test_id int references tests(id),
-    question_id int references questions(id),
-    CONSTRAINT tests_questions_idx UNIQUE (test_id, question_id),
-    primary key (test_id, question_id)
+                                 test_id int references tests(id),
+                                 question_id int references questions(id),
+                                 CONSTRAINT tests_questions_idx UNIQUE (test_id, question_id),
+                                 primary key (test_id, question_id)
 --     FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
 --     FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tests_users (
-    test_id int references tests(id),
-    user_id int references users(id),
-    CONSTRAINT tests_users_idx UNIQUE (test_id, user_id),
-    primary key (test_id, user_id)
+                             test_id int references tests(id),
+                             user_id int references users(id),
+                             CONSTRAINT tests_users_idx UNIQUE (test_id, user_id),
+                             primary key (test_id, user_id)
 --     FOREIGN KEY (test_id) REFERENCES tests (id),
 --     FOREIGN KEY (user_id) REFERENCES users (id)
 );
@@ -113,33 +109,14 @@ CREATE TABLE test_statuses
 CREATE TABLE results
 (
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    answer_date      TIMESTAMP               NOT NULL
-);
-
-CREATE TABLE results_users (
-                             result_id int references results(id),
-                             user_id int references users(id),
-                             CONSTRAINT results_users_idx UNIQUE (result_id, user_id),
-                             primary key (result_id, user_id)
-);
-
-CREATE TABLE results_tests (
-                               result_id int references results(id),
-                               test_id int references tests(id),
-                               CONSTRAINT results_tests_idx UNIQUE (result_id, test_id),
-                               primary key (result_id, test_id)
-);
-
-CREATE TABLE results_questions (
-                               result_id int references results(id),
-                               question_id int references questions(id),
-                               CONSTRAINT results_questions_idx UNIQUE (result_id, question_id),
-                               primary key (result_id, question_id)
-);
-
-CREATE TABLE results_answers (
-                                   result_id int references results(id),
-                                   answer_id int references answers(id),
-                                   CONSTRAINT results_answers_idx UNIQUE (result_id, answer_id),
-                                   primary key (result_id, answer_id)
+    answer_date      TIMESTAMP               NOT NULL,
+    user_id          INTEGER                 NOT NULL,
+    test_id          INTEGER                 NOT NULL,
+    question_id      INTEGER                 NOT NULL,
+    answer_id        INTEGER                 NOT NULL,
+    CONSTRAINT results_idx UNIQUE (user_id, test_id, question_id),
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE,
+    FOREIGN KEY (answer_id) REFERENCES answers (id) ON DELETE CASCADE
 );

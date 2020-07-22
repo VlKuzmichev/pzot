@@ -19,7 +19,6 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>№</th>
             <th>Вопрос</th>
             <th>Группа вопросов</th>
             <th>Ответы</th>
@@ -29,7 +28,6 @@
         <tbody>
         <c:forEach items="${questionList}" var="question">
             <tr>
-                <td>${num=0}</td>
                 <td>${question.name}</td>
                 <td>${question.questionGroup.name}</td>
                 <td><a href="answers/${question.id}"><span class='fa fa-edit'
@@ -39,7 +37,6 @@
                 <td><a href="questions/delete?id=${question.id}"><span class='fa fa-remove'
                                                                            style="color:red"></span></a></td>
             </tr>
-            ${num = num + 1}
         </c:forEach>
         </tbody>
     </table>
