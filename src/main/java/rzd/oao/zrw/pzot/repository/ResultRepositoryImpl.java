@@ -1,6 +1,7 @@
 package rzd.oao.zrw.pzot.repository;
 
 import org.springframework.stereotype.Repository;
+import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Result;
 
 import java.util.List;
@@ -29,13 +30,14 @@ public class ResultRepositoryImpl implements ResultRepository{
         return resultRepository.findAll();
     }
 
-//    @Override
-//    public List<Result> getAllByUser(int id) {
-//        return resultRepository.getAllByUser(id);
-//    }
-//
-//    @Override
-//    public Result getByIdAndUser(int id, int userId) {
-//        return resultRepository.;
-//    }
+    @Override
+    public List<Result> getAllByUser(int id) {
+        return resultRepository.getAllByUser(id);
+    }
+
+    @Override
+    public List<Result> getByIdAndUser(int id, int userId) {
+        return resultRepository.getByIdAndUser(id, userId);
+    }
+
 }

@@ -24,10 +24,10 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${userTestList}" var="test">
+        <c:forEach items="${userTestList}" var="test" varStatus="status">
             <tr>
                 <td>${test.name}</td>
-                <td> 40% </td>
+                <td>${percentList.get(status.index)}%</td>
                 <td>${test.startDate.toLocalDate()}</td>
                 <td>${test.endDate.toLocalDate()}</td>
                 <td>${test.status}</td>

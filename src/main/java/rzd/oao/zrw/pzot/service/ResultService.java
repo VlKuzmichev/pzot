@@ -3,7 +3,6 @@ package rzd.oao.zrw.pzot.service;
 import rzd.oao.zrw.pzot.model.Result;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface ResultService {
@@ -13,8 +12,8 @@ public interface ResultService {
 
     List<Result> getAll();
 
-//    List<Result> getAllByUser(int id);
-//
-//    List<Integer> getTestPercent(int userId, int testId);
+    List<Result> getAllByUser(int id);
+
+    List<Integer> getTestsPercents(int userId);
 
 }

@@ -19,7 +19,7 @@ public class Quiz extends AbstractNamedEntity {
     @Column(name = "status")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Status> status;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tests_questions", joinColumns = {@JoinColumn(name = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id")})
     private List<Question> questions;

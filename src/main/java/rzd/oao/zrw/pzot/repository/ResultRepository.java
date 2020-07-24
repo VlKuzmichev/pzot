@@ -12,9 +12,8 @@ public interface ResultRepository {
 
     List<Result> getAll();
 
-    // null if not found
-//    List<Result> getAllByUser(int id);
+    List<Result> getAllByUser(int id);
 
-//    Result getByIdAndUser(int id, int userId);
+    List<Result> getByIdAndUser(int id, int userId);
 
 }

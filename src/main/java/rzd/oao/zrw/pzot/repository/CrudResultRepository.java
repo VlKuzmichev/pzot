@@ -1,11 +1,9 @@
 package rzd.oao.zrw.pzot.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import rzd.oao.zrw.pzot.model.Answer;
 import rzd.oao.zrw.pzot.model.Result;
 
 import java.util.List;
@@ -24,10 +22,9 @@ public interface CrudResultRepository extends JpaRepository<Result, Integer> {
     @Override
     List<Result> findAll();
 
-//    @Query("SELECT r FROM Result r JOIN FETCH r.users WHERE r.id =:id")
-//    List<Result> getAllByUser(int id);
-//
-//    @Query("SELECT r FROM Result r JOIN FETCH r.users WHERE r.id =:id AND r.")
-//    Result getByIdAndUser(@Param("id") int id, @Param("userId") int userId);
+    @Query("SELECT r FROM Result r JOIN FETCH r.user WHERE r.id =:id")
+    List<Result> getAllByUser(@Param("id") int id);
 
+    @Query("SELECT r FROM Result r JOIN FETCH r.user JOIN FETCH r.test WHERE r.user.id =:userId AND r.test.id =:id")
+    List<Result> getByIdAndUser(@Param("id") int id, @Param("userId") int userId);
 }

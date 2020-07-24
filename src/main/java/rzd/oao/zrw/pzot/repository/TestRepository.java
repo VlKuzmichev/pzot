@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.repository;
 
+import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Quiz;
 
 import java.util.List;

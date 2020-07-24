@@ -69,9 +69,9 @@ public class RootController {
     }
 
     @RequestMapping(value = "/userTests", method = RequestMethod.GET)
-    public String userTestsList(Model model) {
-        model.addAttribute("userTestList", userService.getWithTests(100004).getTests());
-        //map.addAttribute("userResultList", resultService.getAllByUser(100004));
+    public String userTestsList(ModelMap map) {
+        map.addAttribute("userTestList", userService.getWithTests(100004).getTests());
+        map.addAttribute("percentList", resultService.getTestsPercents(100004));
         return "userTests";
     }
 
