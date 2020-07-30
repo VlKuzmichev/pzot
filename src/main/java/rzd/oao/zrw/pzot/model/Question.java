@@ -15,7 +15,7 @@ public class Question extends AbstractNamedEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private QuestionGroup questionGroup;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
     private List<Answer> answers;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")

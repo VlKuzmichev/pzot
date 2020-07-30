@@ -24,4 +24,5 @@ public interface QuestionRepository {
     // null if not found
     Question getByName(String name);
 
+    List<Question> getAllByTestId(int testId);
 }

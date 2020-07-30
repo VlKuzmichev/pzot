@@ -35,4 +35,6 @@ public interface CrudQuestionRepository extends JpaRepository<Question, Integer>
 
     Question getByName(String name);
 
+    @Query(value = "SELECT * FROM questions, tests_questions WHERE questions.id = tests_questions.question_id AND tests_questions.test_id =:testId", nativeQuery = true)
+    List<Question> getAllByTestId(@Param("testId") int testId);
 }

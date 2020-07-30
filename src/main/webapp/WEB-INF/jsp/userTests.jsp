@@ -16,9 +16,9 @@
         <thead>
         <tr>
             <th>Наименование теста</th>
+            <th>Выполнено</th>
+            <th>Время тестирования</th>
             <th>Результат</th>
-            <th>Начало</th>
-            <th>Завершение</th>
             <th>Статус</th>
             <th></th>
         </tr>
@@ -28,10 +28,10 @@
             <tr>
                 <td>${test.name}</td>
                 <td>${percentList.get(status.index)}%</td>
-                <td>${test.startDate.toLocalDate()}</td>
-                <td>${test.endDate.toLocalDate()}</td>
+                <td> с ${test.startDate.toLocalDate()} по ${test.endDate.toLocalDate()}</td>
+                <td> 0% </td>
                 <td>${test.status}</td>
-                <td><a href="">Начать</a></td>
+                <td><a href="userTests/${test.id}">Пройти тест</a></td>
             </tr>
         </c:forEach>
         </tbody>

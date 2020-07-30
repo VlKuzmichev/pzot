@@ -2,8 +2,10 @@ package rzd.oao.zrw.pzot.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.Result;
+import rzd.oao.zrw.pzot.repository.QuestionRepository;
 import rzd.oao.zrw.pzot.repository.ResultRepository;
 import rzd.oao.zrw.pzot.repository.TestRepository;
 import rzd.oao.zrw.pzot.repository.UserRepository;
@@ -20,11 +22,14 @@ public class ResultServiceImpl implements ResultService {
     private final ResultRepository resultRepository;
     private final TestRepository testRepository;
     private final UserRepository userRepository;
+    private final QuestionRepository questionRepository;
 
-    public ResultServiceImpl(ResultRepository resultRepository, TestRepository testRepository, UserRepository userRepository) {
+    public ResultServiceImpl(ResultRepository resultRepository, TestRepository testRepository, UserRepository userRepository,
+                             QuestionRepository questionRepository) {
         this.resultRepository = resultRepository;
         this.testRepository = testRepository;
         this.userRepository = userRepository;
+        this.questionRepository = questionRepository;
     }
 
     @Override
@@ -67,5 +72,31 @@ public class ResultServiceImpl implements ResultService {
             percents.add(100 / questions.get(i) * answers.get(i));
         }
         return percents;
+    }
+
+    @Override
+    public Question getNotAnsweredQuestion(int userId, int testId) {
+        List<Question> questions = questionRepository.getAllByTestId(testId);
+//        for (Question question : userRepository.getWithTests(userId).getTests().get(testId).getQuestions()) {
+//            questions.add(question);
+//        }
+        Boolean found = false;
+
+        List<Question> answeredQuestions = new ArrayList<>();
+        List<Result> results = resultRepository.getResultsWithQuestionsByTestId(testId);
+        for (Result result : results) {
+            answeredQuestions.add(result.getQuestion());
+        }
+        for (Question question : questions) {
+            for (Question answeredQuestion : answeredQuestions) {
+                if (question.equals(answeredQuestion)) found = true;
+            }
+            if (!found) {
+                return question;
+            } else {
+                found = false;
+            }
+        }
+        return null;
     }
 }

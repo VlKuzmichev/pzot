@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.service;
 
+import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Result;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
@@ -15,5 +16,7 @@ public interface ResultService {
     List<Result> getAllByUser(int id);
 
     List<Integer> getTestsPercents(int userId);
+
+    Question getNotAnsweredQuestion(int userId, int testId);
 
 }

@@ -1,6 +1,5 @@
 package rzd.oao.zrw.pzot.util;
 
-
 import rzd.oao.zrw.pzot.model.AbstractBaseEntity;
 
 public class ValidationUtil {

@@ -48,4 +48,9 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     public Question getByName(String name) {
         return questionRepository.getByName(name);
     }
+
+    @Override
+    public List<Question> getAllByTestId(int testId) {
+        return questionRepository.getAllByTestId(testId);
+    }
 }

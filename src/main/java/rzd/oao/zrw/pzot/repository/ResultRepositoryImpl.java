@@ -1,13 +1,12 @@
 package rzd.oao.zrw.pzot.repository;
 
 import org.springframework.stereotype.Repository;
-import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Result;
 
 import java.util.List;
 
 @Repository
-public class ResultRepositoryImpl implements ResultRepository{
+public class ResultRepositoryImpl implements ResultRepository {
 
     private final CrudResultRepository resultRepository;
 
@@ -40,4 +39,8 @@ public class ResultRepositoryImpl implements ResultRepository{
         return resultRepository.getByIdAndUser(id, userId);
     }
 
+    @Override
+    public List<Result> getResultsWithQuestionsByTestId(int testId) {
+        return resultRepository.getResultsWithQuestionsByTestId(testId);
+    }
 }

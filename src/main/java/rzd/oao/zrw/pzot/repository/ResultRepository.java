@@ -16,4 +16,5 @@ public interface ResultRepository {
 
     List<Result> getByIdAndUser(int id, int userId);
 
+    List<Result> getResultsWithQuestionsByTestId(int testId);
 }
