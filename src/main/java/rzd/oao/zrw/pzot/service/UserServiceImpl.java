@@ -1,18 +1,21 @@
 package rzd.oao.zrw.pzot.service;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
+import rzd.oao.zrw.pzot.web.AuthorizedUser;
 
 import java.util.List;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 
-@Service
-public class UserServiceImpl implements UserService {
+@Service("userService")
+public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository repository;
     private final TestService testService;
 
@@ -53,7 +56,7 @@ public class UserServiceImpl implements UserService {
         Quiz testWithUsers = testService.getWithUsers(testId);
         if (testWithUsers != null)
             users.removeAll(testWithUsers.getUsers());
-       // users.removeAll(testService.getWithUsers(testId).getUsers());
+        // users.removeAll(testService.getWithUsers(testId).getUsers());
         return users;
     }
 
@@ -72,5 +75,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getWithTests(int id) throws NotFoundException {
         return checkNotFoundWithId(repository.getWithTests(id), id);
+    }
+
+    @Override
+    public AuthorizedUser loadUserByUsername(String name) throws UsernameNotFoundException {
+        User user = repository.getByName(name);
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + name + " is not found");
+        }
+
+        return new AuthorizedUser(user);
     }
 }

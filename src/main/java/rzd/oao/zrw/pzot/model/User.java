@@ -1,5 +1,7 @@
 package rzd.oao.zrw.pzot.model;
 
+import org.springframework.util.CollectionUtils;
+
 import javax.persistence.*;
 import java.util.EnumSet;
 import java.util.List;
@@ -125,7 +127,8 @@ public class User extends AbstractBaseEntity {
     }
 
     public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+        this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
+//        this.roles = roles;
     }
 
 
