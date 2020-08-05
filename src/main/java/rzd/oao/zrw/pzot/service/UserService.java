@@ -22,6 +22,6 @@ public interface UserService {
 
     User getByName(String name);
 
-    User getWithTests(int id) throws NotFoundException;
+    User getWithTests() throws NotFoundException;
 
 }

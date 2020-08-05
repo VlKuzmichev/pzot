@@ -31,6 +31,7 @@
 <div class="container-top" id="menu">
     <ul class="navbar-nav ml-lg-5">
         <li class="nav-item">
+            <a class="btn btn-outline-secondary" href="">Главная</a>
             <a class="btn btn-outline-secondary" href="userTests">Мои тесты</a>
             <a class="btn btn-outline-secondary" href="tests">Тесты</a>
             <a class="btn btn-outline-secondary" href="questionsGroups">Группы вопросов</a>

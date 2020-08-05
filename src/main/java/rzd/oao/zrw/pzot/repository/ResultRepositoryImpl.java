@@ -40,7 +40,7 @@ public class ResultRepositoryImpl implements ResultRepository {
     }
 
     @Override
-    public List<Result> getResultsWithQuestionsByTestId(int testId) {
-        return resultRepository.getResultsWithQuestionsByTestId(testId);
+    public List<Result> getResultsWithQuestionsByTestId(int testId, int userId) {
+        return resultRepository.getResultsWithQuestionsByTestId(testId, userId);
     }
 }

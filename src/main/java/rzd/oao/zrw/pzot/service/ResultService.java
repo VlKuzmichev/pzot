@@ -15,7 +15,7 @@ public interface ResultService {
 
     List<Result> getAllByUser(int id);
 
-    List<Integer> getTestsPercents(int userId);
+    List<Integer> getTestsPercents();
 
     Question getNotAnsweredQuestion(int userId, int testId);
 

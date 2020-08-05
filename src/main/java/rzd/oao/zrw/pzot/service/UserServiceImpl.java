@@ -9,6 +9,7 @@ import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 import rzd.oao.zrw.pzot.web.AuthorizedUser;
+import rzd.oao.zrw.pzot.web.SecurityUtil;
 
 import java.util.List;
 
@@ -73,8 +74,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User getWithTests(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.getWithTests(id), id);
+    public User getWithTests() throws NotFoundException {
+        int userId = SecurityUtil.authUserId();
+        return checkNotFoundWithId(repository.getWithTests(userId), userId);
     }
 
     @Override

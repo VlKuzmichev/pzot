@@ -19,7 +19,7 @@ public class ResultController extends AbstractResultController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String doTest(@PathVariable int id, ModelMap map) {
-        Question question = super.getNotAnsweredQuestion(100004, id);
+        Question question = super.getNotAnsweredQuestion(id);
         if (question == null) return "endTest";
         map.addAttribute("question", question);
         map.addAttribute("test", super.getTest(id));
@@ -30,10 +30,10 @@ public class ResultController extends AbstractResultController {
     public String continueTest(HttpServletRequest request, ModelMap map) {
         int answerId = getAnswerId(request);
         int testId = getTestId(request);
-        Result result = new Result(LocalDateTime.now(), super.getUser(100004), super.getTest(testId),
-                super.getNotAnsweredQuestion(100004, testId), super.getAnswer(answerId));
+        Result result = new Result(LocalDateTime.now(), super.getUser(), super.getTest(testId),
+                super.getNotAnsweredQuestion(testId), super.getAnswer(answerId));
         if (!request.getParameter("answer").isEmpty()) super.create(result);
-        Question question = super.getNotAnsweredQuestion(100004, testId);
+        Question question = super.getNotAnsweredQuestion(testId);
         if (question == null) return "endTest";
         map.addAttribute("question", question);
         map.addAttribute("test", super.getTest(testId));

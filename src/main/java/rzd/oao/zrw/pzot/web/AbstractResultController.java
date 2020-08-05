@@ -25,7 +25,8 @@ public abstract class AbstractResultController {
     private AnswerService answerService;
 
 
-    public Question getNotAnsweredQuestion(int userId, int testId) {
+    public Question getNotAnsweredQuestion(int testId) {
+        int userId = SecurityUtil.authUserId();
         return resultService.getNotAnsweredQuestion(userId, testId);
     }
 
@@ -40,7 +41,8 @@ public abstract class AbstractResultController {
         return testService.get(testId);
     }
 
-    public User getUser(int userId) {
+    public User getUser() {
+        int userId = SecurityUtil.authUserId();
 ////        log.info("create {}", user);
         return userService.get(userId);
     }

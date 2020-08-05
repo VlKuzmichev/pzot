@@ -10,6 +10,7 @@ import rzd.oao.zrw.pzot.repository.ResultRepository;
 import rzd.oao.zrw.pzot.repository.TestRepository;
 import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
+import rzd.oao.zrw.pzot.web.SecurityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,8 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
-    public List<Integer> getTestsPercents(int userId) {
+    public List<Integer> getTestsPercents() {
+        int userId = SecurityUtil.authUserId();
         List<Integer> tests = new ArrayList<>();
         for (Quiz test : userRepository.getWithTests(userId).getTests()) {
             tests.add(test.getId());
@@ -77,13 +79,10 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public Question getNotAnsweredQuestion(int userId, int testId) {
         List<Question> questions = questionRepository.getAllByTestId(testId);
-//        for (Question question : userRepository.getWithTests(userId).getTests().get(testId).getQuestions()) {
-//            questions.add(question);
-//        }
         Boolean found = false;
 
         List<Question> answeredQuestions = new ArrayList<>();
-        List<Result> results = resultRepository.getResultsWithQuestionsByTestId(testId);
+        List<Result> results = resultRepository.getResultsWithQuestionsByTestId(testId, userId);
         for (Result result : results) {
             answeredQuestions.add(result.getQuestion());
         }

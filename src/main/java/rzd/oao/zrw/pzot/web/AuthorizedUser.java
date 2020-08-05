@@ -11,4 +11,12 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         this.authUser = user;
     }
 
+    public User getUser() {
+        return authUser;
+    }
+
+    public int getId() {
+        return authUser.getId();
+    }
+
 }
