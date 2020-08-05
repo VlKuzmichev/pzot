@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light py-0">
     <div class="container">
@@ -33,11 +34,15 @@
         <li class="nav-item">
             <a class="btn btn-outline-secondary" href="">Главная</a>
             <a class="btn btn-outline-secondary" href="userTests">Мои тесты</a>
-            <a class="btn btn-outline-secondary" href="tests">Тесты</a>
-            <a class="btn btn-outline-secondary" href="questionsGroups">Группы вопросов</a>
-            <a class="btn btn-outline-secondary" href="questions">Вопросы</a>
-            <a class="btn btn-outline-secondary" href="usersGroups">Группы пользователей</a>
-            <a class="btn btn-outline-secondary" href="users">Пользователи</a>
+            <sec:authorize access="hasRole('ROLE_EXAMINER')">
+                <a class="btn btn-outline-secondary" href="tests">Подготовка тестов</a>
+                <a class="btn btn-outline-secondary" href="questionsGroups">Группы вопросов</a>
+                <a class="btn btn-outline-secondary" href="questions">Вопросы</a>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <a class="btn btn-outline-secondary" href="usersGroups">Группы пользователей</a>
+                <a class="btn btn-outline-secondary" href="users">Пользователи</a>
+            </sec:authorize>
         </li>
     </ul>
 </div>
