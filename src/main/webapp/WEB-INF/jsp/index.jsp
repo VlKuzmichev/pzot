@@ -8,7 +8,8 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="container">
     <br/>
-    <h3 class="text-center">Новости</h3>
+    <img class="img-fluid mx-auto d-block" src="resources/images/test.jpg" height="20%" width="20%"/>
+    <h3 class="text-center">События</h3>
     <table class="table table-striped">
         <thead>
         <tr>
