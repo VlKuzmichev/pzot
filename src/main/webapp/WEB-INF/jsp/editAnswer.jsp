@@ -9,36 +9,39 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<h3 class="text-center">${answer.isNew()? "Новый ответ" : "Редактирование ответа"}</h3>
-<form method="post" action="answers">
-    <input type="hidden" name="id" value="${answer.id}">
-    <input type="hidden" name="q" value="${answer.question.id}">
-    <div class="form-group">
-        <label for="name" class="col-form-label">Ответ</label>
-        <table class="table table-striped">
-            <tr>
-                <td colspan="2"><input type="text" class="form-control" id="name" value="${answer.name}" name="name"
-                                       placeholder="Answer"></td>
-            </tr>
-            <tr>
-                <td>Верный/неверный</td>
-                <td><input type="checkbox" class="form-control" id="truth" name="truth"
-                ${answer.truth ? "checked" : ""}></td>
-            </tr>
-        </table>
-    </div>
+<div class="container">
+    <br/>
+    <h3 class="text-center">${answer.isNew()? "Новый ответ" : "Редактирование ответа"}</h3>
+    <form method="post" action="answers">
+        <input type="hidden" name="id" value="${answer.id}">
+        <input type="hidden" name="q" value="${answer.question.id}">
+        <div class="form-group">
+            <label for="name" class="col-form-label">Ответ</label>
+            <table class="table table-striped">
+                <tr>
+                    <td colspan="2"><input type="text" class="form-control" id="name" value="${answer.name}" name="name"
+                                           placeholder="Answer"></td>
+                </tr>
+                <tr>
+                    <td>Верный/неверный</td>
+                    <td><input type="checkbox" class="form-control" id="truth" name="truth"
+                    ${answer.truth ? "checked" : ""}></td>
+                </tr>
+            </table>
+        </div>
 
-    <div class="form-group">
-        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
-            <span class="fa fa-close"></span>
-            Отмена
-        </button>
-        <button type="submit" class="btn btn-primary">
-            <span class="fa fa-check"></span>
-            Сохранить
-        </button>
-    </div>
-</form>
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                <span class="fa fa-close"></span>
+                Отмена
+            </button>
+            <button type="submit" class="btn btn-primary">
+                <span class="fa fa-check"></span>
+                Сохранить
+            </button>
+        </div>
+    </form>
+</div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>

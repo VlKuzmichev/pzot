@@ -11,6 +11,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
+    <br/>
     <h3 class="text-center">Результат тестирования</h3>
     <form method="post" action="userTests">
         <table class="table table-striped">

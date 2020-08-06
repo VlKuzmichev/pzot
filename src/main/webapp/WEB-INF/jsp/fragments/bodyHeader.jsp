@@ -29,7 +29,7 @@
         </div>
     </div>
 </nav>
-<div class="container-top" id="menu">
+<div class="container" id="menu">
     <ul class="navbar-nav ml-lg-5">
         <li class="nav-item">
             <a class="btn btn-outline-secondary" href="">Главная</a>
