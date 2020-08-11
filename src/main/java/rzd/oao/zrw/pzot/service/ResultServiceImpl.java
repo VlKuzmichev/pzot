@@ -65,13 +65,19 @@ public class ResultServiceImpl implements ResultService {
         for (Integer testId : tests) {
             answers.add(resultRepository.getByIdAndUser(testId, userId).size());
         }
-        List<Integer> questions = new ArrayList<>();
+        List<Integer> questionsCounts = new ArrayList<>();
         for (Quiz test : userRepository.getWithTests(userId).getTests()) {
-            questions.add(test.getQuestions().size());
+            questionsCounts.add(test.getQuestions().size());
         }
+        int questionCount;
         List<Integer> percents = new ArrayList<>();
         for (int i = 0; i < tests.size(); i++) {
-            percents.add(100 / questions.get(i) * answers.get(i));
+            questionCount = questionsCounts.get(i);
+            if (questionCount != 0) {
+                percents.add(100 / questionsCounts.get(i) * answers.get(i));
+            }else {
+                percents.add(0);
+            }
         }
         return percents;
     }
