@@ -52,8 +52,10 @@ public class TestController extends AbstractTestController {
     // Request for update changed test or create new with edit form
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {
-        Quiz test = new Quiz(null, request.getParameter("name"), LocalDateTime.parse(request.getParameter("startDate")),
-                LocalDateTime.parse(request.getParameter("endDate")), Status.INACTIVE);
+        String startDate = addTChar(request.getParameter("startDate"));
+        String endDate = addTChar(request.getParameter("endDate"));
+        Quiz test = new Quiz(null, request.getParameter("name"), (LocalDateTime.parse(startDate)),
+                LocalDateTime.parse(endDate), Status.INACTIVE);
         if (request.getParameter("id").isEmpty()) {
             super.create(test);
         } else {
@@ -93,7 +95,7 @@ public class TestController extends AbstractTestController {
         }
         map.addAttribute("testQuestions", super.getWithoutTestQuestions(getId(request)));
         map.addAttribute("test", super.get(getId(request)));
-        return "addQuestions";
+        return "/addQuestions.jsp";
     }
 
     @GetMapping("/questions/delete")
@@ -138,4 +140,7 @@ public class TestController extends AbstractTestController {
         return Integer.parseInt(paramId);
     }
 
+    public String addTChar(String str) {
+        return str.substring(0, 10) + 'T' + str.substring(11);
+    }
 }
