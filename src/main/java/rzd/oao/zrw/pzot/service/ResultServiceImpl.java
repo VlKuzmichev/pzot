@@ -85,7 +85,7 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public Question getNotAnsweredQuestion(int userId, int testId) {
         List<Question> questions = questionRepository.getAllByTestId(testId);
-        Boolean found = false;
+        boolean found = false;
 
         List<Question> answeredQuestions = new ArrayList<>();
         List<Result> results = resultRepository.getResultsWithQuestionsByTestId(testId, userId);
@@ -94,7 +94,10 @@ public class ResultServiceImpl implements ResultService {
         }
         for (Question question : questions) {
             for (Question answeredQuestion : answeredQuestions) {
-                if (question.equals(answeredQuestion)) found = true;
+                if (question.equals(answeredQuestion)) {
+                    found = true;
+                    break;
+                }
             }
             if (!found) {
                 return question;

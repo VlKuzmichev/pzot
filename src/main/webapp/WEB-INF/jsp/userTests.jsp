@@ -21,7 +21,6 @@
             <th>Время тестирования</th>
             <th>Результат</th>
             <th>Статус</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -30,9 +29,16 @@
                 <td>${test.name}</td>
                 <td>${percentList.get(status.index)}%</td>
                 <td> с ${test.startDate.toLocalDate()} по ${test.endDate.toLocalDate()}</td>
-                <td> 0% </td>
-                <td>${test.status}</td>
-                <td><a href="userTests/${test.id}">Пройти тест</a></td>
+                <td><a href="userTests/${test.id}">${percentList.get(status.index) == 100 ? 'Просмотр': ''}</a></td>
+                <td>
+                    <c:choose>
+                        <c:when test="${percentList.get(status.index) == 100}">Тест завершен</c:when>
+                        <c:when test="${test.status == ('[INACTIVE]')}">Недоступен</c:when>
+                        <c:when test="${(percentList.get(status.index) >= 0 and percentList.get(status.index) < 100)}"><a
+                                href="userTests/${test.id}">Запустить тест</a></c:when>
+                        <c:otherwise>Тест завершен</c:otherwise>
+                    </c:choose>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

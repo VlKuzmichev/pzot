@@ -19,9 +19,9 @@ VALUES ('All'), -- 100000
        ('Specialists'); -- 100003
 
 INSERT INTO users (name, password, email, full_name) VALUES
-('User', 'password', 'user@yandex.ru', 'Ivanov Ivan Ivanovich'), -- 100004
-('Exam', 'password2', 'exam@yandex.ru', 'Petrov Peter Petrovich'), -- 100005
-('Admin', 'password3', 'admin@yandex.ru', 'Adminov Admin Adminovich'); -- 100006
+('User', '{noop}password', 'user@yandex.ru', 'Ivanov Ivan Ivanovich'), -- 100004
+('Exam', '{noop}password2', 'exam@yandex.ru', 'Petrov Peter Petrovich'), -- 100005
+('Admin', '{noop}password3', 'admin@yandex.ru', 'Adminov Admin Adminovich'); -- 100006
 
 INSERT INTO user_group_users (group_id, user_id)
 VALUES (100000, 100004),

@@ -19,6 +19,9 @@ public class ResultController extends AbstractResultController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String doTest(@PathVariable int id, ModelMap map) {
+        if (super.getTest(id).getStatus().toString().compareTo("[INACTIVE]") == 0) {
+            return "redirect:/userTests";
+        }
         Question question = super.getNotAnsweredQuestion(id);
         if (question == null) return "endTest";
         map.addAttribute("question", question);

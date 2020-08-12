@@ -95,7 +95,7 @@ public class TestController extends AbstractTestController {
         }
         map.addAttribute("testQuestions", super.getWithoutTestQuestions(getId(request)));
         map.addAttribute("test", super.get(getId(request)));
-        return "/addQuestions.jsp";
+        return "addQuestions";
     }
 
     @GetMapping("/questions/delete")
