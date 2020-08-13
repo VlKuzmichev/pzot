@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.service;
 
+import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
@@ -23,5 +24,7 @@ public interface UserService {
     User getByName(String name);
 
     User getWithTests() throws NotFoundException;
+
+    List<Quiz> getUserTests();
 
 }

@@ -80,6 +80,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public List<Quiz> getUserTests() {
+        int userId = SecurityUtil.authUserId();
+        User user = repository.getWithTests(userId);
+        if (user == null) return null;
+        return user.getTests();
+    }
+
+    @Override
     public AuthorizedUser loadUserByUsername(String name) throws UsernameNotFoundException {
         User user = repository.getByName(name);
         if (user == null) {

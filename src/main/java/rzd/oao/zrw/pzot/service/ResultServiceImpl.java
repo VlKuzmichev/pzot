@@ -7,8 +7,6 @@ import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.Result;
 import rzd.oao.zrw.pzot.repository.QuestionRepository;
 import rzd.oao.zrw.pzot.repository.ResultRepository;
-import rzd.oao.zrw.pzot.repository.TestRepository;
-import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 import rzd.oao.zrw.pzot.web.SecurityUtil;
 
@@ -21,15 +19,13 @@ import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 public class ResultServiceImpl implements ResultService {
 
     private final ResultRepository resultRepository;
-    private final TestRepository testRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final QuestionRepository questionRepository;
 
-    public ResultServiceImpl(ResultRepository resultRepository, TestRepository testRepository, UserRepository userRepository,
+    public ResultServiceImpl(ResultRepository resultRepository, UserService userService,
                              QuestionRepository questionRepository) {
         this.resultRepository = resultRepository;
-        this.testRepository = testRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.questionRepository = questionRepository;
     }
 
@@ -57,25 +53,27 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public List<Integer> getTestsPercents() {
         int userId = SecurityUtil.authUserId();
-        List<Integer> tests = new ArrayList<>();
-        for (Quiz test : userRepository.getWithTests(userId).getTests()) {
-            tests.add(test.getId());
+        List<Integer> testsCounters = new ArrayList<>();
+        List<Quiz> tests = userService.getUserTests();
+        if (tests == null) return null;
+        for (Quiz test : tests) {
+            testsCounters.add(test.getId());
         }
         List<Integer> answers = new ArrayList<>();
-        for (Integer testId : tests) {
+        for (Integer testId : testsCounters) {
             answers.add(resultRepository.getByIdAndUser(testId, userId).size());
         }
         List<Integer> questionsCounts = new ArrayList<>();
-        for (Quiz test : userRepository.getWithTests(userId).getTests()) {
+        for (Quiz test : userService.getWithTests().getTests()) {
             questionsCounts.add(test.getQuestions().size());
         }
         int questionCount;
         List<Integer> percents = new ArrayList<>();
-        for (int i = 0; i < tests.size(); i++) {
+        for (int i = 0; i < testsCounters.size(); i++) {
             questionCount = questionsCounts.get(i);
             if (questionCount != 0) {
                 percents.add(100 / questionsCounts.get(i) * answers.get(i));
-            }else {
+            } else {
                 percents.add(0);
             }
         }

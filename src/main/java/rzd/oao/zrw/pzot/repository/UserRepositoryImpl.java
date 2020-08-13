@@ -48,6 +48,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User getWithTests(int id) {
-        return crudUserRepository.getUserWithTests(id);
+        User user = crudUserRepository.getUserWithTests(id).orElse(null);
+        return user;
     }
 }

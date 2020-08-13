@@ -74,7 +74,7 @@ public class RootController {
 
     @RequestMapping(value = "/userTests", method = RequestMethod.GET)
     public String userTestsList(ModelMap map) {
-        map.addAttribute("userTestList", userService.getWithTests().getTests());
+        map.addAttribute("userTestList", userService.getUserTests());
         map.addAttribute("percentList", resultService.getTestsPercents());
         return "userTests";
     }
