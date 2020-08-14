@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import rzd.oao.zrw.pzot.model.Result;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ResultRepositoryImpl implements ResultRepository {
@@ -35,9 +36,15 @@ public class ResultRepositoryImpl implements ResultRepository {
     }
 
     @Override
-    public List<Result> getByIdAndUser(int id, int userId) {
-        return resultRepository.getByIdAndUser(id, userId);
+    public List<Result> getAllByUserWithTests(int id) {
+        return resultRepository.getAllByUserWithTests(id);
     }
+
+//    @Override
+//    public List<Result> getByIdAndUser(int id, int userId) {
+//        return resultRepository.getByIdAndUser(id, userId);
+//    }
+
 
     @Override
     public List<Result> getResultsWithQuestionsByTestId(int testId, int userId) {

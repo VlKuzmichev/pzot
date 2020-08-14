@@ -25,8 +25,11 @@ public interface CrudResultRepository extends JpaRepository<Result, Integer> {
     @Query("SELECT r FROM Result r JOIN FETCH r.user WHERE r.id =:id")
     List<Result> getAllByUser(@Param("id") int id);
 
-    @Query("SELECT r FROM Result r JOIN FETCH r.user JOIN FETCH r.test WHERE r.user.id =:userId AND r.test.id =:id")
-    List<Result> getByIdAndUser(@Param("id") int id, @Param("userId") int userId);
+    @Query("SELECT r FROM Result r JOIN FETCH r.user JOIN FETCH r.test WHERE r.user.id =:userId")
+    List<Result> getAllByUserWithTests(@Param("userId") int userId);
+
+//    @Query("SELECT r FROM Result r JOIN FETCH r.user JOIN FETCH r.test WHERE r.user.id =:userId AND r.test.id =:id")
+//    List<Result> getByIdAndUser(@Param("id") int id, @Param("userId") int userId);
 
     @Query("SELECT r FROM Result r JOIN FETCH r.question JOIN FETCH r.test WHERE r.test.id =:testId and r.user.id =:userId")
     List<Result> getResultsWithQuestionsByTestId(@Param("testId") int testId, @Param("userId") int userId);

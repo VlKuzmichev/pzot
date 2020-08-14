@@ -3,6 +3,7 @@ package rzd.oao.zrw.pzot.repository;
 import rzd.oao.zrw.pzot.model.Result;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ResultRepository {
     Result save(Result result);
@@ -14,7 +15,9 @@ public interface ResultRepository {
 
     List<Result> getAllByUser(int id);
 
-    List<Result> getByIdAndUser(int id, int userId);
+    List<Result> getAllByUserWithTests(int id);
+
+//    List<Result> getByIdAndUser(int id, int userId);
 
     List<Result> getResultsWithQuestionsByTestId(int testId, int userId);
 }

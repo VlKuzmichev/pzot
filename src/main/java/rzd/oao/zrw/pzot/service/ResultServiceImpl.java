@@ -11,7 +11,9 @@ import rzd.oao.zrw.pzot.util.NotFoundException;
 import rzd.oao.zrw.pzot.web.SecurityUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 
@@ -53,29 +55,33 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public List<Integer> getTestsPercents() {
         int userId = SecurityUtil.authUserId();
-        List<Integer> testsCounters = new ArrayList<>();
+        List<Integer> testsIds = new ArrayList<>();
         List<Quiz> tests = userService.getUserTests();
         if (tests == null) return null;
         for (Quiz test : tests) {
-            testsCounters.add(test.getId());
+            testsIds.add(test.getId());
         }
-        List<Integer> answers = new ArrayList<>();
-        for (Integer testId : testsCounters) {
-            answers.add(resultRepository.getByIdAndUser(testId, userId).size());
+        List<Integer> answersCounters = new ArrayList<>();
+        List<Result> results = resultRepository.getAllByUserWithTests(userId);
+        Map<Integer, Integer> answersCountersWithTestIds = new HashMap<>();
+        for (Result result : results) {
+            int testId = result.getTest().getId();
+            answersCountersWithTestIds.put(testId, answersCountersWithTestIds.getOrDefault(testId, 0) + 1);
+        }
+        for (Integer testId : testsIds) {
+//            answers.add(resultRepository.getByIdAndUser(testId, userId).size());
+            answersCounters.add(answersCountersWithTestIds.getOrDefault(testId, 0));
         }
         List<Integer> questionsCounts = new ArrayList<>();
         for (Quiz test : userService.getWithTests().getTests()) {
             questionsCounts.add(test.getQuestions().size());
         }
-        int questionCount;
         List<Integer> percents = new ArrayList<>();
-        for (int i = 0; i < testsCounters.size(); i++) {
-            questionCount = questionsCounts.get(i);
+        for (int i = 0; i < testsIds.size(); i++) {
+            int questionCount = questionsCounts.get(i);
             if (questionCount != 0) {
-                percents.add(100 / questionsCounts.get(i) * answers.get(i));
-            } else {
-                percents.add(0);
-            }
+                percents.add(100 / questionsCounts.get(i) * answersCounters.get(i));
+            } else percents.add(0);
         }
         return percents;
     }
@@ -97,11 +103,8 @@ public class ResultServiceImpl implements ResultService {
                     break;
                 }
             }
-            if (!found) {
-                return question;
-            } else {
-                found = false;
-            }
+            if (found) found = false;
+            else return question;
         }
         return null;
     }
