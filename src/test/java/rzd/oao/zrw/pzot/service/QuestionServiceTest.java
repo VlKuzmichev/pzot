@@ -26,14 +26,14 @@ class QuestionServiceTest {
     @Autowired
     protected QuestionService questionService;
 
-    // Test creating question
+    // Create question
     @Test
     void create() {
         Question created = questionService.create(NEW_QUESTION);
         assertThat(created).isEqualTo(NEW_QUESTION);
     }
 
-    // Test deleting question from database by Id
+    // Remove question from database by Id
     @Test
     void delete() {
         questionService.delete(QUESTION_ID);
@@ -43,14 +43,14 @@ class QuestionServiceTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    // Test if not found deleting question  by Id
+    // If not found question to remove by Id
     @Test
     void testDeleteNotFound() {
         assertThrows(NotFoundException.class, () ->
                 questionService.delete(2343));
     }
 
-    // Test updating question data
+    // Update question data
     @Test
     void update() {
         Question updated = new Question(QUESTION);
@@ -59,14 +59,14 @@ class QuestionServiceTest {
         assertThat(questionService.get(QUESTION_ID).getName()).isNotEqualTo(QUESTION.getName());
     }
 
-    // Test Get question from database by Id
+    // Get question from database by Id
     @Test
     void get() {
         Question question = questionService.get(QUESTION_ID);
-        assertThat(question).isEqualToIgnoringGivenFields(QUESTION, "answers", "tests");
+        assertThat(question).isEqualToIgnoringGivenFields(QUESTION, "answers", "tests", "results");
     }
 
-    // Test Get question from database by none exist Id
+    // Get question from database by none exist Id
     @Test
     void testGetNotFound() {
         assertThrows(NotFoundException.class, () -> {
@@ -74,43 +74,39 @@ class QuestionServiceTest {
         });
     }
 
-    // Test Get all questions from database
+    // Get all questions from database
     @Test
     void getAll() {
         List<Question> actual = questionService.getAll();
         assertThat(actual).isEqualTo(getQuestions());
     }
 
-    // Test Get question with answers
+    // Get question with answers
     @Test
     void getWithAnswers() {
         Question actual = questionService.getWithAnswers(QUESTION_ID);
-        assertThat(actual).isEqualToIgnoringGivenFields(QUESTION, "tests", "answers");
         Question expected = QUESTION;
         expected.setAnswers(getAnswers());
-        // Compare first element of answers field
-        assertThat(actual.getAnswers().get(0)).isEqualTo(expected.getAnswers().get(0));
+        assertThat(actual.getAnswers().get(0)).isEqualToIgnoringGivenFields(expected.getAnswers().get(0), "tests", "results");
     }
 
-    // Test Get question with tests
+    // Get question with tests
     @Test
     void getWithTests() {
         Question actual = questionService.getWithTests(QUESTION_ID);
-        assertThat(actual).isEqualToIgnoringGivenFields(QUESTION, "tests", "answers");
         Question expected = QUESTION;
-        expected.setTests(getTests());
-        // Compare first element of answers field
-        //assertThat(actual.getTests().get(0)).isEqualTo(expected.getTests().get(0));
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "tests", "answers", "results", "users");
+        assertThat(actual.getTests()).isNotEmpty();
     }
 
-    // Test Get question from database by name
+    // Get question from database by name
     @Test
     void getByName() {
         Question question = questionService.getByName(QUESTION2.getName());
-        assertThat(question).isEqualToIgnoringGivenFields(QUESTION2, "answers", "tests");
+        assertThat(question).isEqualToIgnoringGivenFields(QUESTION2, "answers", "tests", "results");
     }
 
-    // Test Get not found question by name
+    // Get not found question by name
     @Test
     void testGetNotFoundByName() {
         assertThrows(NotFoundException.class, () -> {

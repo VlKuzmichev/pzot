@@ -26,14 +26,14 @@ class QuestionGroupServiceTest {
     @Autowired
     protected QuestionGroupService questionGroupService;
 
-    // Test creating question group
+    // Create question group
     @Test
     void create() {
         QuestionGroup created = questionGroupService.create(NEW_QUESTION_GROUP);
         assertThat(created).isEqualTo(NEW_QUESTION_GROUP);
     }
 
-    // Test deleting new group of questions from database by Id
+    // Remove new group of questions from database by Id
     @Test
     void delete() {
         questionGroupService.create(NEW_QUESTION_GROUP);
@@ -45,7 +45,7 @@ class QuestionGroupServiceTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    // Test not allowed to delete group of questions(used) from database by Id
+    // Not allowed to delete group of questions(used) from database by Id
     @Test
     void testNotAllowedToDelete() {
         assertThrows(DataIntegrityViolationException.class, () -> {
@@ -53,14 +53,14 @@ class QuestionGroupServiceTest {
         });
     }
 
-    // Test if not found deleting question group by Id
+    // Not found question to remove group by Id
     @Test
     void testDeleteNotFound() {
         assertThrows(NotFoundException.class, () ->
                 questionGroupService.delete(23));
     }
 
-    // Test updating question group data
+    // Update question group data
     @Test
     void update() {
         QuestionGroup updated = new QuestionGroup(QUESTION_GROUP);
@@ -69,14 +69,14 @@ class QuestionGroupServiceTest {
         assertThat(questionGroupService.get(QUESTION_GROUP_ID).getName()).isNotEqualTo(QUESTION_GROUP.getName());
     }
 
-    // Test Get group of questions from database by Id
+    // Get group of questions from database by Id
     @Test
     void get() {
         QuestionGroup questionGroup = questionGroupService.get(QUESTION_GROUP_ID);
         assertThat(questionGroup).isEqualToIgnoringGivenFields(QUESTION_GROUP, "questions");
     }
 
-    // Test Get question group from database by none exist Id
+    // Get question group from database by none exist Id
     @Test
     void testGetNotFound() {
         assertThrows(NotFoundException.class, () -> {
@@ -84,32 +84,31 @@ class QuestionGroupServiceTest {
         });
     }
 
-    // Test Get all questions groups from database
+    // Get all questions groups from database
     @Test
     void getAll() {
         List<QuestionGroup> actual = questionGroupService.getAll();
         assertThat(actual).isEqualTo(getQuestionsGroup());
     }
 
-    // Test Get question group with questions
+    // Get question group with questions
     @Test
     void getWithQuestions() {
         QuestionGroup actual = questionGroupService.getWithQuestions(QUESTION_GROUP_ID);
-        assertThat(actual).isEqualToIgnoringGivenFields(QUESTION_GROUP, "questions");
         QuestionGroup expected = QUESTION_GROUP;
-    //    expected.setQuestions(getQuestions());
+        expected.setQuestions(getQuestions());
         // Compare first element of questions field
-    //    assertThat(actual.getQuestions().get(0)).isEqualTo(expected.getQuestions().get(0));
+        assertThat(actual.getQuestions().get(0)).isEqualTo(expected.getQuestions().get(0));
     }
 
-    // Test Get group of questions from database by name
+    // Get group of questions from database by name
     @Test
     void getByName() {
         QuestionGroup questionGroup = questionGroupService.getByName(QUESTION_GROUP2.getName());
         assertThat(questionGroup).isEqualToIgnoringGivenFields(QUESTION_GROUP2, "questions");
     }
 
-    // Test Get not found group of users by name
+    // Get not found group of users by name
     @Test
     void testGetNotFoundByName() {
         assertThrows(NotFoundException.class, () -> {
