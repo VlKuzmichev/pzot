@@ -37,7 +37,7 @@ class QuestionGroupServiceTest {
     @Test
     void delete() {
         questionGroupService.create(NEW_QUESTION_GROUP);
-        questionGroupService.delete(QUESTION_GROUP_ID + 13);
+        questionGroupService.delete(QUESTION_GROUP_ID + 15);
         List<QuestionGroup> actual = questionGroupService.getAll();
         List<QuestionGroup> expected = new ArrayList<>();
         expected.add(QUESTION_GROUP2);
