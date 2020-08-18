@@ -12,19 +12,13 @@
 
 <div class="container">
     <br/>
-    <h3 class="text-center">Результат тестирования</h3>
-    <form method="post" action="userTests">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Тестирование завершено</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </form>
+    <h3 class="border-bottom text-center">Результаты тестирования</h3>
+    <br/>
+    <br/>
+    <div class="text-center">
+        <H3>Поздравляем!</H3>
+        <p class="text-primary">Ваш результат: ${result}%</p>
+    </div>
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>

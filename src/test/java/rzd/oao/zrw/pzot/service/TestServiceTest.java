@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import rzd.oao.zrw.pzot.UserTestData;
 import rzd.oao.zrw.pzot.model.Quiz;
-import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
 import java.util.ArrayList;
@@ -19,9 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static rzd.oao.zrw.pzot.QuestionTestData.getQuestions;
 import static rzd.oao.zrw.pzot.TestsTestData.*;
-import static rzd.oao.zrw.pzot.UserGroupTestData.getUsers;
 import static rzd.oao.zrw.pzot.UserTestData.USER;
-import static rzd.oao.zrw.pzot.UserTestData.USER_ID;
 
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml"
@@ -35,31 +31,30 @@ class TestServiceTest {
     @Autowired
     protected UserService userService;
 
-    // Test creating test
+    // Create test
     @Test
     void create() {
         Quiz created = testService.create(NEW_TEST);
         assertThat(created).isEqualTo(NEW_TEST);
     }
 
-    // Test deleting test from database by Id
+    // Remove test from database by Id
     @Test
     void delete() {
         testService.delete(TEST_ID);
         List<Quiz> actual = testService.getAll();
-        // Using Stream API to collect answers to list for assert
         List<Quiz> expected = new ArrayList<>();
         assertThat(actual).isEqualTo(expected);
     }
 
-    // Test if not found deleting test  by Id
+    // If not found test to remove  by Id
     @Test
     void testDeleteNotFound() {
         assertThrows(NotFoundException.class, () ->
                 testService.delete(23643));
     }
 
-    // Test updating test data
+    // Update test data
     @Test
     void update() {
         Quiz updated = new Quiz(TEST);
@@ -68,14 +63,14 @@ class TestServiceTest {
         assertThat(testService.get(TEST_ID).getName()).isNotEqualTo(TEST.getName());
     }
 
-    // Test Get test from database by Id
+    // Get test from database by Id
     @Test
     void get() {
         Quiz test = testService.get(TEST_ID);
         assertThat(test).isEqualTo(TEST);
     }
 
-    // Test Get test from database by none exist Id
+    // Get test from database by none exist Id
     @Test
     void testGetNotFound() {
         assertThrows(NotFoundException.class, () -> {
@@ -83,41 +78,41 @@ class TestServiceTest {
         });
     }
 
-    // Test Get all tests from database
+    // Get all tests from database
     @Test
     void getAll() {
         List<Quiz> actual = testService.getAll();
         assertThat(actual).isEqualTo(getTests());
     }
 
-    // Test Get test with questions
+    // Get test with questions
     @Test
     void getWithQuestions() {
         Quiz actual = testService.getWithQuestions(TEST_ID);
         Quiz expected = TEST;
         expected.setQuestions(getQuestions());
         // Compare first element of questions field
-       // assertThat(actual.getQuestions().get(0)).isEqualTo(expected.getQuestions().get(0));
+        // assertThat(actual.getQuestions().get(0)).isEqualTo(expected.getQuestions().get(0));
     }
 
-    // Test Get test with users
+    // Get test with users
     @Test
     void getWithUsers() {
         Quiz actual = testService.getWithUsers(TEST_ID);
         Quiz expected = TEST;
-    //    expected.setUsers(getUsers());
+        //    expected.setUsers(getUsers());
         // Compare first element of users field
-    //    assertThat(actual.getUsers().get(0)).isEqualTo(expected.getUsers().get(0));
+        //    assertThat(actual.getUsers().get(0)).isEqualTo(expected.getUsers().get(0));
     }
 
-    // Test Get test from database by name
+    // Get test from database by name
     @Test
     void getByName() {
         Quiz test = testService.getByName(TEST.getName());
         assertThat(test).isEqualTo(TEST);
     }
 
-    // Test Get test from database by name
+    // Add student to test
     @Test
     void addUser() {
 //        Quiz updated = testService.getWithUsers(TEST_ID);//new Quiz(TEST);
@@ -126,16 +121,18 @@ class TestServiceTest {
 //        list.add(UserTestData.USER);
 //        updated.setUsers(list);
     }
+
+    // Remove student from test
     @Test
     void removeUser() {
         Quiz updated = testService.getWithUsers(TEST_ID);
-       // User updUser = userService.get(USER_ID);
+        // User updUser = userService.get(USER_ID);
         //Set<User> list = new HashSet<>();
         updated.removeUser(USER);
         Set<Quiz> uList = new HashSet<>();
         //updated.setUsers(updated);
-     //   updUser.setTests(uList);
-       // updated.removeUser(updated.getUsers().get(0));
+        //   updUser.setTests(uList);
+        // updated.removeUser(updated.getUsers().get(0));
         //userService.update(updUser);
         testService.update(updated);
     }

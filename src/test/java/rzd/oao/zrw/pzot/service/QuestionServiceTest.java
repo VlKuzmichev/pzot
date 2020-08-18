@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static rzd.oao.zrw.pzot.AnswerTestData.getAnswers;
 import static rzd.oao.zrw.pzot.QuestionTestData.*;
-import static rzd.oao.zrw.pzot.TestsTestData.getTests;
 
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml"

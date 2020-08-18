@@ -23,7 +23,10 @@ public class ResultController extends AbstractResultController {
             return "redirect:/userTests";
         }
         Question question = super.getNotAnsweredQuestion(id);
-        if (question == null) return "endTest";
+        if (question == null) {
+            map.addAttribute("result", super.getUserResult(id));
+            return "endTest";
+        }
         map.addAttribute("question", question);
         map.addAttribute("test", super.getTest(id));
         return "doTest";
@@ -37,7 +40,10 @@ public class ResultController extends AbstractResultController {
                 super.getNotAnsweredQuestion(testId), super.getAnswer(answerId));
         if (!request.getParameter("answer").isEmpty()) super.create(result);
         Question question = super.getNotAnsweredQuestion(testId);
-        if (question == null) return "endTest";
+        if (question == null) {
+            map.addAttribute("result", super.getUserResult(testId));
+            return "endTest";
+        }
         map.addAttribute("question", question);
         map.addAttribute("test", super.getTest(testId));
         return "doTest";

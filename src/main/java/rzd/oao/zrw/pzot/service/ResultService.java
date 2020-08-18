@@ -19,4 +19,5 @@ public interface ResultService {
 
     Question getNotAnsweredQuestion(int userId, int testId);
 
+    int getUserResult(int userId, int testId);
 }

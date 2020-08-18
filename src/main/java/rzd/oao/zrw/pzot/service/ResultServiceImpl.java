@@ -80,7 +80,8 @@ public class ResultServiceImpl implements ResultService {
         for (int i = 0; i < testsIds.size(); i++) {
             int questionCount = questionsCounts.get(i);
             if (questionCount != 0) {
-                percents.add(100 / questionsCounts.get(i) * answersCounters.get(i));
+//                double perc = 100.0 / questionsCounts.get(i) * answersCounters.get(i);
+                percents.add((int) (100.0 / questionsCounts.get(i) * answersCounters.get(i)));
             } else percents.add(0);
         }
         return percents;
@@ -107,5 +108,15 @@ public class ResultServiceImpl implements ResultService {
             else return question;
         }
         return null;
+    }
+
+    @Override
+    public int getUserResult(int userId, int testId) {
+        List<Result> userResultsByTest = resultRepository.getAllByUserAndTest(userId, testId);
+        int wrongAnswers = 0;
+        for (Result result : userResultsByTest) {
+            if (!result.getAnswer().getTruth()) wrongAnswers++;
+        }
+        return 100 - (int) (100.0 / userResultsByTest.size() * wrongAnswers);
     }
 }

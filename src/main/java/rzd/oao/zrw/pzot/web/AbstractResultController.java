@@ -2,7 +2,10 @@ package rzd.oao.zrw.pzot.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import rzd.oao.zrw.pzot.model.*;
-import rzd.oao.zrw.pzot.service.*;
+import rzd.oao.zrw.pzot.service.AnswerService;
+import rzd.oao.zrw.pzot.service.ResultService;
+import rzd.oao.zrw.pzot.service.TestService;
+import rzd.oao.zrw.pzot.service.UserService;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNew;
 
@@ -14,9 +17,6 @@ public abstract class AbstractResultController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private QuestionService questionService;
 
     @Autowired
     private TestService testService;
@@ -52,4 +52,8 @@ public abstract class AbstractResultController {
         return answerService.get(answerId);
     }
 
+    protected int getUserResult(int testId) {
+        int userId = SecurityUtil.authUserId();
+        return resultService.getUserResult(userId, testId);
+    }
 }
