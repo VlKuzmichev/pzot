@@ -11,8 +11,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <br/>
-    <h3 class="text-center">Ответьте на вопрос</h3>
+    <h3 class="text-center" style="margin-top: 20px">Ответьте на вопрос</h3>
     <form method="post" action="userTests">
         <table class="table table-striped">
             <thead>

@@ -11,8 +11,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <br/>
-    <h3 class="text-center">Добавление вопросов</h3>
+    <h3 class="text-center" style="margin-top: 20px">Добавление вопросов</h3>
     <a type="button" class="btn btn-outline-secondary" href="tests/questions?id=${test.id}">
         <span class="fa fa-backward"></span>
         Назад

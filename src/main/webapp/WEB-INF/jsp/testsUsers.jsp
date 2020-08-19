@@ -11,8 +11,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <br/>
-    <h3 class="text-center">Студенты</h3>
+    <h3 class="text-center" style="margin-top: 20px">Студенты</h3>
     <a type="button" class="btn btn-outline-secondary" href="tests/users/add?id=${testId}">
         <span class="fa fa-plus"></span>
         Добавить

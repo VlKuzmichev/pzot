@@ -10,8 +10,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <br/>
-    <h3 class="text-center">${userGroup.isNew()? "Новая группа" : "Изменение группы"}</h3>
+    <h3 class="text-center" style="margin-top: 20px">${userGroup.isNew()? "Новая группа" : "Изменение группы"}</h3>
     <form method="post" action="usersGroups">
         <input type="hidden" name="id" value="${userGroup.id}">
         <div class="form-group">

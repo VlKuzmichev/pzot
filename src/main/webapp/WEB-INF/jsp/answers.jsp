@@ -11,8 +11,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <br/>
-    <h3 class="text-center">Ответы к вопросу</h3>
+    <h3 class="text-center" style="margin-top: 20px">Ответы к вопросу</h3>
     <a type="button" class="btn btn-outline-secondary" href="answers/create/${id}">
         <span class="fa fa-plus"></span>
         Добавить ответ

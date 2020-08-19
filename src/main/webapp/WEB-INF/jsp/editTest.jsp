@@ -10,8 +10,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <br/>
-    <h3 class="text-center">${test.isNew()? "Новый тест" : "Редактирование теста"}</h3>
+    <h3 class="text-center" style="margin-top: 20px">${test.isNew()? "Новый тест" : "Редактирование теста"}</h3>
     <form method="post" action="tests">
         <input type="hidden" name="id" value="${test.id}">
         <div class="form-group">

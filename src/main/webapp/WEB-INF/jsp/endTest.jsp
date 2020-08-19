@@ -11,12 +11,9 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <br/>
-    <h3 class="border-bottom text-center">Результаты тестирования</h3>
-    <br/>
-    <br/>
-    <div class="text-center">
-        <H3>Поздравляем!</H3>
+    <h3 class="border-bottom text-center" style="margin-top: 20px">Результаты тестирования</h3>
+    <div class="text-center" style="margin-top: 20px">
+        <H4>Поздравляем!</H4>
         <p class="text-primary">Ваш результат: ${result}%</p>
     </div>
 </div>

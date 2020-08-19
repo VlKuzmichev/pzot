@@ -12,7 +12,7 @@
 
 <div class="container">
     <br/>
-    <h3 class="text-center">Вопросы</h3>
+    <h3 class="text-center" style="margin-top: 20px">Вопросы</h3>
     <a type="button" class="btn btn-outline-secondary" href="questions/create">
         <span class="fa fa-plus"></span>
         Добавить

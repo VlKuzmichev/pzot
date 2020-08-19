@@ -11,8 +11,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <br/>
-    <h3 class="text-center">Группы вопросов</h3>
+    <h3 class="text-center" style="margin-top: 20px">Группы вопросов</h3>
     <a type="button" class="btn btn-outline-secondary" href="questionsGroups/create">
         <span class="fa fa-plus"></span>
         Добавить
