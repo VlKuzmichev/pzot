@@ -11,7 +11,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
-    <h3 class="text-center style="margin-top: 20px"">Пользователи</h3>
+    <h3 class="text-center " style="margin-top: 20px">Пользователи</h3>
     <a type="button" class="btn btn-outline-secondary" href="users/create">
         <span class="fa fa-plus"></span>
         Добавить
@@ -33,7 +33,15 @@
                 <td>${user.fullName}</td>
                 <td>${user.name}</td>
                 <td><a href="mailto: ${user.email}">${user.email}</a></td>
-                <td>${user.roles}</td>
+                <td>
+                    <c:forEach items="${user.roles}" var="role" varStatus="loop">
+                        <c:choose>
+                            <c:when test="${role == ('ROLE_ADMIN')}">[Администратор] </c:when>
+                            <c:when test="${role == ('ROLE_USER')}">[Пользователь] </c:when>
+                            <c:when test="${role == ('ROLE_EXAMINER')}">[Проверяющий] </c:when>
+                        </c:choose>
+                    </c:forEach>
+                </td>
                 <td><a href="users/update?id=${user.id}"><span class='fa fa-pencil' style="color:black"></span></a></td>
                 <td><a href="users/delete?id=${user.id}"><span class='fa fa-remove' style="color:red"></span></a></td>
             </tr>
