@@ -30,13 +30,15 @@ public class UserController extends AbstractUserController {
 
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {
-        User user = new User(null, request.getParameter("name"), "12345678",
+        User user = new User(null, request.getParameter("name"), "{noop}Zz123456",
                 request.getParameter("email").toLowerCase(), request.getParameter("fullName"), Role.ROLE_USER);
 
         if (request.getParameter("id").isEmpty()) {
             super.create(user);
         } else {
-            super.update(user, getId(request));
+            User changingUser = super.get(getId(request));
+            user.setPassword(changingUser.getPassword());
+            super.update(user, changingUser.getId());
         }
         return "redirect:/users";
     }
