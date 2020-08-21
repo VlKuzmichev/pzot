@@ -31,7 +31,8 @@
         <c:forEach items="${testWithUsers.users}" var="testUser">
             <tr>
                 <td>${testUser.fullName}</td>
-                <td><a href="tests/users/delete?id=${testId}&user=${testUser.id}"><span class='fa fa-remove' style="color:red"></span></a></td>
+                <td><a href="tests/users/delete?id=${testId}&user=${testUser.id}" title="Удалить">
+                    <span class='fa fa-remove' style="color:red"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>

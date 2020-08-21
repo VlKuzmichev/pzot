@@ -31,9 +31,9 @@
             <tr>
                 <td>${answer.name}</td>
                 <td>${answer.truth ? "Верный" : "Неверный"}</td>
-                <td><a href="answers/update?id=${answer.id}&q=${answer.question.id}"><span class='fa fa-pencil'
+                <td><a href="answers/update?id=${answer.id}&q=${answer.question.id}" title="Изменить"><span class='fa fa-pencil'
                                                                            style="color:black"></span></a></td>
-                <td><a href="answers/delete?id=${answer.id}&q=${answer.question.id}"><span class='fa fa-remove'
+                <td><a href="answers/delete?id=${answer.id}&q=${answer.question.id}" title="Удалить"><span class='fa fa-remove'
                                                                            style="color:red"></span></a></td>
             </tr>
         </c:forEach>

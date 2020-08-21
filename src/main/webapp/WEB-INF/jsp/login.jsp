@@ -13,6 +13,7 @@
     <title>Авторизация</title>
     <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="resources/css/signin.css" rel="stylesheet">
+    <link rel="shortcut icon" href="resources/images/dtz.png">
     <script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js" defer></script>
     <script type="text/javascript" src="webjars/jquery/3.3.1-2/jquery.min.js" defer></script>
 </head>

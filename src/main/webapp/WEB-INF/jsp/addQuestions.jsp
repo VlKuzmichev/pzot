@@ -24,8 +24,8 @@
         <c:forEach items="${testQuestions}" var="question">
             <tr>
                 <td>${question.name}</td>
-                <td><a href="tests/questions/add?id=${test.id}&question=${question.id}"><span class='fa fa-plus'
-                                                                                              style="color:green"></span></a>
+                <td><a href="tests/questions/add?id=${test.id}&question=${question.id}" title="Добавить">
+                    <span class='fa fa-plus' style="color:green"></span></a>
                 </td>
             </tr>
         </c:forEach>

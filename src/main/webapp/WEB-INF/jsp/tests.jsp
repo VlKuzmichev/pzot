@@ -38,17 +38,17 @@
                 <td>${test.startDate.toLocalDate()}</td>
                 <td>${test.endDate.toLocalDate()}</td>
                 <td><a href="tests/questions?id=${test.id}"><span class='fa fa-question-circle'
-                                                              style="color:black"></span></a></td>
+                                                                  style="color:black"></span></a></td>
                 <td><a href="tests/users?id=${test.id}"><span class='fa fa-address-book'
-                                                               style="color:black"></span></a></td>
+                                                              style="color:black"></span></a></td>
                 <td><a href="tests/status?id=${test.id}">
                     <span class='fa fa-toggle-${test.status == "[INACTIVE]" ? "off" : "on"}'
                           style="color:${test.status == "[INACTIVE]" ? "black" : "green"}"></span></a></td>
-                <td><a href="tests/update?id=${test.id}"><span class='fa fa-pencil'
-                                                               style="color:black"></span></a></td>
+                <td><a href="tests/update?id=${test.id}" title="Изменить">
+                    <span class='fa fa-pencil' style="color:black"></span></a></td>
                 <td><a href="tests/delete?id=${test.id}"
-                       onclick="return confirm('Вы действительно хотите удалить тест?')"><span class='fa fa-remove'
-                                                                                               style="color:red"></span></a>
+                       onclick="return confirm('Вы действительно хотите удалить тест?')" title="Удалить">
+                    <span class='fa fa-remove' style="color:red"></span></a>
                 </td>
             </tr>
         </c:forEach>

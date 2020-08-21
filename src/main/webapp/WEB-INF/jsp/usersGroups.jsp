@@ -28,10 +28,10 @@
         <c:forEach items="${userGroupList}" var="usersGroup">
             <tr>
                 <td>${usersGroup.name}</td>
-                <td><a href="usersGroups/update?id=${usersGroup.id}"><span class='fa fa-pencil'
-                                                                           style="color:black"></span></a></td>
-                <td><a href="usersGroups/delete?id=${usersGroup.id}"><span class='fa fa-remove'
-                                                                           style="color:red"></span></a></td>
+                <td><a href="usersGroups/update?id=${usersGroup.id}" title="Изменить">
+                    <span class='fa fa-pencil' style="color:black"></span></a></td>
+                <td><a href="usersGroups/delete?id=${usersGroup.id}" title="Удалить">
+                    <span class='fa fa-remove' style="color:red"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -31,11 +31,11 @@
                 <td>${question.name}</td>
                 <td>${question.questionGroup.name}</td>
                 <td><a href="answers/${question.id}"><span class='fa fa-edit'
-                                                                       style="color:black"></span></a></td>
-                <td><a href="questions/update?id=${question.id}"><span class='fa fa-pencil'
-                                                                           style="color:black"></span></a></td>
-                <td><a href="questions/delete?id=${question.id}"><span class='fa fa-remove'
-                                                                           style="color:red"></span></a></td>
+                                                           style="color:black"></span></a></td>
+                <td><a href="questions/update?id=${question.id}" title="Изменить">
+                    <span class='fa fa-pencil' style="color:black"></span></a></td>
+                <td><a href="questions/delete?id=${question.id}" title="Удалить">
+                    <span class='fa fa-remove' style="color:red"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>

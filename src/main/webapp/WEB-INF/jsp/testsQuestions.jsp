@@ -31,8 +31,8 @@
         <c:forEach items="${testWithQuestions.questions}" var="question">
             <tr>
                 <td>${question.name}</td>
-                <td><a href="tests/questions/delete?id=${testId}&question=${question.id}"><span class='fa fa-remove'
-                                                                                                style="color:red"></span></a>
+                <td><a href="tests/questions/delete?id=${testId}&question=${question.id}" title="Удалить">
+                    <span class='fa fa-remove' style="color:red"></span></a>
                 </td>
             </tr>
         </c:forEach>
