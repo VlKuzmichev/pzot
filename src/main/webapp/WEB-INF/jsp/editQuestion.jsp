@@ -15,21 +15,14 @@
         <input type="hidden" name="id" value="${question.id}">
         <div class="form-group">
             <label for="name" class="col-form-label">Вопрос</label>
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="2"><input type="text" class="form-control" id="name" value="${question.name}"
-                                           name="name"
-                                           placeholder="Вопрос"></td>
-                </tr>
-                <tr>
-                    <td>Группа вопросов</td>
-                    <td><select class="form-control" name="num">
-                        <c:forEach items="${groups}" var="group">
-                            <option value="${group.id}"${group.id == question.questionGroup.id ? " selected" : ""}>${group.name}</option>
-                        </c:forEach>
-                    </select></td>
-                </tr>
-            </table>
+            <input type="text" class="form-control" id="name" value="${question.name}" name="name"
+                   placeholder="Вопрос">
+            <label for="num" class="col-form-label">Группа</label>
+            <select class="form-control" id="num" name="num">
+                <c:forEach items="${groups}" var="group">
+                    <option value="${group.id}"${group.id == question.questionGroup.id ? " selected" : ""}>${group.name}</option>
+                </c:forEach>
+            </select>
         </div>
 
         <div class="form-group">

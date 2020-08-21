@@ -1,8 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
@@ -16,17 +13,9 @@
         <input type="hidden" name="q" value="${answer.question.id}">
         <div class="form-group">
             <label for="name" class="col-form-label">Ответ</label>
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="2"><input type="text" class="form-control" id="name" value="${answer.name}" name="name"
-                                           placeholder="Answer"></td>
-                </tr>
-                <tr>
-                    <td>Верный/неверный</td>
-                    <td><input type="checkbox" class="form-control" id="truth" name="truth"
-                    ${answer.truth ? "checked" : ""}></td>
-                </tr>
-            </table>
+            <input type="text" class="form-control" id="name" value="${answer.name}" name="name"
+                   placeholder="Answer">
+            <input type="checkbox" id="truth" name="truth" ${answer.truth ? "checked" : ""}> Верный
         </div>
 
         <div class="form-group">

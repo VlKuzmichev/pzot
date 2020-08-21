@@ -19,7 +19,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ФИО</th>
+            <th>Пользователь</th>
             <th>Логин</th>
             <th>Email</th>
             <th>Роли</th>
@@ -38,7 +38,7 @@
                     <c:forEach items="${user.roles}" var="role" varStatus="loop">
                         <c:choose>
                             <c:when test="${role == ('ROLE_ADMIN')}">[Администратор] </c:when>
-                            <c:when test="${role == ('ROLE_USER')}">[Пользователь] </c:when>
+                            <c:when test="${role == ('ROLE_USER')}">[Студент] </c:when>
                             <c:when test="${role == ('ROLE_EXAMINER')}">[Проверяющий] </c:when>
                         </c:choose>
                     </c:forEach>

@@ -18,11 +18,9 @@
 </head>
 <body class="text-center">
 <form:form class="form-signin" id="login_form" action="spring_security_check" method="post">
-    <%--    <img class="mb-4" src="resources/images/upor.png">--%>
-    <h1 class="h1 mb-3 font-weight-bold">АС ДТЗ</h1>
-
+    <img class="mb-4" src="resources/images/logo-text-login.png">
     <h2 class="h5 mb-3 font-weight-normal">Автоматизированная система дистанционного тестирования знаний ОАО "РЖД"</h2>
-    <input class="form-control" id="Email" type="text" placeholder="Пользователь" name="username">
+    <input class="form-control" id="Email" type="text" placeholder="Логин" name="username">
     <input class="form-control" id="inputPassword" type="password" placeholder="Пароль" name="password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
