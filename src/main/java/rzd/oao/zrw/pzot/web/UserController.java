@@ -30,19 +30,29 @@ public class UserController extends AbstractUserController {
 
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {
-        User user = new User(null, request.getParameter("name"), "{noop}Zz123456",
-                request.getParameter("email").toLowerCase(), request.getParameter("fullName"), Role.ROLE_USER);
-
         if (request.getParameter("id").isEmpty()) {
+            User user = new User(null, request.getParameter("name"), "{noop}Zz123456",
+                    request.getParameter("email").toLowerCase(), request.getParameter("fullName"), Role.ROLE_USER);
             super.create(user);
-        } else {
+        }else if (request.getParameter("password") != null){
             User changingUser = super.get(getId(request));
+            changingUser.setPassword(request.getParameter("password"));
+            super.update(changingUser, changingUser.getId());
+        }else {
+            User changingUser = super.get(getId(request));
+            User user = new User(null, request.getParameter("name"), " ",
+                    request.getParameter("email").toLowerCase(), request.getParameter("fullName"), Role.ROLE_USER);
             user.setPassword(changingUser.getPassword());
             super.update(user, changingUser.getId());
         }
         return "redirect:/users";
     }
 
+    @GetMapping("/changePassword")
+    public String changePassword(HttpServletRequest request, Model model) {
+        model.addAttribute("user", super.get(getId(request)));
+        return "changePassword";
+    }
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
         super.delete(getId(request));

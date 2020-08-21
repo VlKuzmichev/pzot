@@ -2,6 +2,7 @@ package rzd.oao.zrw.pzot.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.Quiz;
@@ -13,16 +14,19 @@ import rzd.oao.zrw.pzot.web.SecurityUtil;
 
 import java.util.List;
 
+import static rzd.oao.zrw.pzot.util.UserUtil.prepareToSave;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("userService")
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository repository;
     private final TestService testService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository repository, TestService testService) {
+    public UserServiceImpl(UserRepository repository, TestService testService, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.testService = testService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -38,7 +42,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void update(User user) {
-        repository.save(user);
+        repository.save(prepareToSave(user, passwordEncoder));
     }
 
     @Override

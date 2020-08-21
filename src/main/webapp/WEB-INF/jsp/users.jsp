@@ -25,6 +25,7 @@
             <th>Роли</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -42,8 +43,9 @@
                         </c:choose>
                     </c:forEach>
                 </td>
-                <td><a href="users/update?id=${user.id}"><span class='fa fa-pencil' style="color:black"></span></a></td>
-                <td><a href="users/delete?id=${user.id}"><span class='fa fa-remove' style="color:red"></span></a></td>
+                <td><a href="users/update?id=${user.id}" title="Изменить данные"><span class='fa fa-pencil' style="color:black"></span></a></td>
+                <td><a href="users/changePassword?id=${user.id}" title="Сменить пароль"><span class='fa fa-key' style="color:black"></span></a></td>
+                <td><a href="users/delete?id=${user.id}" title="Удалить"><span class='fa fa-remove' style="color:red"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>

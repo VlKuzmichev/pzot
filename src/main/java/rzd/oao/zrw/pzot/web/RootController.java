@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -42,30 +43,35 @@ public class RootController {
         return "login";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String userList(Model model) {
         model.addAttribute("userList", userService.getAll());
         return "users";
     }
 
+    @PreAuthorize("hasRole('ROLE_EXAMINER')")
     @RequestMapping(value = "/tests", method = RequestMethod.GET)
     public String testList(Model model) {
         model.addAttribute("testList", testService.getAll());
         return "tests";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/usersGroups", method = RequestMethod.GET)
     public String userGroupList(Model model) {
         model.addAttribute("userGroupList", userGroupService.getAll());
         return "usersGroups";
     }
 
+    @PreAuthorize("hasRole('ROLE_EXAMINER')")
     @RequestMapping(value = "/questionsGroups", method = RequestMethod.GET)
     public String questionGroupList(Model model) {
         model.addAttribute("questionGroupList", questionGroupService.getAll());
         return "questionsGroups";
     }
 
+    @PreAuthorize("hasRole('ROLE_EXAMINER')")
     @RequestMapping(value = "/questions", method = RequestMethod.GET)
     public String questionList(Model model) {
         model.addAttribute("questionList", questionService.getAll());
