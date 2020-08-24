@@ -14,16 +14,17 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <form:form class="form-inline my-2" action="logout" method="post">
-                        <button class="btn btn-dark" href="profile">
-                            <span class="fa fa">Профиль</span>
-                        </button>
-                        <div class="mx-1">
-                        </div>
-                        <button class="btn btn-danger" type="submit" hint="Выход">
-                            <span class="fa fa-sign-out"> Выход</span>
-                        </button>
-                    </form:form>
+                    <sec:authorize access="isAuthenticated()">
+                        <form:form class="form-inline my-2" action="logout" method="post">
+                        <a class="btn btn-dark" href="profile">
+                            <span class="fa fa">Профиль</span></a>
+                            <div class="mx-1">
+                            </div>
+                            <button class="btn btn-danger" type="submit" hint="Выход">
+                                <span class="fa fa-sign-out"> Выход</span>
+                            </button>
+                        </form:form>
+                    </sec:authorize>
                 </li>
             </ul>
         </div>

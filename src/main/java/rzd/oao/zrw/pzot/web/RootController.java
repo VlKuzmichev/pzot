@@ -1,16 +1,24 @@
 package rzd.oao.zrw.pzot.web;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
+import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.service.*;
 
+import javax.validation.Valid;
+import java.security.Principal;
+
 @Controller
-public class RootController {
+public class RootController extends AbstractUserController{
 
     private final UserService userService;
 
@@ -83,6 +91,23 @@ public class RootController {
         map.addAttribute("userTestList", userService.getUserTests());
         map.addAttribute("percentList", resultService.getTestsPercents());
         return "userTests";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String changePassword(Model model, Principal user) {
+        model.addAttribute("user", userService.getByName(user.getName()));
+        return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String updateProfile(@Valid User user, BindingResult result, SessionStatus status, @AuthenticationPrincipal AuthorizedUser authUser) {
+        if (result.hasErrors()) {
+            return "profile";
+        }
+        super.update(user, authUser.getId());
+        authUser.update(user);
+        status.setComplete();
+        return "";
     }
 
 }

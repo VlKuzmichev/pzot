@@ -34,11 +34,16 @@ public class UserController extends AbstractUserController {
             User user = new User(null, request.getParameter("name"), "{noop}Zz123456",
                     request.getParameter("email").toLowerCase(), request.getParameter("fullName"), Role.ROLE_USER);
             super.create(user);
-        }else if (request.getParameter("password") != null){
+        } else if (request.getParameter("newPassword") != null) {
+            User changingUser = super.get(getId(request));
+            changingUser.setPassword(request.getParameter("newPassword"));
+            super.update(changingUser, changingUser.getId());
+            return "redirect:/";
+        } else if (request.getParameter("password") != null) {
             User changingUser = super.get(getId(request));
             changingUser.setPassword(request.getParameter("password"));
             super.update(changingUser, changingUser.getId());
-        }else {
+        } else {
             User changingUser = super.get(getId(request));
             User user = new User(null, request.getParameter("name"), " ",
                     request.getParameter("email").toLowerCase(), request.getParameter("fullName"), Role.ROLE_USER);
@@ -53,6 +58,7 @@ public class UserController extends AbstractUserController {
         model.addAttribute("user", super.get(getId(request)));
         return "changePassword";
     }
+
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
         super.delete(getId(request));

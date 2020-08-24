@@ -19,4 +19,12 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         return authUser.getId();
     }
 
+    public void update(User newUser) {
+        authUser = newUser;
+    }
+
+    @Override
+    public String toString() {
+        return authUser.toString();
+    }
 }
