@@ -45,7 +45,7 @@
                 .removeAttr("hidden");
             $("#Save").attr("disabled", "disabled");
         } else {
-            $("#Save").attr("disabled", "enabled");
+            $("#Save").removeAttr("disabled", "disabled");
             $("#error").attr("hidden", "hidden");
         }
     });
