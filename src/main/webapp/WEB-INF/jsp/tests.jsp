@@ -1,3 +1,4 @@
+<%@ page import="rzd.oao.zrw.pzot.util.DateTimeUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -32,11 +33,16 @@
         </thead>
         <tbody>
         <c:forEach items="${testList}" var="test">
+            <jsp:useBean id="test" scope="page" type="rzd.oao.zrw.pzot.model.Quiz"/>
             <tr>
                 <td>${test.name}</td>
                 <td><a href="tests/results?id=${test.id}">Результаты</a></td>
-                <td>${test.startDate.toLocalDate()}</td>
-                <td>${test.endDate.toLocalDate()}</td>
+                <td>
+                    <%=DateTimeUtil.toString(test.getStartDate())%>
+                </td>
+                <td>
+                    <%=DateTimeUtil.toString(test.getEndDate())%>
+                </td>
                 <td><a href="tests/questions?id=${test.id}"><span class='fa fa-question-circle'
                                                                   style="color:black"></span></a></td>
                 <td><a href="tests/users?id=${test.id}"><span class='fa fa-address-book'

@@ -1,3 +1,4 @@
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -18,9 +19,9 @@
             <input type="text" class="form-control" id="name" value="${test.name}" name="name"
                    placeholder="Test name">
             <label for="startDate" class="col-form-label">Дата начала</label>
-            <input id="startDate" type="text" value="${test.startDate}" name="startDate">
+            <input id="startDate" type="text" value="${fn:replace(test.startDate, 'T', ' ')}" name="startDate">
             <label for="endDate" class="col-form-label">Дата завершения</label>
-            <input id="endDate" type="text" value="${test.endDate}" name="endDate">
+            <input id="endDate" type="text" value="${fn:replace(test.endDate, 'T', ' ')}" name="endDate">
         </div>
 
         <div class="form-group">
@@ -37,7 +38,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#startDate').datetimepicker({
             format: 'Y-m-d H:i',
         });
