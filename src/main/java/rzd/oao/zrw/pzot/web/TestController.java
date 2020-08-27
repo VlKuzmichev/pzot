@@ -88,6 +88,13 @@ public class TestController extends AbstractTestController {
         return "testsQuestions";
     }
 
+    @GetMapping("/results")
+    public String results(HttpServletRequest request, ModelMap map) {
+        map.addAttribute("resultList", super.getAllResults(getId(request)));
+        map.addAttribute("statusList", super.getAllUsersTestStatuses(getId(request)));
+        return "allResults";
+    }
+
     @GetMapping("/questions/add")
     public String addQuestions(HttpServletRequest request, ModelMap map) {
         if (request.getParameter("question") != null) {

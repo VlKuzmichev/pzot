@@ -5,10 +5,12 @@ import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.service.QuestionService;
+import rzd.oao.zrw.pzot.service.ResultService;
 import rzd.oao.zrw.pzot.service.TestService;
 import rzd.oao.zrw.pzot.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 import static rzd.oao.zrw.pzot.util.ValidationUtil.assureIdConsistent;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNew;
@@ -17,7 +19,7 @@ public abstract class AbstractTestController {
     //protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private TestService service;
+    private TestService testService;
 
     @Autowired
     private UserService userService;
@@ -25,41 +27,44 @@ public abstract class AbstractTestController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private ResultService resultService;
+
     public List<Quiz> getAll() {
 //        log.info("getAll");
-        return service.getAll();
+        return testService.getAll();
     }
 
     public Quiz get(int id) {
 //        log.info("get {}", id);
-        return service.get(id);
+        return testService.get(id);
     }
 
     public Quiz create(Quiz test) {
 //        log.info("create {}", user);
         checkNew(test);
-        return service.create(test);
+        return testService.create(test);
     }
 
     public void delete(int id) {
 //        log.info("delete {}", id);
-        service.delete(id);
+        testService.delete(id);
     }
 
     public void update(Quiz test, int id) {
 //        log.info("update {} with id={}", user, id);
         assureIdConsistent(test, id);
-        service.update(test);
+        testService.update(test);
     }
 
     public Quiz getWithUsers(int testId) {
 //        log.info("update {} with id={}", user, id);
-        return service.getWithUsers(testId);
+        return testService.getWithUsers(testId);
     }
 
     public Quiz getWithQuestions(int testId) {
 //        log.info("update {} with id={}", user, id);
-        return service.getWithQuestions(testId);
+        return testService.getWithQuestions(testId);
     }
 
     public List<User> getWithoutTestUsers(int testId) {
@@ -85,21 +90,32 @@ public abstract class AbstractTestController {
     public void addQuestion(int testId, Question question) {
 //        log.info("getAll");
 
-        service.addQuestion(testId, question);
+        testService.addQuestion(testId, question);
     }
 
     public void removeQuestion(int testId, Question question) {
 //        log.info("getAll");
-        service.removeQuestion(testId, question);
+        testService.removeQuestion(testId, question);
     }
 
     public void addUser(int testId, User user) {
 //        log.info("getAll");
-        service.addUser(testId, user);
+        testService.addUser(testId, user);
     }
 
     public void removeUser(int testId, User user) {
 //        log.info("getAll");
-        service.removeUser(testId, user);
+        testService.removeUser(testId, user);
     }
+
+    public Map<User, Integer> getAllResults(int testId) {
+//        log.info("getAll");
+        return resultService.getAllResultsByTest(testId);
+    }
+
+    public Map<Integer, Integer> getAllUsersTestStatuses(int testId) {
+//        log.info("getAll");
+        return resultService.getAllUsersTestStatuses(testId);
+    }
+
 }

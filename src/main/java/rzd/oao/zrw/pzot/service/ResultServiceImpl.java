@@ -5,8 +5,10 @@ import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.Question;
 import rzd.oao.zrw.pzot.model.Quiz;
 import rzd.oao.zrw.pzot.model.Result;
+import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.QuestionRepository;
 import rzd.oao.zrw.pzot.repository.ResultRepository;
+import rzd.oao.zrw.pzot.repository.TestRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 import rzd.oao.zrw.pzot.web.SecurityUtil;
 
@@ -23,12 +25,14 @@ public class ResultServiceImpl implements ResultService {
     private final ResultRepository resultRepository;
     private final UserService userService;
     private final QuestionRepository questionRepository;
+    private final TestRepository testRepository;
 
     public ResultServiceImpl(ResultRepository resultRepository, UserService userService,
-                             QuestionRepository questionRepository) {
+                             QuestionRepository questionRepository, TestRepository testRepository) {
         this.resultRepository = resultRepository;
         this.userService = userService;
         this.questionRepository = questionRepository;
+        this.testRepository = testRepository;
     }
 
     @Override
@@ -118,5 +122,39 @@ public class ResultServiceImpl implements ResultService {
             if (!result.getAnswer().getTruth()) wrongAnswers++;
         }
         return 100 - (int) (100.0 / userResultsByTest.size() * wrongAnswers);
+    }
+
+    @Override
+    public Map<User, Integer> getAllResultsByTest(int testId) {
+        Quiz test = testRepository.getWithUsers(testId);
+        Map<User, Integer> results = new HashMap<>();
+        for (User user : test.getUsers()) {
+            List<Result> userResultsByTest = resultRepository.getAllByUserAndTest(user.getId(), testId);
+            int wrongAnswers = 0;
+            for (Result result : userResultsByTest) {
+                if (!result.getAnswer().getTruth()) wrongAnswers++;
+            }
+            results.put(user, 100 - (int) (100.0 / userResultsByTest.size() * wrongAnswers));
+        }
+        return results;
+    }
+
+    @Override
+    public Map<Integer, Integer> getAllUsersTestStatuses(int testId) {
+        Quiz test = testRepository.getWithUsers(testId);
+        int questions = testRepository.getWithQuestions(testId).getQuestions().size();
+        Map<Integer, Integer> statuses = new HashMap<>();
+        for (User user : test.getUsers()) {
+            int userId = user.getId();
+            int countAnswers = resultRepository.getAllByUserAndTest(user.getId(), testId).size();
+            if (countAnswers == 0) {
+                statuses.put(userId, 0);
+            } else if (countAnswers > 0 && countAnswers < questions) {
+                statuses.put(userId, 1);
+            } else {
+                statuses.put(userId, 2);
+            }
+        }
+        return statuses;
     }
 }
