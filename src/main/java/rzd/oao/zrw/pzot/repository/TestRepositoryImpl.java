@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.repository;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import rzd.oao.zrw.pzot.model.Quiz;
 
@@ -8,6 +9,7 @@ import java.util.List;
 @Repository
 public class TestRepositoryImpl implements TestRepository {
     private final CrudTestRepository testRepository;
+    private static final Sort SORT_NAME = new Sort(Sort.Direction.ASC, "name");
 
     public TestRepositoryImpl(CrudTestRepository testRepository) {
         this.testRepository = testRepository;
@@ -30,7 +32,7 @@ public class TestRepositoryImpl implements TestRepository {
 
     @Override
     public List<Quiz> getAll() {
-        return testRepository.findAll();
+        return testRepository.findAll(SORT_NAME);
     }
 
     @Override

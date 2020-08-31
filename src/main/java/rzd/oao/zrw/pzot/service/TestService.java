@@ -26,10 +26,10 @@ public interface TestService {
 
     void addUser(int testId, User user);
 
-    void removeUser(int testId, User user);
+    void removeUser(int testId, User user) throws NotFoundException;
 
     void addQuestion(int testId, Question question);
 
-    void removeQuestion(int testId, Question question);
+    void removeQuestion(int testId, Question question) throws NotFoundException;
 
 }

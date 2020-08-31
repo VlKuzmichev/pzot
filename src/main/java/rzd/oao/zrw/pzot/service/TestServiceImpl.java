@@ -79,7 +79,7 @@ public class TestServiceImpl implements TestService {
 
     @Transactional
     @Override
-    public void removeUser(int testId, User user) {
+    public void removeUser(int testId, User user) throws NotFoundException {
         Quiz test = getWithUsers(testId);
         test.removeUser(user);
         testRepository.save(test);
@@ -100,7 +100,7 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public void removeQuestion(int testId, Question question) {
+    public void removeQuestion(int testId, Question question) throws NotFoundException {
         Quiz test = getWithQuestions(testId);
         test.removeQuestion(question);
         testRepository.save(test);

@@ -23,7 +23,6 @@
             <th>Студент</th>
             <th>Статус</th>
             <th>Результат</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -38,10 +37,6 @@
                 <td><c:choose>
                     <c:when test="${statusList.get(result.key.id) != 2}"> - </c:when>
                     <c:otherwise>${result.value}%</c:otherwise>
-                </c:choose></td>
-                <td><c:choose>
-                    <c:when test="${statusList.get(result.key.id) != 2}"> - </c:when>
-                    <c:otherwise><a href="/">Протокол</a></c:otherwise>
                 </c:choose></td>
             </tr>
         </c:forEach>

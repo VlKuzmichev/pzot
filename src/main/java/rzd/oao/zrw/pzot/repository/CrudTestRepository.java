@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.repository;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,7 +26,7 @@ public interface CrudTestRepository extends JpaRepository<Quiz, Integer> {
     Optional<Quiz> findById(Integer id);
 
     @Override
-    List<Quiz> findAll();
+    List<Quiz> findAll(Sort sort);
 
     @Query("SELECT t FROM Quiz t JOIN FETCH t.questions WHERE t.id =:id")
     Quiz getWithQuestions(@Param("id") int id);

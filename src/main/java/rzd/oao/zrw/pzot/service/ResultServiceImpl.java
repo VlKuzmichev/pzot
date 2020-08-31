@@ -126,8 +126,9 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public Map<User, Integer> getAllResultsByTest(int testId) {
-        Quiz test = testRepository.getWithUsers(testId);
         Map<User, Integer> results = new HashMap<>();
+        Quiz test = testRepository.getWithUsers(testId);
+        if (test == null) return results;
         for (User user : test.getUsers()) {
             List<Result> userResultsByTest = resultRepository.getAllByUserAndTest(user.getId(), testId);
             int wrongAnswers = 0;
@@ -141,9 +142,11 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public Map<Integer, Integer> getAllUsersTestStatuses(int testId) {
-        Quiz test = testRepository.getWithUsers(testId);
-        int questions = testRepository.getWithQuestions(testId).getQuestions().size();
         Map<Integer, Integer> statuses = new HashMap<>();
+        Quiz test = testRepository.getWithUsers(testId);
+        if (test == null) return statuses;
+        int questions = 0;
+        if (test.getQuestions() != null) questions = test.getQuestions().size();
         for (User user : test.getUsers()) {
             int userId = user.getId();
             int countAnswers = resultRepository.getAllByUserAndTest(user.getId(), testId).size();
