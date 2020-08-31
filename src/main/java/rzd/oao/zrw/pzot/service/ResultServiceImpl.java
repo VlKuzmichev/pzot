@@ -73,7 +73,6 @@ public class ResultServiceImpl implements ResultService {
             answersCountersWithTestIds.put(testId, answersCountersWithTestIds.getOrDefault(testId, 0) + 1);
         }
         for (Integer testId : testsIds) {
-//            answers.add(resultRepository.getByIdAndUser(testId, userId).size());
             answersCounters.add(answersCountersWithTestIds.getOrDefault(testId, 0));
         }
         List<Integer> questionsCounts = new ArrayList<>();
@@ -84,7 +83,6 @@ public class ResultServiceImpl implements ResultService {
         for (int i = 0; i < testsIds.size(); i++) {
             int questionCount = questionsCounts.get(i);
             if (questionCount != 0) {
-//                double perc = 100.0 / questionsCounts.get(i) * answersCounters.get(i);
                 percents.add((int) (100.0 / questionsCounts.get(i) * answersCounters.get(i)));
             } else percents.add(0);
         }
