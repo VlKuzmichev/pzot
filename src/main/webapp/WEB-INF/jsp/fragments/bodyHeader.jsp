@@ -4,7 +4,8 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light py-0">
     <div class="container">
-        <a href="" class="navbar-brand"> АС ДТЗ "Автоматизированная система дистанционного тестирования знаний"</a>
+        <a href="" class="navbar-brand"><img alt="" height="40px" width="190px" src="resources/images/logo-text-login.png"></a>
+        <H5 class="text-center">Автоматизированная система дистанционного тестирования знаний</H5>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <!--            <span class="navbar-toggler-icon">Icon</span>  -->
@@ -15,8 +16,8 @@
                 <li class="nav-item">
                     <sec:authorize access="isAuthenticated()">
                         <form:form class="form-inline my-2" action="logout" method="post">
-                        <a class="btn btn-dark" href="profile">
-                            <span class="fa fa">Профиль</span></a>
+                            <a class="btn btn-dark" href="profile">
+                                <span class="fa fa">Профиль</span></a>
                             <div class="mx-1">
                             </div>
                             <button class="btn btn-danger" type="submit" hint="Выход">
