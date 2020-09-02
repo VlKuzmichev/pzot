@@ -14,11 +14,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.service.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Objects;
 
 @Controller
-public class RootController extends AbstractUserController{
+public class RootController extends AbstractUserController {
 
     private final UserService userService;
 
@@ -100,14 +102,24 @@ public class RootController extends AbstractUserController{
     }
 
     @PostMapping("/profile")
-    public String updateProfile(@Valid User user, BindingResult result, SessionStatus status, @AuthenticationPrincipal AuthorizedUser authUser) {
+    public String updateProfile(HttpServletRequest request, @Valid User user, BindingResult result, SessionStatus status, @AuthenticationPrincipal User authUser) {
         if (result.hasErrors()) {
             return "profile";
         }
-        super.update(user, authUser.getId());
-        authUser.update(user);
-        status.setComplete();
-        return "";
+        if (request.getParameter("newPassword") != null) {
+            User changingUser = super.get(user.getId());
+            changingUser.setPassword(request.getParameter("newPassword"));
+            super.update(changingUser, changingUser.getId());
+            authUser.setPassword(request.getParameter("newPassword"));
+            status.setComplete();
+            return "redirect:/";
+        }
+        return "profile";
+    }
+
+    private int getId(HttpServletRequest request) {
+        String paramId = Objects.requireNonNull(request.getParameter("id"));
+        return Integer.parseInt(paramId);
     }
 
 }

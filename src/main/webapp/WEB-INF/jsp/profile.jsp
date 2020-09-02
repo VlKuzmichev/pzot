@@ -7,7 +7,7 @@
 <jsp:include page="fragments/bodyHeader.jsp"/>
 <div class="container">
     <h3 class="text-center" style="margin-top: 20px">Смена пароля ${user.name}</h3>
-    <form method="post" action="users">
+    <form method="post" action="profile">
         <input type="hidden" name="id" value="${user.id}">
         <div class="container text-center" style="margin-top: 20px;margin-bottom: 10px; width: 300px">
             <label for="newPassword" class="col-form-label">Новый пароль</label>
