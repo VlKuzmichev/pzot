@@ -6,13 +6,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.Quiz;
+import rzd.oao.zrw.pzot.model.Role;
 import rzd.oao.zrw.pzot.model.User;
 import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 import rzd.oao.zrw.pzot.web.AuthorizedUser;
 import rzd.oao.zrw.pzot.web.SecurityUtil;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static rzd.oao.zrw.pzot.util.UserUtil.prepareToSave;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNotFoundWithId;
@@ -99,5 +103,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
 
         return new AuthorizedUser(user);
+    }
+
+    @Override
+    public void removeRole(Role role, int userId) {
+        User user = repository.get(userId);
+        user.getRoles().remove(role);
+        repository.save(user);
+    }
+
+    @Override
+    public void addRole(Role role, int userId) {
+        User user = repository.get(userId);
+        user.getRoles().add(role);
+        repository.save(user);
+    }
+
+    @Override
+    public Set<Role> getRolesForAdd(int userId) {
+        Set<Role> userRoles = repository.get(userId).getRoles();
+        Set<Role> allRoles = new HashSet<>();
+        allRoles.addAll(Arrays.asList(Role.class.getEnumConstants()));
+        allRoles.removeAll(userRoles);
+        return allRoles;
     }
 }

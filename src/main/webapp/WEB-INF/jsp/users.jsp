@@ -22,6 +22,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -34,14 +35,22 @@
                     <c:forEach items="${user.roles}" var="role" varStatus="loop">
                         <c:choose>
                             <c:when test="${role == ('ROLE_ADMIN')}">[Администратор] </c:when>
-                            <c:when test="${role == ('ROLE_USER')}">[Студент] </c:when>
+                            <c:when test="${role == ('ROLE_USER')}">[Пользователь] </c:when>
                             <c:when test="${role == ('ROLE_EXAMINER')}">[Проверяющий] </c:when>
                         </c:choose>
                     </c:forEach>
                 </td>
-                <td><a href="users/update?id=${user.id}" title="Изменить"><span class='fa fa-pencil' style="color:black"></span></a></td>
-                <td><a href="users/changePassword?id=${user.id}" title="Сменить пароль"><span class='fa fa-key' style="color:black"></span></a></td>
-                <td><a href="users/delete?id=${user.id}" title="Удалить"><span class='fa fa-remove' style="color:red"></span></a></td>
+                <td><a href="users/changeRoles?id=${user.id}" title="Изменить роли"><span class='fa fa-user'
+                                                                                          style="color:black"></span></a>
+                </td>
+                <td><a href="users/update?id=${user.id}" title="Изменить данные"><span class='fa fa-pencil'
+                                                                                       style="color:black"></span></a>
+                </td>
+                <td><a href="users/changePassword?id=${user.id}" title="Сменить пароль"><span class='fa fa-key'
+                                                                                              style="color:black"></span></a>
+                </td>
+                <td><a href="users/delete?id=${user.id}" title="Удалить"><span class='fa fa-remove'
+                                                                               style="color:red"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>

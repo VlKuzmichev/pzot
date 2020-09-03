@@ -2,6 +2,7 @@ package rzd.oao.zrw.pzot.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +54,13 @@ public class UserController extends AbstractUserController {
         return "redirect:/users";
     }
 
+
+    @GetMapping("/changeRoles")
+    public String changeRoles(HttpServletRequest request, Model model) {
+        model.addAttribute("user", super.get(getId(request)));
+        return "changeRoles";
+    }
+
     @GetMapping("/changePassword")
     public String changePassword(HttpServletRequest request, Model model) {
         model.addAttribute("user", super.get(getId(request)));
@@ -63,6 +71,24 @@ public class UserController extends AbstractUserController {
     public String delete(HttpServletRequest request) {
         super.delete(getId(request));
         return "redirect:/users";
+    }
+
+    @GetMapping("/roles/add")
+    public String addRole(HttpServletRequest request, ModelMap map) {
+        if (request.getParameter("role") != null) {
+            super.addRole(Role.valueOf(request.getParameter("role")), getId(request));
+        }
+        map.addAttribute("user", super.get(getId(request)));
+        map.addAttribute("roles", super.getRolesForAdd(getId(request)));
+        return "addRoles";
+    }
+
+    @GetMapping("/role/delete")
+    public String deleteRole(HttpServletRequest request, Model model) {
+        String a = request.getParameter("role");
+        super.removeRole(Role.valueOf(request.getParameter("role")), getId(request));
+        model.addAttribute("user", super.get(getId(request)));
+        return "changeRoles";
     }
 
     private int getId(HttpServletRequest request) {
