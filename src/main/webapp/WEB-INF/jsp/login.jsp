@@ -19,18 +19,13 @@
 <form:form class="form-signin" id="login_form" action="spring_security_check" method="post">
     <img class="mb-4" src="resources/images/logo-text-login.png">
     <h2 class="h5 mb-3 font-weight-normal">Автоматизированная система дистанционного тестирования знаний ОАО "РЖД"</h2>
+    <c:if test="${param.error}">
+        <div class="error" style="color: #a94442"><H5>Неверный логин или пароль</H5></div>
+    </c:if>
     <input class="form-control" id="Email" type="text" placeholder="Логин" name="username">
     <input class="form-control" id="inputPassword" type="password" placeholder="Пароль" name="password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
-    <%--    <c:if test="${param.error}">--%>
-    <%--        <div class="error">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</div>--%>
-    <%--    </c:if>--%>
-    <%--    <c:if test="${not empty param.message}">--%>
-    <%--        <div class="message"><spring:message code="${param.message}"/></div>--%>
-    <%--    </c:if>--%>
-    <%--    <br/>--%>
-    <%--    <br/>--%>
 </form:form>
 
 </body>
