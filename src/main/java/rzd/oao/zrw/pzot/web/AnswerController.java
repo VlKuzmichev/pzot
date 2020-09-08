@@ -13,12 +13,11 @@ import java.util.Objects;
 public class AnswerController extends AbstractAnswerController {
     @RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
     public String createAnswer(@PathVariable int id, Model model) {
-        Answer newanswer = new Answer();
-        int qid = id;
-        newanswer.setName("");
-        newanswer.setQuestion(super.getQuestionById(id));
-        newanswer.setTruth(false);
-        model.addAttribute("answer", newanswer);
+        Answer newAnswer = new Answer();
+        newAnswer.setName("");
+        newAnswer.setQuestion(super.getQuestionById(id));
+        newAnswer.setTruth(false);
+        model.addAttribute("answer", newAnswer);
         return "editAnswer";
     }
 

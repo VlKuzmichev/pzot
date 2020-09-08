@@ -79,7 +79,7 @@ public class UserController extends AbstractUserController {
             super.addRole(Role.valueOf(request.getParameter("role")), getId(request));
         }
         map.addAttribute("user", super.get(getId(request)));
-        map.addAttribute("roles", super.getRolesForAdd(getId(request)));
+        map.addAttribute("roles", super.getRolesForAddByUserId(getId(request)));
         return "addRoles";
     }
 

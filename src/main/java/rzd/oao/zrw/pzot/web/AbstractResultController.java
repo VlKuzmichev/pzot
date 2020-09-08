@@ -1,5 +1,7 @@
 package rzd.oao.zrw.pzot.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import rzd.oao.zrw.pzot.model.*;
 import rzd.oao.zrw.pzot.service.AnswerService;
@@ -10,7 +12,7 @@ import rzd.oao.zrw.pzot.service.UserService;
 import static rzd.oao.zrw.pzot.util.ValidationUtil.checkNew;
 
 public abstract class AbstractResultController {
-    //protected final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private ResultService resultService;
@@ -25,34 +27,36 @@ public abstract class AbstractResultController {
     private AnswerService answerService;
 
 
-    public Question getNotAnsweredQuestion(int testId) {
+    public Question getNotAnsweredQuestionByTestId(int testId) {
+        log.info("getNotAnsweredQuestionByTestId {}", testId);
         int userId = SecurityUtil.authUserId();
         return resultService.getNotAnsweredQuestion(userId, testId);
     }
 
     public Result create(Result result) {
-//        log.info("create {}", user);
+        log.info("create {}", result);
         checkNew(result);
         return resultService.create(result);
     }
 
     public Quiz getTest(int testId) {
-////        log.info("create {}", user);
+        log.info("getTest {}", testId);
         return testService.get(testId);
     }
 
     public User getUser() {
         int userId = SecurityUtil.authUserId();
-////        log.info("create {}", user);
+        log.info("getUser {}", userId);
         return userService.get(userId);
     }
 
     public Answer getAnswer(int answerId) {
-////        log.info("create {}", user);
+        log.info("getAnswer {}", answerId);
         return answerService.get(answerId);
     }
 
-    protected int getUserResult(int testId) {
+    public int getUserResultByTestId(int testId) {
+        log.info("getUserResultByTestId {}", testId);
         int userId = SecurityUtil.authUserId();
         return resultService.getUserResult(userId, testId);
     }

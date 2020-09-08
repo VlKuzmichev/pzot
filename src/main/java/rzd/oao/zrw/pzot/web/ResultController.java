@@ -22,9 +22,9 @@ public class ResultController extends AbstractResultController {
         if (super.getTest(id).getStatus().toString().compareTo("[INACTIVE]") == 0) {
             return "redirect:/userTests";
         }
-        Question question = super.getNotAnsweredQuestion(id);
+        Question question = super.getNotAnsweredQuestionByTestId(id);
         if (question == null) {
-            map.addAttribute("result", super.getUserResult(id));
+            map.addAttribute("result", super.getUserResultByTestId(id));
             return "endTest";
         }
         map.addAttribute("question", question);
@@ -37,11 +37,11 @@ public class ResultController extends AbstractResultController {
         int answerId = getAnswerId(request);
         int testId = getTestId(request);
         Result result = new Result(LocalDateTime.now(), super.getUser(), super.getTest(testId),
-                super.getNotAnsweredQuestion(testId), super.getAnswer(answerId));
+                super.getNotAnsweredQuestionByTestId(testId), super.getAnswer(answerId));
         if (!request.getParameter("answer").isEmpty()) super.create(result);
-        Question question = super.getNotAnsweredQuestion(testId);
+        Question question = super.getNotAnsweredQuestionByTestId(testId);
         if (question == null) {
-            map.addAttribute("result", super.getUserResult(testId));
+            map.addAttribute("result", super.getUserResultByTestId(testId));
             return "endTest";
         }
         map.addAttribute("question", question);
