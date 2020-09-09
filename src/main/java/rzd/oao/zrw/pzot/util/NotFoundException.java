@@ -1,9 +1,11 @@
 package rzd.oao.zrw.pzot.util;
 
-public class NotFoundException extends RuntimeException {
-    public static final String NOT_FOUND_EXCEPTION = "exception.common.notFound";
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "No data found") // 404
+public class NotFoundException extends RuntimeException {
     public NotFoundException(String arg) {
-        super(NOT_FOUND_EXCEPTION);
+        super(arg);
     }
 }
