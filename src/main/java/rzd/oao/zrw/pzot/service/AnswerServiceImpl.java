@@ -49,10 +49,10 @@ public class AnswerServiceImpl implements AnswerService {
         return answerRepository.getAllByQuestion(id);
     }
 
-    @Override
-    public Answer getWithQuestion(int id) throws NotFoundException {
-        return answerRepository.getWithQuestion(id);
-    }
+//    @Override
+//    public Answer getWithQuestion(int id) throws NotFoundException {
+//        return answerRepository.getWithQuestion(id);
+//    }
 
     @Override
     public Answer getByName(String name) {

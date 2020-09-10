@@ -14,11 +14,11 @@ public class UserTestData {
     public static final Integer EXAMINER_ID = 100005;
     public static final Integer ADMIN_ID = 100006;
 
-    public static final User USER = new User(USER_ID, "User", "password", "user@yandex.ru",
+    public static final User USER = new User(USER_ID, "User", "{noop}password", "user@yandex.ru",
             "Ivanov Ivan Ivanovich", Role.ROLE_USER);
-    public static final User EXAMINER = new User(EXAMINER_ID, "Exam", "password2", "exam@yandex.ru",
+    public static final User EXAMINER = new User(EXAMINER_ID, "Exam", "{noop}password2", "exam@yandex.ru",
             "Petrov Peter Petrovich", Role.ROLE_EXAMINER);
-    public static final User ADMIN = new User(ADMIN_ID, "Admin", "password3", "admin@yandex.ru",
+    public static final User ADMIN = new User(ADMIN_ID, "Admin", "{noop}password3", "admin@yandex.ru",
             "Adminov Admin Adminovich", Role.ROLE_ADMIN);
 
 //    public static final User NEW_USER = new User(USER_ID+16, "NewUser", "password4", "newuser@yandex.ru",

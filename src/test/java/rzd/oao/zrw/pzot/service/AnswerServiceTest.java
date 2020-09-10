@@ -27,14 +27,14 @@ class AnswerServiceTest {
     @Autowired
     protected AnswerService answerService;
 
-    // Test creating answer
+    // Creating answer
     @Test
     void create() {
         Answer created = answerService.create(NEW_ANSWER);
         assertThat(created).isEqualTo(NEW_ANSWER);
     }
 
-    // Test deleting answer from database by Id
+    // Remove answer from database by Id
     @Test
     void delete() {
         answerService.delete(ANSWER_ID);
@@ -45,14 +45,14 @@ class AnswerServiceTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    // Test if not found deleting answer  by Id
+    // If not found answer to remove by Id
     @Test
     void testDeleteNotFound() {
         assertThrows(NotFoundException.class, () ->
                 answerService.delete(23643));
     }
 
-    // Test updating answer data
+    // Update answer data
     @Test
     void update() {
         Answer updated = new Answer(ANSWER);
@@ -61,36 +61,36 @@ class AnswerServiceTest {
         assertThat(answerService.get(ANSWER_ID).getName()).isNotEqualTo(ANSWER.getName());
     }
 
-    // Test Get answer from database by Id
+    // Get answer from database by Id
     @Test
     void get() {
         Answer answer = answerService.get(ANSWER_ID);
         assertThat(answer).isEqualTo(ANSWER);
     }
 
-    // Test Get answer from database by none exist Id
+    // Not found by Id
     @Test
-    void testGetNotFound() {
+    void getNotFoundById() {
         assertThrows(NotFoundException.class, () -> {
             Answer answer = answerService.get(43);
         });
     }
 
-    // Test Get all answers from database
+    // Get all answers
     @Test
     void getAll() {
         List<Answer> actual = answerService.getAll();
         assertThat(actual).isEqualTo(getAnswers());
     }
 
-    // Test Get all answers from database
+    // Get all answers by question
     @Test
     void getAllByQuestion() {
         List<Answer> actual = answerService.getAllByQuestion(100009);
         assertThat(actual).isEqualTo(getAnswersByQuestion());
     }
 
-    // Test Get question from database by name
+    // Get answer by name
     @Test
     void getByName() {
         Answer answer = answerService.getByName(ANSWER.getName());

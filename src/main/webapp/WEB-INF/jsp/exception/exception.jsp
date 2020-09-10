@@ -8,13 +8,11 @@
 <body>
 <jsp:include page="../fragments/bodyHeader.jsp"/>
 
-<div class="jumbotron">
     <div class="container text-center">
         <br>
         <h4>Ошибка приложения</h4>
         <h2>${exception.message}</h2>
     </div>
-</div>
 <!--
 <c:forEach items="${exception.stackTrace}" var="stackTrace">
     ${stackTrace}

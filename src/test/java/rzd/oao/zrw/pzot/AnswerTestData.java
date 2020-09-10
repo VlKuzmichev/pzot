@@ -32,14 +32,12 @@ public class AnswerTestData {
     public static final Answer NEW_ANSWER = new Answer(null, "New answer", false, QUESTION);
 
     public static List<Answer> getAnswers() {
-        // Using Stream API to collect answers to list
         List<Answer> list = Stream.of(ANSWER, ANSWER2, ANSWER3, ANSWER4, ANSWER5, ANSWER6, ANSWER7, ANSWER8)
                 .collect(Collectors.toList());
         return list;
     }
 
     public static List<Answer> getAnswersByQuestion() {
-        // Using Stream API to collect answers to list
         List<Answer> list = Stream.of(ANSWER3, ANSWER4, ANSWER2, ANSWER)
                 .collect(Collectors.toList());
         return list;

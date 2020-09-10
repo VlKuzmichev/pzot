@@ -18,7 +18,7 @@ public interface AnswerService {
 
     List<Answer> getAllByQuestion(int id) throws NotFoundException;
 
-    Answer getWithQuestion(int id) throws NotFoundException;
+//    Answer getWithQuestion(int id) throws NotFoundException;
 
     Answer getByName(String name);
 

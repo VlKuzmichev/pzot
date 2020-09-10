@@ -63,7 +63,7 @@ class UserServiceTest {
     @Test
     void get() {
         User user = service.get(USER_ID);
-        assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups", "tests");
+        assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups", "tests", "results");
     }
 
     // Test Get user from database by none exist Id
@@ -89,7 +89,7 @@ class UserServiceTest {
     @Test
     void getWithUserGroups() {
         User user = service.getWithUserGroups(USER_ID);
-        assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups", "tests");
+        assertThat(user).isEqualToIgnoringGivenFields(USER, "userGroups", "tests", "results");
         User expected = USER;
         expected.setUserGroups(getUserGroups());
         // Compare first element of userGroups field
@@ -100,7 +100,7 @@ class UserServiceTest {
     @Test
     void getByName() {
         User exam = service.getByName(EXAMINER.getName());
-        assertThat(exam).isEqualToIgnoringGivenFields(EXAMINER, "userGroups", "tests");
+        assertThat(exam).isEqualToIgnoringGivenFields(EXAMINER, "userGroups", "tests", "results");
     }
 
     // Test Get not found user by name

@@ -43,7 +43,8 @@ class TestServiceTest {
     void delete() {
         testService.delete(TEST_ID);
         List<Quiz> actual = testService.getAll();
-        List<Quiz> expected = new ArrayList<>();
+        List<Quiz> expected = getTests();
+        expected.remove(0);
         assertThat(actual).isEqualTo(expected);
     }
 
