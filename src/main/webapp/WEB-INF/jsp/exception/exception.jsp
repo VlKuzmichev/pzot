@@ -10,7 +10,7 @@
 
     <div class="container text-center">
         <br>
-        <h4>Ошибка приложения</h4>
+        <h4>Ошибка! Не верный запрос.</h4>
         <h2>${exception.message}</h2>
     </div>
 <!--

@@ -1,8 +1,5 @@
 package rzd.oao.zrw.pzot.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,7 +9,6 @@ import java.util.List;
 public class Question extends AbstractNamedEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_group_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private QuestionGroup questionGroup;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")

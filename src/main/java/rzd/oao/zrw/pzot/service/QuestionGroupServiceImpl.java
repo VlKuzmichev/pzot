@@ -26,7 +26,7 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 
     @Override
     public void delete(int id) throws NotFoundException {
-        if (!questionGroupRepository.delete(id)) throw new NotFoundException("id=" + id);
+        if (!questionGroupRepository.delete(id)) throw new NotFoundException("Not found with id=" + id);
     }
 
     @Override

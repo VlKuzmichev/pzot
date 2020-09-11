@@ -26,7 +26,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public void delete(int id) throws NotFoundException {
-        if (!answerRepository.delete(id)) throw new NotFoundException("id=" + id);
+        if (!answerRepository.delete(id)) throw new NotFoundException("Not found with id=" + id);
     }
 
     @Override

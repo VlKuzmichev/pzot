@@ -30,7 +30,7 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void delete(int id) throws NotFoundException {
-        if (!testRepository.delete(id)) throw new NotFoundException("id=" + id);
+        if (!testRepository.delete(id)) throw new NotFoundException("Not found with id=" + id);
     }
 
     @Override

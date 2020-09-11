@@ -33,7 +33,7 @@ class QuestionGroupServiceTest {
         assertThat(created).isEqualTo(NEW_QUESTION_GROUP);
     }
 
-    // Remove new group of questions from database by Id
+    // Remove new group of questions by Id
     @Test
     void delete() {
         questionGroupService.create(NEW_QUESTION_GROUP);
