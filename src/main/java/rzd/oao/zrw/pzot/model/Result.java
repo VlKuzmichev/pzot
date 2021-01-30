@@ -8,38 +8,30 @@ import java.time.LocalDateTime;
         name = "results_idx")})
 public class Result extends AbstractBaseEntity {
 
-    @Column(name = "answer_date", nullable = false)
-    private LocalDateTime answerDate;
+    @Column(name = "completion_date", nullable = false)
+    private LocalDateTime completionDate;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "test_id", nullable = false)
     private Quiz test;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "question_id", nullable = false)
-    private Question question;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "answer_id", nullable = false)
-    private Answer answer;
 
     public Result() {
     }
 
-    public Result(LocalDateTime answerDate, User user, Quiz test, Question question, Answer answer) {
-        this.answerDate = answerDate;
+    public Result(LocalDateTime completionDate, User user, Quiz test) {
+        this.completionDate = completionDate;
         this.user = user;
         this.test = test;
-        this.question = question;
-        this.answer = answer;
     }
 
-    public LocalDateTime getAnswerDate() {
-        return answerDate;
+    public LocalDateTime getCompletionDate() {
+        return completionDate;
     }
 
-    public void setAnswerDate(LocalDateTime answerDate) {
-        this.answerDate = answerDate;
+    public void setCompletionDate(LocalDateTime answerDate) {
+        this.completionDate = answerDate;
     }
 
     public User getUser() {
@@ -58,19 +50,4 @@ public class Result extends AbstractBaseEntity {
         this.test = test;
     }
 
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
-
-    public Answer getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
-    }
 }

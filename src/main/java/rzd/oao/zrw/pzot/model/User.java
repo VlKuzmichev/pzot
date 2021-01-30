@@ -37,9 +37,6 @@ public class User extends AbstractBaseEntity {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private List<Quiz> tests;
 
-//    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-//    private List<Result> results;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Result> results;
 
@@ -128,7 +125,6 @@ public class User extends AbstractBaseEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
-//        this.roles = roles;
     }
 
 
