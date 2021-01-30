@@ -85,8 +85,6 @@ CREATE TABLE tests_questions (
                                  question_id int references questions(id),
                                  CONSTRAINT tests_questions_idx UNIQUE (test_id, question_id),
                                  primary key (test_id, question_id)
---     FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
---     FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tests_users (
@@ -94,8 +92,6 @@ CREATE TABLE tests_users (
                              user_id int references users(id),
                              CONSTRAINT tests_users_idx UNIQUE (test_id, user_id),
                              primary key (test_id, user_id)
---     FOREIGN KEY (test_id) REFERENCES tests (id),
---     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE test_statuses
@@ -109,14 +105,10 @@ CREATE TABLE test_statuses
 CREATE TABLE results
 (
     id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    answer_date      TIMESTAMP               NOT NULL,
+    completion_date  TIMESTAMP               NOT NULL,
     user_id          INTEGER                 NOT NULL,
     test_id          INTEGER                 NOT NULL,
-    question_id      INTEGER                 NOT NULL,
-    answer_id        INTEGER                 NOT NULL,
-    CONSTRAINT results_idx UNIQUE (user_id, test_id, question_id),
+    CONSTRAINT results_idx UNIQUE (user_id, test_id),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE,
-    FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE,
-    FOREIGN KEY (answer_id) REFERENCES answers (id) ON DELETE CASCADE
+    FOREIGN KEY (test_id) REFERENCES tests (id) ON DELETE CASCADE
 );

@@ -39,12 +39,6 @@ public class ResultRepositoryImpl implements ResultRepository {
         return resultRepository.getAllByUserWithTests(id);
     }
 
-//    @Override
-//    public List<Result> getByIdAndUser(int id, int userId) {
-//        return resultRepository.getByIdAndUser(id, userId);
-//    }
-
-
     @Override
     public List<Result> getResultsWithQuestionsByTestId(int testId, int userId) {
         return resultRepository.getResultsWithQuestionsByTestId(testId, userId);

@@ -16,8 +16,6 @@ public interface ResultRepository {
 
     List<Result> getAllByUserWithTests(int id);
 
-//    List<Result> getByIdAndUser(int id, int userId);
-
     List<Result> getResultsWithQuestionsByTestId(int testId, int userId);
 
     List<Result> getAllByUserAndTest(int userId, int testId);

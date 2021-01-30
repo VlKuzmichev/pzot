@@ -71,5 +71,5 @@ VALUES (100019, 100004),
        (100019, 100005),
        (100020, 100004);
 
-INSERT INTO results (answer_date, user_id, test_id, question_id, answer_id)
-VALUES ('2020-04-10 10:00:00', 100004, 100019, 100009, 100012); -- 100021
+INSERT INTO results (completion_date, user_id, test_id)
+VALUES ('2020-04-10 10:00:00', 100004, 100019); -- 100021

@@ -1,6 +1,5 @@
 package rzd.oao.zrw.pzot.repository;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import rzd.oao.zrw.pzot.model.Answer;
 

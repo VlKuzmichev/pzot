@@ -1,7 +1,5 @@
 package rzd.oao.zrw.pzot.model;
 
-//import org.springframework.security.core.GrantedAuthority;
-
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role  implements GrantedAuthority {
