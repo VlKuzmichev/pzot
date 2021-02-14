@@ -1,9 +1,9 @@
 package rzd.oao.zrw.pzot.repository;
 
+
 import rzd.oao.zrw.pzot.model.User;
 
 import java.util.List;
-import java.util.Set;
 
 public interface UserRepository {
     User save(User user);
@@ -17,11 +17,6 @@ public interface UserRepository {
     List<User> getAll();
 
     // null if not found
-    User getWithUserGroups(int id);
+//    User getByName(String name);
 
-    // null if not found
-    User getByName(String name);
-
-    // null if not found
-    User getWithTests(int id);
 }

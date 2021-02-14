@@ -4,7 +4,6 @@ import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,22 +22,11 @@ public class User extends AbstractBaseEntity {
     @Column(name = "full_name")
     private String fullName;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_group_users", joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "group_id")})
-    private List<UserGroup> userGroups;
-
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    private List<Quiz> tests;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Result> results;
 
     public User() {
     }
@@ -69,24 +57,6 @@ public class User extends AbstractBaseEntity {
         this.name = name;
     }
 
-    public List<Quiz> getTests() {
-        return tests;
-    }
-
-    public void setTests(List<Quiz> tests) {
-        this.tests = tests;
-    }
-
-    public void addTest(Quiz test) {
-        this.tests.add(test);
-        test.getUsers().add(this);
-    }
-
-    public void removeTest(Quiz test) {
-        this.tests.remove(test);
-        test.getUsers().remove(this);
-    }
-
     public String getPassword() {
         return password;
     }
@@ -111,14 +81,6 @@ public class User extends AbstractBaseEntity {
         this.fullName = fullName;
     }
 
-    public List<UserGroup> getUserGroups() {
-        return userGroups;
-    }
-
-    public void setUserGroups(List<UserGroup> userGroups) {
-        this.userGroups = userGroups;
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
@@ -126,7 +88,6 @@ public class User extends AbstractBaseEntity {
     public void setRoles(Set<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
     }
-
 
     @Override
     public boolean equals(Object o) {

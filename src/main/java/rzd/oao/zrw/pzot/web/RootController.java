@@ -1,127 +1,56 @@
 package rzd.oao.zrw.pzot.web;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import rzd.oao.zrw.pzot.model.User;
-import rzd.oao.zrw.pzot.service.*;
+import rzd.oao.zrw.pzot.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.security.Principal;
-import java.util.Objects;
+import java.net.URI;
+import java.util.List;
 
-@Controller
-public class RootController extends AbstractUserController {
+@RestController
+@RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
+public class RootController {
 
-    private final UserService userService;
+    private final UserService service;
 
-    private final UserGroupService userGroupService;
-
-    private final QuestionGroupService questionGroupService;
-
-    private final QuestionService questionService;
-
-    private final TestService testService;
-
-    private final ResultService resultService;
-
-    public RootController(UserService userService, UserGroupService userGroupService, QuestionGroupService questionGroupService, QuestionService questionService, TestService testService, ResultService resultService) {
-        this.userService = userService;
-        this.userGroupService = userGroupService;
-        this.questionGroupService = questionGroupService;
-        this.questionService = questionService;
-        this.testService = testService;
-        this.resultService = resultService;
+    public RootController(UserService userService) {
+        this.service = userService;
     }
 
-    @GetMapping("/")
-    public String root() {
-        return "index";
+    @GetMapping("/{id}")
+    public User get(@PathVariable String id) {
+        return service.get(Integer.parseInt(id));
     }
 
-    @GetMapping(value = "/login")
-    public String login() {
-        return "login";
+    @GetMapping()
+    public List<User> users() {
+        return service.getAll();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String userList(Model model) {
-        model.addAttribute("userList", userService.getAll());
-        return "users";
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> createWithLocation(@RequestBody User user) {
+        User created = service.create(user);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/user/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PreAuthorize("hasRole('ROLE_EXAMINER')")
-    @RequestMapping(value = "/tests", method = RequestMethod.GET)
-    public String testList(Model model) {
-        model.addAttribute("testList", testService.getAll());
-        return "tests";
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void update(@RequestBody User user, @PathVariable int id) {
+        // Id проверить в сервисе AssureIdConsist
+        service.update(user);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/usersGroups", method = RequestMethod.GET)
-    public String userGroupList(Model model) {
-        model.addAttribute("userGroupList", userGroupService.getAll());
-        return "usersGroups";
-    }
-
-    @PreAuthorize("hasRole('ROLE_EXAMINER')")
-    @RequestMapping(value = "/questionsGroups", method = RequestMethod.GET)
-    public String questionGroupList(Model model) {
-        model.addAttribute("questionGroupList", questionGroupService.getAll());
-        return "questionsGroups";
-    }
-
-    @PreAuthorize("hasRole('ROLE_EXAMINER')")
-    @RequestMapping(value = "/questions", method = RequestMethod.GET)
-    public String questionList(Model model) {
-        model.addAttribute("questionList", questionService.getAll());
-        return "questions";
-    }
-
-    @RequestMapping(value = "/userTests", method = RequestMethod.GET)
-    public String userTestsList(ModelMap map) {
-        map.addAttribute("userTestList", userService.getUserTests());
-        map.addAttribute("percentList", resultService.getTestsPercents());
-        return "userTests";
-    }
-
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String changePassword(Model model, Principal user) {
-        model.addAttribute("user", userService.getByName(user.getName()));
-        return "profile";
-    }
-
-    @PostMapping("/profile")
-    public String updateProfile(HttpServletRequest request, @Valid User user, BindingResult result, SessionStatus status, @AuthenticationPrincipal User authUser) {
-        if (result.hasErrors()) {
-            return "profile";
-        }
-        if (request.getParameter("newPassword") != null) {
-            User changingUser = super.get(user.getId());
-            changingUser.setPassword(request.getParameter("newPassword"));
-            super.update(changingUser, changingUser.getId());
-            authUser.setPassword(request.getParameter("newPassword"));
-            status.setComplete();
-            return "redirect:/";
-        }
-        return "profile";
-    }
-
-    private int getId(HttpServletRequest request) {
-        String paramId = Objects.requireNonNull(request.getParameter("id"));
-        return Integer.parseInt(paramId);
+    @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        service.delete(id);
     }
 
 }
-
-
