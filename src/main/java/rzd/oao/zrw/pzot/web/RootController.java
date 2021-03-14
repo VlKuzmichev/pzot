@@ -47,7 +47,7 @@ public class RootController {
         service.update(user);
     }
 
-    @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         service.delete(id);
