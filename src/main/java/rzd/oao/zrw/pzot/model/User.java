@@ -1,5 +1,8 @@
 package rzd.oao.zrw.pzot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
@@ -22,6 +25,12 @@ public class User extends AbstractBaseEntity {
     @Column(name = "full_name")
     private String fullName;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_group_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private UserGroup group;
+
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
@@ -33,19 +42,21 @@ public class User extends AbstractBaseEntity {
 
     // for update
     public User(User u) {
-        this(u.getId(), u.getName(), u.getPassword(), u.getEmail(), u.getFullName(), u.getRoles());
+        this(u.getId(), u.getName(), u.getPassword(), u.getEmail(), u.getFullName(), u.getGroup(), u.getRoles());
     }
 
-    public User(Integer id, String name, String password, String email, String fullName, Role role, Role... roles) {
-        this(id, name, password, email, fullName, EnumSet.of(role, roles));
+    public User(Integer id, String name, String password, String email, String fullName, UserGroup group, Role role, Role... roles) {
+        this(id, name, password, email, fullName, group, EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String name, String password, String email, String fullName, Set<Role> roles) {
+
+    public User(Integer id, String name, String password, String email, String fullName, UserGroup group, Set<Role> roles) {
         super(id);
         this.name = name;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
+        this.group = group;
         this.roles = roles;
     }
 
@@ -95,6 +106,14 @@ public class User extends AbstractBaseEntity {
         if (!(o instanceof User)) return false;
         User that = (User) o;
         return Objects.equals(this.getId(), that.getId());
+    }
+
+    public UserGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(UserGroup group) {
+        this.group = group;
     }
 
     @Override

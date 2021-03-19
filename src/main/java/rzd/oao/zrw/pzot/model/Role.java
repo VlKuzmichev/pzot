@@ -4,7 +4,7 @@ package rzd.oao.zrw.pzot.model;
 
 public enum Role {// implements GrantedAuthority {
     ROLE_USER,
-    ROLE_EDITOR,
+    ROLE_EXAMINER,
     ROLE_ADMIN;
 
 //    @Override

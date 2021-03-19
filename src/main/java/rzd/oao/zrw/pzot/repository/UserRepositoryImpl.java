@@ -5,7 +5,7 @@ import rzd.oao.zrw.pzot.model.User;
 
 import java.util.List;
 
-@Repository
+@Repository("userRepository")
 public class UserRepositoryImpl implements UserRepository {
 //    private static final Sort SORT_NAME_EMAIL = new Sort(Sort.Direction.ASC, "name", "email");
 
@@ -34,10 +34,5 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getAll() {
         return crudUserRepository.findAll(/*SORT_NAME_EMAIL*/);
     }
-
-//    @Override
-//    public User getByName(String name) {
-//        return crudUserRepository.getByName(name);
-//    }
 
 }

@@ -13,11 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RootController {
+public class UserController {
 
     private final UserService service;
 
-    public RootController(UserService userService) {
+    public UserController(UserService userService) {
         this.service = userService;
     }
 
