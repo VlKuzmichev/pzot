@@ -19,9 +19,15 @@ public class UserGroupController {
     public UserGroupController(UserGroupService userGroupService) {
         this.userGroupService = userGroupService;
     }
+
     @GetMapping("/{id}")
-    public UserGroup get(@PathVariable String id) {
-        return userGroupService.get(Integer.parseInt(id));
+    public UserGroup get(@PathVariable int id) {
+        return userGroupService.get(id);
+    }
+
+    @GetMapping("/group?name={name}")
+    public UserGroup get(@PathVariable String name) {
+        return userGroupService.getByName(name);
     }
 
     @GetMapping()

@@ -34,9 +34,11 @@ public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@RequestBody User user) {
         User created = service.create(user);
+        System.out.println(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/user/{id}")
                 .buildAndExpand(created.getId()).toUri();
+        System.out.println("POST!!");
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
@@ -44,6 +46,8 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@RequestBody User user, @PathVariable int id) {
         // Id проверить в сервисе AssureIdConsist
+        System.out.println(user.getGroup().getName());
+        System.out.println("PUT!!");
         service.update(user);
     }
 

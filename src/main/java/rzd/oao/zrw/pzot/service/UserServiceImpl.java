@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import rzd.oao.zrw.pzot.model.User;
+import rzd.oao.zrw.pzot.model.UserGroup;
+import rzd.oao.zrw.pzot.repository.UserGroupRepository;
 import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional(readOnly = true)
@@ -17,11 +20,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {//, UserDetailsService {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final UserRepository repository;
+//    private final UserGroupRepository groupRepository;
 //    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository repository/*, PasswordEncoder passwordEncoder*/) {
+    public UserServiceImpl(UserRepository repository,/*, PasswordEncoder passwordEncoder*/UserGroupRepository groupRepository) {
         this.repository = repository;
 //        this.passwordEncoder = passwordEncoder;
+//        this.groupRepository = groupRepository;
     }
 
     @Transactional
@@ -41,6 +46,9 @@ public class UserServiceImpl implements UserService {//, UserDetailsService {
     @Override
     public void update(User user) {
         repository.save(user /*prepareToSave(user, passwordEncoder)*/);
+//        UserGroup group = groupRepository.get(user.getGroup().getId());
+//        group.addUser(user);
+//        groupRepository.save(group);
     }
 
     @Override

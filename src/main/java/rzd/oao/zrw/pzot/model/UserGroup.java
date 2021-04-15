@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "user_groups", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"},
         name = "user_group_unique_name_idx")})
 public class UserGroup extends AbstractNamedEntity {
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
+    @OneToMany(mappedBy = "group")
     @JsonIgnore
     private List<User> users;
 
@@ -23,6 +23,10 @@ public class UserGroup extends AbstractNamedEntity {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+//    public void addUser(User user) {
+//        this.users.add(user);
+//    }
 
     @Override
     public String toString() {
