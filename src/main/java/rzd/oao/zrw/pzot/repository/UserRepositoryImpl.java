@@ -35,4 +35,8 @@ public class UserRepositoryImpl implements UserRepository {
         return crudUserRepository.findAll(/*SORT_NAME_EMAIL*/);
     }
 
+    @Override
+    public User getByName(String name) {
+        return crudUserRepository.getByName(name);
+    }
 }

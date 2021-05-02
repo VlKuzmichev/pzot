@@ -11,6 +11,7 @@ import rzd.oao.zrw.pzot.service.UserService;
 import java.net.URI;
 import java.util.List;
 
+
 @RestController
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
@@ -26,13 +27,16 @@ public class UserController {
         return service.get(Integer.parseInt(id));
     }
 
+
     @GetMapping()
+    //@CrossOrigin(origins = "http://localhost:8080")
     public List<User> users() {
         return service.getAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@RequestBody User user) {
+        user.setPassword("Zz123456");
         User created = service.create(user);
         System.out.println(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
