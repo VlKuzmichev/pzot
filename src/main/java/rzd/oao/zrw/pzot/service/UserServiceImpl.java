@@ -3,31 +3,35 @@ package rzd.oao.zrw.pzot.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import rzd.oao.zrw.pzot.model.Role;
 import rzd.oao.zrw.pzot.model.User;
-import rzd.oao.zrw.pzot.model.UserGroup;
-import rzd.oao.zrw.pzot.repository.UserGroupRepository;
 import rzd.oao.zrw.pzot.repository.UserRepository;
 import rzd.oao.zrw.pzot.util.NotFoundException;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @Service("userService")
-public class UserServiceImpl implements UserService {//, UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final UserRepository repository;
-//    private final UserGroupRepository groupRepository;
-//    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository repository,/*, PasswordEncoder passwordEncoder*/UserGroupRepository groupRepository) {
+    //    private final UserGroupRepository groupRepository;
+    //private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRepository repository){//, PasswordEncoder passwordEncoder) {
         this.repository = repository;
-//        this.passwordEncoder = passwordEncoder;
+      //  this.passwordEncoder = passwordEncoder;
 //        this.groupRepository = groupRepository;
     }
 
@@ -64,13 +68,27 @@ public class UserServiceImpl implements UserService {//, UserDetailsService {
         return repository.getAll();
     }
 
-//    @Override
-//    public User getByName(String name) {
-//        User user = repository.getByName(name);
-//        if (user == null) throw new NotFoundException("Name=" + name);
-//        return repository.getByName(name);
-//    }
+    @Override
+    public User getByName(String name) {
+        User user = repository.getByName(name);
+        if (user == null) throw new NotFoundException("Name=" + name);
+        return repository.getByName(name);
+    }
 
+    @Override
+    @Transactional
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        User user = repository.getByName(name);
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + name + " is not found");
+        }
+
+        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),
+                mapRolesToAuthorities(user.getRoles()));
+    }
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities (Collection<Role> roles) {
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList());
+    }
 //    @Override
 //    public AuthorizedUser loadUserByUsername(String name) throws UsernameNotFoundException {
 //        User user = repository.getByName(name);

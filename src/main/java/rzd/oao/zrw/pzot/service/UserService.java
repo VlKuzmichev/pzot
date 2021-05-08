@@ -18,7 +18,7 @@ public interface UserService {
 
     List<User> getAll();
 
-//    User getByName(String name);
+    User getByName(String name);
 
 //    void removeRole(Role role, int userId);
 //

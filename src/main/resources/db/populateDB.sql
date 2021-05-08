@@ -10,7 +10,7 @@ INSERT INTO user_groups (name) VALUES
 ('СПЕЦИАЛИСТЫ'); -- 100003
 
 INSERT INTO users (name, password, email, full_name, user_group_id) VALUES
-('User', 'password', 'user@yandex.ru', 'Ivanov Ivan Ivanovich', 100002), -- 100004
+('User', '$2a$10$Sx1rY0BSqQhunZaDxDyfd.nwymYvZ6Pvx3D30tyUtztLotT/qX9ey', 'user@yandex.ru', 'Ivanov Ivan Ivanovich', 100002), -- 100004
 ('Exam', 'password2', 'exam@yandex.ru', 'Petrov Peter Petrovich', 100003), -- 100005
 ('Admin', 'password3', 'admin@yandex.ru', 'Adminov Admin Adminovich', 100003); -- 100006
 -- ('User', '{noop}password', 'user@yandex.ru', 'Ivanov Ivan Ivanovich'), -- 100004
