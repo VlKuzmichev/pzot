@@ -50,8 +50,8 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@RequestBody User user, @PathVariable int id) {
         // Id проверить в сервисе AssureIdConsist
-        System.out.println(user.getGroup().getName());
-        System.out.println("PUT!!");
+//        System.out.println(user.getGroup().getName());
+        System.out.println(" PUT USER!!");
         service.update(user);
     }
 

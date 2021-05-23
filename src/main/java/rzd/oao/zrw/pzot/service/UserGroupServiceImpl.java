@@ -21,17 +21,20 @@ public class UserGroupServiceImpl implements UserGroupService{
         this.userGroupRepository = userGroupRepository;
     }
 
+    @Transactional
     @Override
     public UserGroup create(UserGroup userGroup) {
         Assert.notNull(userGroup, "userGroup must not be null");
         return userGroupRepository.save(userGroup);
     }
 
+    @Transactional
     @Override
     public void delete(int id) throws NotFoundException {
         if (!userGroupRepository.delete(id)) throw new NotFoundException("Not found with id=" + id);
     }
 
+    @Transactional
     @Override
     public void update(UserGroup userGroup) {
         userGroupRepository.save(userGroup);

@@ -6,6 +6,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,6 +30,9 @@ public class User extends AbstractBaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
     private UserGroup group;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    private List<Group> studentGroups;
 
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))

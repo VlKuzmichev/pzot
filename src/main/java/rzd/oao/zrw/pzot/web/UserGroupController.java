@@ -3,6 +3,7 @@ package rzd.oao.zrw.pzot.web;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import rzd.oao.zrw.pzot.model.UserGroup;
@@ -25,10 +26,10 @@ public class UserGroupController {
         return userGroupService.get(id);
     }
 
-    @GetMapping("/group?name={name}")
-    public UserGroup get(@PathVariable String name) {
-        return userGroupService.getByName(name);
-    }
+//    @GetMapping("/group?name={name}")
+//    public UserGroup get(@PathVariable String name) {
+//        return userGroupService.getByName(name);
+//    }
 
     @GetMapping()
     public List<UserGroup> userGroups() {
@@ -38,9 +39,11 @@ public class UserGroupController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserGroup> createWithLocation(@RequestBody UserGroup userGroup) {
         UserGroup created = userGroupService.create(userGroup);
+        System.out.println(userGroup);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/userGroups/{id}")
                 .buildAndExpand(created.getId()).toUri();
+        System.out.println("POST!!");
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
@@ -48,6 +51,7 @@ public class UserGroupController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@RequestBody UserGroup userGroup, @PathVariable int id) {
         // Id проверить в сервисе AssureIdConsist
+        System.out.println(" PUT Group!!");
         userGroupService.update(userGroup);
     }
 
