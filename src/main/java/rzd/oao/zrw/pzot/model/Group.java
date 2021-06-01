@@ -1,5 +1,7 @@
 package rzd.oao.zrw.pzot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Group extends AbstractNamedEntity {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "student_groups", joinColumns = {@JoinColumn(name = "group_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    @JsonIgnore
     private List<User> users;
 
     public Group() {

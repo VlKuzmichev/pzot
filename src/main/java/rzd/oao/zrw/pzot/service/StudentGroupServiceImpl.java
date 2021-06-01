@@ -30,11 +30,13 @@ public class StudentGroupServiceImpl implements StudentGroupService {
         return studentGroupRepository.save(studentGroup);
     }
 
+    @Transactional
     @Override
     public void delete(int id) throws NotFoundException {
         if (!studentGroupRepository.delete(id)) throw new NotFoundException("Not found with id=" + id);
     }
 
+    @Transactional
     @Override
     public void update(Group studentGroup) {
         studentGroupRepository.save(studentGroup);

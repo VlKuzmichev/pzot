@@ -1,5 +1,6 @@
 package rzd.oao.zrw.pzot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.util.CollectionUtils;
@@ -32,6 +33,7 @@ public class User extends AbstractBaseEntity {
     private UserGroup group;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    @JsonIgnore
     private List<Group> studentGroups;
 
     @Enumerated(EnumType.STRING)

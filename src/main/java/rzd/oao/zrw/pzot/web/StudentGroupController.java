@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/groups", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/studentGroups", produces = MediaType.APPLICATION_JSON_VALUE)
 public class StudentGroupController {
     private final StudentGroupService studentGroupService;
 
